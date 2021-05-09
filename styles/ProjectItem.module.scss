@@ -1,0 +1,34 @@
+.project {
+  padding: 1em;
+  border-radius: 5px;
+  background-color: rgba(#000000, 0.1);
+
+  border-bottom: 5px solid rgba(#000000, 0.1);
+  border-right: 5px solid rgba(#000000, 0.1);
+  text-align: justify;
+
+  img {
+    margin: 0.5em auto;
+    display: block;
+    border-radius: 0.5em;
+  }
+  h2 {
+    text-align: center;
+  }
+
+  min-height: 400px;
+  cursor: pointer;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.itemAnimation {
+  transition: all 1s ease-out;
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  transform: scale(1.02);
+}
+
+.textWhite {
+  color: white;
+}
