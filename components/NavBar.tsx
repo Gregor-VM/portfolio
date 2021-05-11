@@ -1,24 +1,56 @@
+import { useRef, LegacyRef } from "react";
 import styles from "../styles/Home.module.scss";
 
-function NavBar() {
+function NavBar({ handleSetRef }) {
+  const handleScroll = () => {
+    handleSetRef("projects");
+  };
   return (
     <>
       <header className={styles.navbar}>
-        <h2 className={styles.headingText}>Gregorio Vargas M.</h2>
-        <h4 className={styles.subtitleText}>Fronted Developer</h4>
+        <div>
+          <h2 className={styles.headingText}>Hola, soy Gregorio Vargas M.</h2>
+          <h4 className={styles.subtitleText}>
+            Front-end Developer - Construyo la parte visual de las páginas web
+            con tecnologías como HTML, CSS, JS, React y muchas más. Estoy
+            disponible para un trabajo de tipo parcial o puedes contarme
+            cualquier proyecto que tengas en mente.
+          </h4>
+          <i className="fas fa-chevron-down" onClick={handleScroll}></i>
+        </div>
 
         <nav className={styles.mt}>
           <ul className={styles.bar}>
-            <a href="#projects">
+            <a
+              href="#"
+              onClick={(e) => {
+                handleSetRef("projects");
+              }}
+            >
               <li>Proyectos</li>
             </a>
-            <a href="#skills">
+            <a
+              href="#"
+              onClick={(e) => {
+                handleSetRef("skills");
+              }}
+            >
               <li>Habilidades</li>
             </a>
-            <a href="#github">
+            <a
+              href="#"
+              onClick={(e) => {
+                handleSetRef("github");
+              }}
+            >
               <li>GitHub</li>
             </a>
-            <a href="#contact">
+            <a
+              href="#"
+              onClick={(e) => {
+                handleSetRef("contact");
+              }}
+            >
               <li>Contácto</li>
             </a>
           </ul>

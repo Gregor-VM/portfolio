@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styles from "../styles/Modal.module.scss";
 import { useDispatch } from "react-redux";
@@ -9,6 +10,7 @@ interface Project {
   desc: string;
   width: string;
   height: string;
+  url: string;
 }
 
 function ViewProjectModal({ children }: { children: React.ReactNode }) {
@@ -19,6 +21,16 @@ function ViewProjectModal({ children }: { children: React.ReactNode }) {
   const handleCloseModal = () => {
     dispatch(viewActions.setView(false));
   };
+
+  useEffect(() => {
+    if (view) {
+      document.body.style.height = "100vh";
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.height = "auto";
+      document.body.style.overflow = "auto";
+    }
+  }, [view]);
 
   if (view) {
     return (
@@ -46,9 +58,9 @@ function ViewProjectModal({ children }: { children: React.ReactNode }) {
               <p>{project.desc}</p>
             </div>
           </div>
-          <button>
+          <a href={project.url} target="_blank">
             Ir al sitio <i className="fas fa-globe"></i>
-          </button>
+          </a>
         </div>
       </>
     );

@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 //import Image from "next/image";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import Layout from "../components/Layout";
+import NavBar from "../components/NavBar";
 import Projects from "../components/Projects";
 import Skills from "../components/Skills";
 import GitHub from "../components/GitHub";
@@ -20,18 +21,26 @@ interface User {
 }
 
 export default function Home({ user }: { user: User }) {
+  const [ref, setRef] = useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(userActions.setUser(user));
+    if (user) {
+      dispatch(userActions.setUser(user));
+    }
   }, [dispatch]);
+
+  const handleSetRef = (ref) => {
+    setRef(ref);
+  };
 
   return (
     <Layout>
-      <Projects />
-      <Skills />
-      <GitHub />
-      <Contact />
+      <NavBar handleSetRef={handleSetRef} />
+      <Projects currentRef={ref} handleSetRef={handleSetRef} />
+      <Skills currentRef={ref} handleSetRef={handleSetRef} />
+      <GitHub currentRef={ref} handleSetRef={handleSetRef} />
+      <Contact currentRef={ref} handleSetRef={handleSetRef} />
     </Layout>
   );
 }
@@ -44,10 +53,22 @@ export async function getServerSideProps() {
     name: string;
     public_repos: number;
   }
-  const res = await fetch("https://api.github.com/users/Gregorio-VM");
-  const { login, avatar_url, html_url, name, public_repos } = await res.json();
-  const user: User = { login, avatar_url, html_url, name, public_repos };
-  return {
-    props: { user: user },
-  };
+  try {
+    const res = await fetch("https://api.github.com/users/Gregor-VM");
+    const {
+      login,
+      avatar_url,
+      html_url,
+      name,
+      public_repos,
+    } = await res.json();
+    const user: User = { login, avatar_url, html_url, name, public_repos };
+    return {
+      props: { user: user },
+    };
+  } catch (error) {
+    return {
+      props: { user: null },
+    };
+  }
 }

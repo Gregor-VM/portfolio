@@ -1,18 +1,22 @@
+import { useRef } from "react";
 import styles from "../styles/Skills.module.scss";
+import useScrollRefProp from "../hooks/useScrollRefProp";
 
-function Skills() {
+function Skills({ currentRef, handleSetRef }) {
+  const ref: React.LegacyRef<HTMLDivElement> = useRef();
+  useScrollRefProp(ref, handleSetRef, currentRef, "skills");
   return (
-    <div className={styles.container}>
-      <h2 id="skills">Habilidades</h2>
+    <div className={styles.container} ref={ref}>
+      <h2>Habilidades</h2>
       <div>
-        <i className="fab fa-html5"></i>
-        <i className="fab fa-css3-alt"></i>
-        <i className="fab fa-js-square"></i>
-        <i className="fab fa-react"></i>
-        <i className="fab fa-git"></i>
-        <i className="fab fa-github"></i>
-        <i className="fab fa-sass"></i>
-        <i className="fab fa-bootstrap"></i>
+        <i className="fab fa-html5" title="HTML"></i>
+        <i className="fab fa-css3-alt" title="CSS"></i>
+        <i className="fab fa-js-square" title="JAVASCRIPT"></i>
+        <i className="fab fa-react" title="REACT"></i>
+        <i className="fab fa-git" title="GIT"></i>
+        <i className="fab fa-github" title="GITHUB"></i>
+        <i className="fab fa-sass" title="SASS"></i>
+        <i className="fab fa-bootstrap" title="BOOTSTRAP"></i>
       </div>
     </div>
   );

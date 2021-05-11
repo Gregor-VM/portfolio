@@ -32,6 +32,19 @@ footer {
   text-align: center;
   padding: 0.5em;
   clear: both;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  & > div {
+    i {
+      padding: 0.5em;
+      font-size: 23px;
+      cursor: pointer;
+      &:hover {
+        color: #f1f1f1;
+      }
+    }
+  }
 }
 
 @media (max-width: 540px) {

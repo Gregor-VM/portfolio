@@ -1,13 +1,53 @@
 .headingText {
   text-align: center;
   margin: 10px 0px;
-  font-family: "Lobster", cursive;
+  font-family: "Dancing Script", cursive;
+}
+
+.navbar {
+  background-color: #f1f1f1;
+  opacity: 1;
+  background: linear-gradient(135deg, #e3f4e155 25%, transparent 25%) -40px 0/
+      80px 80px,
+    linear-gradient(225deg, #e3f4e1 25%, transparent 25%) -40px 0/ 80px 80px,
+    linear-gradient(315deg, #e3f4e155 25%, transparent 25%) 0px 0/ 80px 80px,
+    linear-gradient(45deg, #e3f4e1 25%, #f1f1f1 25%) 0px 0/ 80px 80px;
+  h2 {
+    margin-bottom: 4em;
+    margin-top: 0;
+  }
+  i {
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+    font-size: 30px;
+    animation: arrow 1s linear alternate infinite;
+    cursor: pointer;
+    &:hover {
+      font-size: 32px;
+    }
+  }
+
+  @keyframes arrow {
+    0% {
+      transform: translateY(-7px);
+    }
+    100% {
+      transform: translateY(7px);
+    }
+  }
+
+  & > div {
+    height: 72vh;
+  }
 }
 
 .subtitleText {
   text-align: center;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 25px;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .w100 {
@@ -44,6 +84,22 @@
         border-bottom: 0;
         background-color: white;
       }
+    }
+  }
+  .navbar {
+    h2 {
+      margin-bottom: 2em;
+    }
+    h4 {
+      width: 90%;
+    }
+  }
+}
+
+@media (max-width: 280px) {
+  .navbar {
+    & > div {
+      height: 80vh;
     }
   }
 }

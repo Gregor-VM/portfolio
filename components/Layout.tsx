@@ -1,6 +1,5 @@
 import Head from "next/head";
 import ViewProjectModal from "./ViewProjectModal";
-import NavBar from "../components/NavBar";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,16 +15,25 @@ function Layout({ children }: { children: React.ReactNode }) {
         {/* Teko and Lobster Family */}
         <link rel="preconnect" href="https://fonts.gstatic.com"></link>
         <link
-          href="https://fonts.googleapis.com/css2?family=Lobster&family=Teko:wght@300&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Teko:wght@300&display=swap"
           rel="stylesheet"
         ></link>
       </Head>
-      <NavBar />
+
       <main>{children}</main>
       <footer>
         <p>
           Copyright © Gregorio Vargas M. {new Date().getFullYear().toString()}{" "}
         </p>
+        <div>
+          <span>gregoriovargasmarrero@gmail.com</span>
+          <a href="https://github.com/Gregor-VM" target="_blank">
+            <i className="fab fa-github" title="GITHUB"></i>
+          </a>
+          <a href="https://wa.me/+18498585600" target="_blank">
+            <i className="fab fa-whatsapp" title="WHATSAPP"></i>
+          </a>
+        </div>
       </footer>
     </ViewProjectModal>
   );

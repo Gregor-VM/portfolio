@@ -1,5 +1,8 @@
+import { useRef } from "react";
 import { useSelector } from "react-redux";
 import styles from "../styles/GitHub.module.scss";
+
+import useScrollRefProp from "../hooks/useScrollRefProp";
 
 interface User {
   login: string;
@@ -9,10 +12,12 @@ interface User {
   public_repos: number;
 }
 
-function GitHub() {
+function GitHub({ currentRef, handleSetRef }) {
   const user: User = useSelector((state) => state["user"].user);
+  const ref: React.LegacyRef<HTMLDivElement> = useRef();
+  useScrollRefProp(ref, handleSetRef, currentRef, "github");
   return (
-    <div className={styles.container} id="github">
+    <div className={styles.container} ref={ref}>
       <div>
         <h1>
           GitHub <i className="fab fa-github"></i>

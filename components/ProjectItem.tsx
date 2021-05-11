@@ -9,9 +9,10 @@ interface Project {
   desc: string;
   width: string;
   height: string;
+  url: string;
 }
 
-function ProjectItem({ title, img, desc, width, height }: Project) {
+function ProjectItem({ title, img, desc, width, height, url }: Project) {
   const [isMouseOver, setIsMouseOver] = useState(false);
 
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function ProjectItem({ title, img, desc, width, height }: Project) {
 
   const showModal = () => {
     dispatch(viewActions.setView(true));
-    dispatch(viewActions.setProject({ title, img, desc, width, height }));
+    dispatch(viewActions.setProject({ title, img, desc, width, height, url }));
   };
 
   return (

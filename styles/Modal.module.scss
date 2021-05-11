@@ -4,6 +4,10 @@
   width: 100%;
   height: 100vh;
   background: rgba(#000000, 0.8);
+  transition: all 1s ease-out;
+  &:hover {
+    background: rgba(#000000, 0.7);
+  }
 }
 
 .modal {
@@ -47,14 +51,15 @@
     }
   }
 
-  button {
+  a {
+    text-align: center;
     width: 100%;
-    padding: 1.5em;
+    padding: 0.65em;
     border: 0;
     background-color: #2ecc71;
     font-weight: bold;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 25px;
     &:hover {
       background-color: #1b8045;
       color: white;

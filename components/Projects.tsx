@@ -1,9 +1,13 @@
+import { useRef } from "react";
 import styles from "../styles/Projects.module.scss";
 import ProjectItem from "./ProjectItem";
+import useScrollRefProp from "../hooks/useScrollRefProp";
 
-function Projects() {
+function Projects({ currentRef, handleSetRef }) {
+  const ref: React.LegacyRef<HTMLDivElement> = useRef();
+  useScrollRefProp(ref, handleSetRef, currentRef, "projects");
   return (
-    <div className={styles.twoBoxes} id="projects">
+    <div className={styles.twoBoxes} ref={ref}>
       <h2>Proyectos</h2>
       <div>
         <ProjectItem
@@ -12,6 +16,7 @@ function Projects() {
           img="https://cdn.pixabay.com/photo/2017/06/10/07/18/list-2389219_960_720.png"
           width="200"
           height="200"
+          url="https://Gregor-VM.github.io/todo"
         />
         <ProjectItem
           title="Search Movie App"
@@ -19,6 +24,7 @@ function Projects() {
           img="https://code.4noobz.net/wp-content/uploads/2018/10/OMDB-API.png"
           width="200"
           height="100"
+          url="https://Gregor-VM.github.io/movie-search"
         />
         <ProjectItem
           title="Clicker React Game"
@@ -26,6 +32,7 @@ function Projects() {
           img="https://cdn.pixabay.com/photo/2013/07/12/19/17/cursor-154478_960_720.png"
           width="90"
           height="125"
+          url="https://Gregor-VM.github.io/react-clicker-game"
         />
         <ProjectItem
           title="Firebase App"
@@ -33,6 +40,7 @@ function Projects() {
           img="https://firebase.google.com/downloads/brand-guidelines/PNG/logo-built_white.png?hl=es"
           width="200"
           height="100"
+          url="https://Gregor-VM.github.io/login-app"
         />
       </div>
     </div>
