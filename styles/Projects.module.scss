@@ -1,5 +1,7 @@
+@import "./Variables.scss";
+
 .twoBoxes {
-  background-color: #2ecc71;
+  background-color: map-get($map: $palette, $key: "primary");
   display: flex;
   align-items: center;
   height: 1000px;
@@ -8,10 +10,11 @@
   & > h2 {
     background-color: white;
     border-radius: 0.5em;
-    padding: 0.5em 1em;
+    padding: 0.9em;
     font-weight: 200;
     margin-left: 2.5em;
     box-shadow: 0.1em 0.1em 0.2em rgba(#000000, 0.2);
+    font-size: $xlfont;
   }
 
   & > div {

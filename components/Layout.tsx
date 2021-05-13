@@ -12,10 +12,10 @@ function Layout({ children }: { children: React.ReactNode }) {
         />
         <link rel="icon" href="/favicon.ico" />
 
-        {/* Teko and Lobster Family */}
+        {/* Google fonts */}
         <link rel="preconnect" href="https://fonts.gstatic.com"></link>
         <link
-          href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Teko:wght@300&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=PT+Sans&display=swap"
           rel="stylesheet"
         ></link>
       </Head>

@@ -1,4 +1,4 @@
-import { useRef, LegacyRef } from "react";
+import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 
 function NavBar({ handleSetRef }) {
@@ -11,10 +11,10 @@ function NavBar({ handleSetRef }) {
         <div>
           <h2 className={styles.headingText}>Hola, soy Gregorio Vargas M.</h2>
           <h4 className={styles.subtitleText}>
-            Front-end Developer - Construyo la parte visual de las páginas web
-            con tecnologías como HTML, CSS, JS, React y muchas más. Estoy
-            disponible para un trabajo de tipo parcial o puedes contarme
-            cualquier proyecto que tengas en mente.
+            Soy Front-end Developer tengo 20 años, soy de República Dominicana y
+            me especializo en utilizar tecnologías como HTML, CSS, Javascript,
+            React, entre otras. Programar es mi pasión y me gusta aprender más
+            en mi dia a dia.
           </h4>
           <i className="fas fa-chevron-down" onClick={handleScroll}></i>
         </div>

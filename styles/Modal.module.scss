@@ -1,3 +1,5 @@
+@import "./Variables.scss";
+
 .modalBackground {
   position: fixed;
   top: 0;
@@ -14,13 +16,14 @@
   position: fixed;
   top: 10%;
   left: 25%;
-  height: 80vh;
+  height: 0;
   width: 50%;
   border-radius: 0.5em;
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size: $font;
 
   overflow-y: auto;
 
@@ -54,14 +57,21 @@
   a {
     text-align: center;
     width: 100%;
-    padding: 0.65em;
+    padding: 0.75em;
     border: 0;
-    background-color: #2ecc71;
+    background-color: map-get($map: $palette, $key: "primary");
     font-weight: bold;
     cursor: pointer;
-    font-size: 25px;
+    font-size: $font;
+    i {
+      font-size: 20px;
+      margin-left: 0.2em;
+    }
     &:hover {
-      background-color: #1b8045;
+      background-color: darken(
+        $color: map-get($map: $palette, $key: "primary"),
+        $amount: 20
+      );
       color: white;
     }
   }
@@ -74,10 +84,101 @@
   margin-right: 0.3em;
   margin-top: 0.3em;
   &:hover {
-    color: red;
+    color: map-get($map: $palette, $key: "danger");
     cursor: pointer;
   }
   z-index: 101;
+  animation: openIcon 0.4s ease-in-out forwards;
+  @keyframes openIcon {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+.modalAnimation {
+  animation: open 0.2s ease-in-out forwards;
+  @keyframes open {
+    0% {
+      height: 0;
+    }
+    100% {
+      height: 80vh;
+    }
+  }
+  @media (max-width: 571px) {
+    animation: openRes 0.2s ease-in-out forwards;
+    @keyframes openRes {
+      0% {
+        height: 0;
+      }
+      100% {
+        height: 100vh;
+      }
+    }
+  }
+}
+
+.modalCloseAnimation {
+  animation: close 0.2s ease-in-out forwards;
+  @keyframes close {
+    0% {
+      height: 80vh;
+    }
+    100% {
+      height: 0;
+    }
+  }
+  @media (max-width: 571px) {
+    animation: closeRes 0.2s ease-in-out forwards;
+    @keyframes closeRes {
+      0% {
+        height: 100vh;
+      }
+      100% {
+        height: 0;
+      }
+    }
+  }
+}
+
+.closeIconAnimation {
+  animation: closeIcon 0.15s ease-in-out forwards;
+  @keyframes closeIcon {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+.backgroundAnimation {
+  animation: backgroundOpen 0.3s ease-in-out forwards;
+  @keyframes backgroundOpen {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+.backgroundCloseAnimation {
+  animation: backgroundCloseOpen 0.2s ease-in-out forwards;
+  @keyframes backgroundCloseOpen {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 }
 
 @media (max-width: 939px) {
