@@ -22,7 +22,10 @@ function GitHub({ currentRef, handleSetRef }) {
       <h1>
         GitHub <i className="fab fa-github"></i>
       </h1>
-      <div>
+      <div className={styles.versionSvg}>
+        <img src="/version.svg"></img>
+      </div>
+      <div className={styles.profile}>
         <img src={user.avatar_url}></img>
         <h2>{user.name}</h2>
         <small>Username: {user.login}</small>
