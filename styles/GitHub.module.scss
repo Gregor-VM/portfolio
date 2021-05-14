@@ -4,7 +4,6 @@
   background-color: map-get($map: $palette, $key: "primary");
   color: white;
   padding: 1em;
-  margin-bottom: 4em;
   font-size: $font;
   text-align: center;
   display: flex;
@@ -146,6 +145,9 @@
     transform: translateY(-30px) !important;
     height: 2em !important;
     margin-bottom: 0em !important;
+    .avatar {
+      border-width: 3px !important;
+    }
   }
   .shadow {
     margin-top: 10px !important;

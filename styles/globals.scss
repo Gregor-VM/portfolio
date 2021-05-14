@@ -29,10 +29,8 @@ li {
 }
 
 footer {
-  background-color: darken(
-    $color: map-get($map: $palette, $key: "background"),
-    $amount: 10
-  );
+  background-color: map-get($map: $palette, $key: "secondary");
+  color: white;
   font-size: 18px;
   text-align: center;
   padding: 0.5em;

@@ -4,7 +4,10 @@
   font-size: $font;
   padding: 1em;
   border-radius: 5px;
-  background-color: rgba(#000000, 0.1);
+  background-color: rgba(
+    $color: map-get($map: $palette, $key: "secondary"),
+    $alpha: 0.5
+  );
 
   border-bottom: 5px solid rgba(#000000, 0.1);
   border-right: 5px solid rgba(#000000, 0.1);
@@ -21,7 +24,7 @@
     font-size: $font;
   }
 
-  min-height: 400px;
+  /*min-height: 400px;*/
   cursor: pointer;
 
   text-overflow: ellipsis;

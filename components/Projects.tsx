@@ -8,7 +8,12 @@ function Projects({ currentRef, handleSetRef }) {
   useScrollRefProp(ref, handleSetRef, currentRef, "projects");
   return (
     <div className={styles.twoBoxes} ref={ref}>
-      <h2>Proyectos</h2>
+      <div className={styles.left}>
+        <h2>
+          Proyectos <i className="fas fa-check-circle"></i>
+        </h2>
+        <img src="/project.svg"></img>
+      </div>
       <div>
         <ProjectItem
           title="Todo App"

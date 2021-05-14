@@ -16,28 +16,25 @@
 .container {
   font-size: $font;
   padding: 1em;
+  margin-top: 2em;
+
   h2 {
     text-align: center;
     color: white;
     margin: 0.2em 0;
+  }
+  display: flex;
+  img {
+    width: 40%;
   }
 
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
-    background-color: map-get($map: $palette, $key: "primary");
-    overflow: hidden;
-    border-right: 0.25em solid map-get($map: $palette, $key: "secondary");
-    border-bottom: 0.25em solid map-get($map: $palette, $key: "secondary");
-    border-left: 0.25em solid map-get($map: $palette, $key: "secondary");
-    border-top: 0.25em solid
-      lighten($color: map-get($map: $palette, $key: "primary"), $amount: 10);
-    box-shadow: 0.2em 0.2em 0.5em rgba(#000000, 0.2);
-    border-radius: 0.5em;
-    border-width: 4px;
+    background-color: map-get($map: $palette, $key: "secondary");
 
     input {
       @extend %input;
@@ -57,14 +54,15 @@
       width: 100%;
       padding: 1em 0;
       border: 0;
-      background-color: map-get($map: $palette, $key: "secondary");
+      background-color: map-get($map: $palette, $key: "primary");
+      border: 4px solid map-get($map: $palette, $key: "secondary");
       color: white;
       font-size: $font;
       cursor: pointer;
       margin-top: 0.2em;
       &:hover {
-        background-color: darken(
-          $color: map-get($map: $palette, $key: "secondary"),
+        background-color: lighten(
+          $color: map-get($map: $palette, $key: "primary"),
           $amount: 10
         );
         color: white;
@@ -73,9 +71,14 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   .container {
     padding: 0.5em;
+    flex-direction: column;
+    img {
+      width: 90%;
+      margin: 0 auto;
+    }
     form {
       width: 100%;
       label {

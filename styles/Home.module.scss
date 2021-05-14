@@ -11,7 +11,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
-  /*background: map-get($map: $palette, $key: "background");*/
 
   h2 {
     margin-bottom: 4em;
@@ -68,8 +67,8 @@
     transition: border-bottom 0.2s ease-in-out;
     font-size: $font;
     &:hover {
-      color: map-get($map: $palette, $key: "primary");
-      border-bottom: 5px solid black;
+      color: map-get($map: $palette, $key: "secondary");
+      border-bottom: 5px solid map-get($map: $palette, $key: "secondary");
     }
   }
 }

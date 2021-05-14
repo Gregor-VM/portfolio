@@ -7,7 +7,9 @@ function Skills({ currentRef, handleSetRef }) {
   useScrollRefProp(ref, handleSetRef, currentRef, "skills");
   return (
     <div className={styles.container} ref={ref}>
-      <h2>Habilidades</h2>
+      <h2>
+        Habilidades <i className="fas fa-laptop-code"></i>
+      </h2>
       <div>
         <i className="fab fa-html5" title="HTML"></i>
         <i className="fab fa-css3-alt" title="CSS"></i>

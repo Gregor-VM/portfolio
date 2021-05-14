@@ -79,6 +79,7 @@ function Contact({ currentRef, handleSetRef }) {
         <Alert msg={msg.msg} variant={msg.variant} handleClose={handleClose} />
         <button type="submit">Enviar</button>
       </form>
+      <img src="/contact.svg"></img>
     </div>
   );
 }

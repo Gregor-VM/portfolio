@@ -68,10 +68,7 @@
       margin-left: 0.2em;
     }
     &:hover {
-      background-color: darken(
-        $color: map-get($map: $palette, $key: "primary"),
-        $amount: 20
-      );
+      background-color: map-get($map: $palette, $key: "secondary");
       color: white;
     }
   }
