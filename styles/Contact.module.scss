@@ -30,12 +30,9 @@
     margin: 0 auto;
     background-color: map-get($map: $palette, $key: "primary");
     overflow: hidden;
-    border-right: 0.25em solid
-      darken($color: map-get($map: $palette, $key: "primary"), $amount: 10);
-    border-bottom: 0.25em solid
-      darken($color: map-get($map: $palette, $key: "primary"), $amount: 8);
-    border-left: 0.25em solid
-      darken($color: map-get($map: $palette, $key: "primary"), $amount: 10);
+    border-right: 0.25em solid map-get($map: $palette, $key: "secondary");
+    border-bottom: 0.25em solid map-get($map: $palette, $key: "secondary");
+    border-left: 0.25em solid map-get($map: $palette, $key: "secondary");
     border-top: 0.25em solid
       lighten($color: map-get($map: $palette, $key: "primary"), $amount: 10);
     box-shadow: 0.2em 0.2em 0.5em rgba(#000000, 0.2);
@@ -60,13 +57,16 @@
       width: 100%;
       padding: 1em 0;
       border: 0;
-      background-color: rgba(#000000, 0.2);
+      background-color: map-get($map: $palette, $key: "secondary");
       color: white;
       font-size: $font;
       cursor: pointer;
       margin-top: 0.2em;
       &:hover {
-        background-color: rgba(#000000, 0.3);
+        background-color: darken(
+          $color: map-get($map: $palette, $key: "secondary"),
+          $amount: 10
+        );
         color: white;
       }
     }

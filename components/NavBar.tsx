@@ -9,14 +9,25 @@ function NavBar({ handleSetRef }) {
     <>
       <header className={styles.navbar}>
         <div>
-          <h2 className={styles.headingText}>Hola, soy Gregorio Vargas M.</h2>
+          <h2 className={styles.headingText + " " + styles.show1}>
+            Hola, soy Gregorio Vargas Marrero
+          </h2>
           <h4 className={styles.subtitleText}>
-            Soy Front-end Developer tengo 20 años, soy de República Dominicana y
-            me especializo en utilizar tecnologías como HTML, CSS, Javascript,
-            React, entre otras. Programar es mi pasión y me gusta aprender más
-            en mi dia a dia.
+            <span className={styles.show2}>
+              Soy Front-end Developer tengo 20 años, soy de Barahona, República{" "}
+            </span>
+            <span className={styles.show3}>
+              Dominicana y me especializo en utilizar tecnologías como HTML,
+            </span>{" "}
+            <span className={styles.show4}>
+              CSS, Javascript, React, entre otras. Programar es mi pasión y me
+              gusta{" "}
+            </span>
+            <span className={styles.show5}>aprender más en mi dia a dia.</span>
           </h4>
-          <i className="fas fa-chevron-down" onClick={handleScroll}></i>
+          <span className={styles.show6}>
+            <i className="fas fa-chevron-down" onClick={handleScroll}></i>
+          </span>
         </div>
 
         <nav className={styles.mt}>
@@ -27,7 +38,7 @@ function NavBar({ handleSetRef }) {
                 handleSetRef("projects");
               }}
             >
-              <li>Proyectos</li>
+              <li className={styles.show7}>Proyectos</li>
             </a>
             <a
               href="#"
@@ -35,7 +46,7 @@ function NavBar({ handleSetRef }) {
                 handleSetRef("skills");
               }}
             >
-              <li>Habilidades</li>
+              <li className={styles.show8}>Habilidades</li>
             </a>
             <a
               href="#"
@@ -43,7 +54,7 @@ function NavBar({ handleSetRef }) {
                 handleSetRef("github");
               }}
             >
-              <li>GitHub</li>
+              <li className={styles.show9}>GitHub</li>
             </a>
             <a
               href="#"
@@ -51,7 +62,7 @@ function NavBar({ handleSetRef }) {
                 handleSetRef("contact");
               }}
             >
-              <li>Contácto</li>
+              <li className={styles.show10}>Contácto</li>
             </a>
           </ul>
         </nav>

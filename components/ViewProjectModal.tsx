@@ -24,7 +24,7 @@ function ViewProjectModal({ children }: { children: React.ReactNode }) {
     setTimeout(() => {
       dispatch(viewActions.setView(false));
       setIsClosing(false);
-    }, 190);
+    }, 200);
   };
 
   useEffect(() => {

@@ -16,12 +16,13 @@ function GitHub({ currentRef, handleSetRef }) {
   const user: User = useSelector((state) => state["user"].user);
   const ref: React.LegacyRef<HTMLDivElement> = useRef();
   useScrollRefProp(ref, handleSetRef, currentRef, "github");
+
   return (
     <div className={styles.container} ref={ref}>
+      <h1>
+        GitHub <i className="fab fa-github"></i>
+      </h1>
       <div>
-        <h1>
-          GitHub <i className="fab fa-github"></i>
-        </h1>
         <img src={user.avatar_url}></img>
         <h2>{user.name}</h2>
         <small>Username: {user.login}</small>

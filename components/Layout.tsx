@@ -27,12 +27,14 @@ function Layout({ children }: { children: React.ReactNode }) {
         </p>
         <div>
           <span>gregoriovargasmarrero@gmail.com</span>
-          <a href="https://github.com/Gregor-VM" target="_blank">
-            <i className="fab fa-github" title="GITHUB"></i>
-          </a>
-          <a href="https://wa.me/+18498585600" target="_blank">
-            <i className="fab fa-whatsapp" title="WHATSAPP"></i>
-          </a>
+          <div>
+            <a href="https://github.com/Gregor-VM" target="_blank">
+              <i className="fab fa-github" title="GITHUB"></i>
+            </a>
+            <a href="https://wa.me/+18498585600" target="_blank">
+              <i className="fab fa-whatsapp" title="WHATSAPP"></i>
+            </a>
+          </div>
         </div>
       </footer>
     </ViewProjectModal>

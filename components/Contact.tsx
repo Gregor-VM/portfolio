@@ -74,7 +74,7 @@ function Contact({ currentRef, handleSetRef }) {
           onChange={({ target: { value } }) => setMessage(value)}
           placeholder="Escribe tu mensaje..."
           id="message"
-          rows={7}
+          rows={10}
         ></textarea>
         <Alert msg={msg.msg} variant={msg.variant} handleClose={handleClose} />
         <button type="submit">Enviar</button>

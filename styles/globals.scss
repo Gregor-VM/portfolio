@@ -41,6 +41,9 @@ footer {
   justify-content: space-between;
   align-items: center;
   & > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     i {
       padding: 0.5em;
       font-size: 23px;
@@ -52,8 +55,17 @@ footer {
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 664px) {
   footer {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  footer {
+    & > div {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
