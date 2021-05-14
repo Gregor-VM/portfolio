@@ -26,7 +26,10 @@ function GitHub({ currentRef, handleSetRef }) {
         <img src="/version.svg"></img>
       </div>
       <div className={styles.profile}>
-        <img src={user.avatar_url}></img>
+        <div className={styles.float}>
+          <img src={user.avatar_url} className={styles.avatar}></img>
+          <img className={styles.shadow}></img>
+        </div>
         <h2>{user.name}</h2>
         <small>Username: {user.login}</small>
         <p>{user.public_repos} repositorios creados actualmente</p>
