@@ -54,16 +54,20 @@
       width: 100%;
       padding: 1em 0;
       border: 0;
-      background-color: map-get($map: $palette, $key: "primary");
+      background-color: rgba(
+        $color: map-get($map: $palette, $key: "primary"),
+        $alpha: 0.5
+      );
       border: 4px solid map-get($map: $palette, $key: "secondary");
       color: white;
       font-size: $font;
       cursor: pointer;
       margin-top: 0.2em;
+      transition: all 0.2s linear;
       &:hover {
-        background-color: lighten(
+        background-color: rgba(
           $color: map-get($map: $palette, $key: "primary"),
-          $amount: 10
+          $alpha: 0.8
         );
         color: white;
       }

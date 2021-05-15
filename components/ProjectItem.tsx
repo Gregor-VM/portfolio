@@ -38,7 +38,9 @@ function ProjectItem({ title, img, desc, width, height, url }: Project) {
       onMouseLeave={handleLeave}
       onClick={showModal}
     >
-      {!isMouseOver && <img src={img} width={width} height={height}></img>}
+      {!isMouseOver && (
+        <img src={img} width={width} height={height} alt={title}></img>
+      )}
       <h2>{!isMouseOver && title}</h2>
       <p className={isMouseOver ? styles.textWhite : undefined}>
         {isMouseOver && desc}

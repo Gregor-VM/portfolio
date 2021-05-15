@@ -63,13 +63,14 @@
     font-weight: bold;
     cursor: pointer;
     font-size: $font;
+    color: white;
     i {
       font-size: 20px;
       margin-left: 0.2em;
     }
+    transition: all 0.2s linear;
     &:hover {
       background-color: map-get($map: $palette, $key: "secondary");
-      color: white;
     }
   }
 }

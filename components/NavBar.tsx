@@ -14,7 +14,7 @@ function NavBar({ handleSetRef }) {
           </h2>
           <h4 className={styles.subtitleText}>
             <span className={styles.show2}>
-              Soy Front-end Developer tengo 20 años, soy de Barahona, República{" "}
+              Soy Front-end Developer tengo 20 años, soy de República{" "}
             </span>
             <span className={styles.show3}>
               Dominicana y me especializo en utilizar tecnologías como HTML,
