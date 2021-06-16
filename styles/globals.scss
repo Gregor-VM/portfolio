@@ -9,6 +9,19 @@ body {
   background-color: map-get($map: $palette, $key: "background");
 }
 
+//Hide ScrollBar
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+//End Hide ScrollBar
+
 a {
   color: inherit;
   text-decoration: none;

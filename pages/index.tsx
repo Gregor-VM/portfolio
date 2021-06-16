@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 //import Image from "next/image";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
+import styles from "./../styles/Home.module.scss";
+
 import Layout from "../components/Layout";
 import NavBar from "../components/NavBar";
 import Projects from "../components/Projects";
@@ -11,6 +13,7 @@ import Contact from "../components/Contact";
 
 import { useDispatch } from "react-redux";
 import userActions from "../redux/actions/userActions";
+import Description from "../components/Description";
 
 interface User {
   login: string;
@@ -36,7 +39,11 @@ export default function Home({ user }: { user: User }) {
 
   return (
     <Layout>
-      <NavBar handleSetRef={handleSetRef} />
+      <div className={styles.top}>
+        <NavBar handleSetRef={handleSetRef} />
+        <Description handleSetRef={handleSetRef} />
+        <div className={styles.transition}></div>
+      </div>
       <Projects currentRef={ref} handleSetRef={handleSetRef} />
       <Skills currentRef={ref} handleSetRef={handleSetRef} />
       <GitHub currentRef={ref} handleSetRef={handleSetRef} />
