@@ -32,7 +32,7 @@ function NavBar({ handleSetRef }) {
           <li>Proyectos</li>
         </a>
         <a
-          className={selected === 1 && styles.selected}
+          className={selected === 1 ? styles.selected : ""}
           href="#"
           onClick={(e) => {
             selectItem(1);
@@ -41,7 +41,7 @@ function NavBar({ handleSetRef }) {
           <li>Habilidades</li>
         </a>
         <a
-          className={selected === 2 && styles.selected}
+          className={selected === 2 ? styles.selected : ""}
           href="#"
           onClick={(e) => {
             selectItem(2);
@@ -50,7 +50,7 @@ function NavBar({ handleSetRef }) {
           <li>GitHub</li>
         </a>
         <a
-          className={selected === 3 && styles.selected}
+          className={selected === 3 ? styles.selected : ""}
           href="#"
           onClick={(e) => {
             selectItem(3);
