@@ -28,6 +28,9 @@ function Layout({ children }: { children: React.ReactNode }) {
         <div>
           <span>gregoriovargasmarrero@gmail.com</span>
           <div>
+            <a href="https://t.me/Gregorvm" target="_blank">
+              <i className="fab fa-telegram" title="TELEGRAM"></i>
+            </a>
             <a href="https://github.com/Gregor-VM" target="_blank">
               <i className="fab fa-github" title="GITHUB"></i>
             </a>

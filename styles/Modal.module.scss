@@ -68,9 +68,10 @@
       font-size: 20px;
       margin-left: 0.2em;
     }
-    transition: all 0.2s linear;
+    transition: all 0.1s linear;
     &:hover {
-      background-color: map-get($map: $palette, $key: "secondary");
+      //background-color: map-get($map: $palette, $key: "secondary");
+      filter: saturate(200%);
     }
   }
 }
