@@ -29,7 +29,7 @@ function NavBar({ handleSetRef }) {
             selectItem(0);
           }}
         >
-          <li className={styles.show7}>Proyectos</li>
+          <li>Proyectos</li>
         </a>
         <a
           className={selected === 1 && styles.selected}
@@ -38,7 +38,7 @@ function NavBar({ handleSetRef }) {
             selectItem(1);
           }}
         >
-          <li className={styles.show8}>Habilidades</li>
+          <li>Habilidades</li>
         </a>
         <a
           className={selected === 2 && styles.selected}
@@ -47,7 +47,7 @@ function NavBar({ handleSetRef }) {
             selectItem(2);
           }}
         >
-          <li className={styles.show9}>GitHub</li>
+          <li>GitHub</li>
         </a>
         <a
           className={selected === 3 && styles.selected}
@@ -56,7 +56,7 @@ function NavBar({ handleSetRef }) {
             selectItem(3);
           }}
         >
-          <li className={styles.show10}>Contácto</li>
+          <li>Contácto</li>
         </a>
       </ul>
     </nav>

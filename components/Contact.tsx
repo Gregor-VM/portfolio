@@ -54,7 +54,10 @@ function Contact({ currentRef, handleSetRef }) {
   return (
     <div className={styles.container} ref={ref}>
       <form onSubmit={handleSend}>
-        <h2>Contáctame</h2>
+        <h2>
+          Contáctame<i className="far fa-envelope"></i>
+        </h2>
+
         <label htmlFor={"name"}>Nombre</label>
         <input
           onChange={({ target: { value } }) => setName(value)}

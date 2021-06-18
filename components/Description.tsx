@@ -16,7 +16,7 @@ function Description({ handleSetRef }) {
           mi dia a dia.
         </p>
         <div>
-          <a href="cv_gregorio_vargas_m.pdf" target="_blank">
+          <a href="cv_gvm.pdf" target="_blank">
             Descargar CV
           </a>
           <button onClick={() => handleSetRef(ids[3])}>Contáctame</button>
