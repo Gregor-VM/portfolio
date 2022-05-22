@@ -16,12 +16,12 @@ function Projects({ currentRef, handleSetRef }) {
       </div>
       <div>
         <ProjectItem
-          title="Todo App"
-          desc="Esta es una aplicación para crear notas, editar y eliminarlas. La misma usa el localStorage para guardarlas localmente en el dispositivo con el que se esté trabajando."
+          title="Rekapp"
+          desc="Rekapp is una aplicación de React que te permite crear y compartir mazos de cartas para estudiar que contienen textos, imágenes y/o audio."
           img="https://cdn.pixabay.com/photo/2017/06/10/07/18/list-2389219_960_720.png"
           width="200"
           height="200"
-          url="https://Gregor-VM.github.io/todo"
+          url="https://rekapping.herokuapp.com/"
         />
         <ProjectItem
           title="Search Movie App"
