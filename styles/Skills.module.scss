@@ -32,6 +32,19 @@
         border-radius: 50%;
       }
     }
+
+    img {
+      padding: 40px;
+      transition: all 0.3s ease;
+      border-radius: 50%;
+      &:hover {
+        transform: scale(1.05);
+        background-color: rgba(#000000, 0.03);
+        border-radius: 50%;
+      }
+    }
+
+
   }
 }
 

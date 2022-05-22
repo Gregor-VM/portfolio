@@ -19,6 +19,9 @@ function Skills({ currentRef, handleSetRef }) {
         <i className="fab fa-github" title="GITHUB"></i>
         <i className="fab fa-sass" title="SASS"></i>
         <i className="fab fa-bootstrap" title="BOOTSTRAP"></i>
+        <i className="fab fa-node-js" title="NODEJS"></i>
+        <img src="/mongodb_icon.png" title="MONGODB" height="170px" width="170px" />
+        <img src="/typescript_icon.png" title="TYPESCRIPT" height="170px" width="170px" />
       </div>
     </div>
   );
