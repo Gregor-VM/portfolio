@@ -18,10 +18,31 @@
     padding: 100px 0px 40px 100px;
     width: 40%;
     h2 {
-      font-family: "Dancing Script", cursive;
+      font-family: 'Rubik Marker Hatch', cursive;
       font-size: $xlfont;
       margin-bottom: 10px;
     }
+
+    @for $i from 1 to 34 {
+      .animatedLetter-#{$i}{
+        color: black;
+        animation: appear (random($limit: 5) * 1s) ease-in forwards infinite;
+        animation-delay: ($i * 50ms);
+        &:hover{
+          text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+
+    @keyframes appear {
+      from{ 
+        color: map-get($map: $palette, $key: 'primary');
+      }
+      to{
+        color: darken($color: map-get($map: $palette, $key: 'primary'), $amount: 30);
+      }
+    }
+
     p {
       font-size: $smfont;
       text-align: justify;

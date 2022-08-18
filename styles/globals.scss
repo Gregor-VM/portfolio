@@ -1,12 +1,16 @@
 @import "./Variables.scss";
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: "PT Sans", sans-serif;
-  font-size: 30px;
-  background-color: map-get($map: $palette, $key: "background");
+  font-family: 'DynaPuff', cursive;
+  font-size: 18px;
+  //background-color: map-get($map: $palette, $key: "background");
 }
 
 //Hide ScrollBar

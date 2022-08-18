@@ -13,11 +13,9 @@ function Layout({ children }: { children: React.ReactNode }) {
         <link rel="icon" href="/favicon.ico" />
 
         {/* Google fonts */}
-        <link rel="preconnect" href="https://fonts.gstatic.com"></link>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=PT+Sans&display=swap"
-          rel="stylesheet"
-        ></link>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;600&family=Rubik+Marker+Hatch&display=swap" rel="stylesheet" />
       </Head>
 
       <main>{children}</main>

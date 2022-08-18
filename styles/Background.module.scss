@@ -1,0 +1,107 @@
+@import '../styles/Variables.scss';
+
+$sky: rgb(123, 174, 255);
+$blur_ratio: 0;
+
+.background{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: $sky;
+    z-index: -1;
+    overflow: hidden;
+    background-color: #d5f6ff;
+    //box-shadow: 0px 0px 500px black inset;
+
+    & > .city_1, & > .city_2 {
+        filter: brightness(.8);
+        filter: blur($blur_ratio * 5px);
+        position: absolute;
+        width: 100%;
+    }
+
+    & > .city_1 {
+        animation: moving_1 10s linear infinite;
+    }
+
+    & > .city_2 {
+        animation: moving_2 10s linear infinite;
+    }
+
+    @keyframes moving_2 {
+        from{
+            transform: translateX(99%);
+        }to{
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes moving_1 {
+        from{
+            transform: translateX(0);
+        }to{
+            transform: translateX(-99%);
+        }
+    }
+
+    %flying_objects {
+        width: 10%;
+        position: absolute;
+    }
+
+    .flying_bird{
+        @extend %flying_objects;
+        left: 0;
+        transform: translateX(-10vw);
+        filter: blur($blur_ratio * 2px);
+        top: (random($limit: 40)* 1%);
+        animation: fly_right 50s linear 10s infinite forwards;
+        z-index: 0;
+    }
+
+    .air_ballon{
+        @extend %flying_objects;
+        left: 0;
+        transform: translateX(-10vw);
+        filter: blur($blur_ratio * 2.5px);
+        top: (random($limit: 20)* 1%);
+        animation: fly_right 200s linear 20s infinite forwards;
+        z-index: -2;
+    }
+
+    .airplane{
+        @extend %flying_objects;
+        filter: blur($blur_ratio * 2.5px);
+        transform: translateX(10vw) rotateY(180deg);
+        top: (random($limit: 20)* 1%);
+        right: 0;
+        animation: fly_left 200s linear infinite 40s forwards;
+        z-index: -5;
+    }
+
+    @keyframes fly_right {
+        0%{
+            transform: translateX(-10vw);
+        }10%, 100%{
+            transform: translateX(100vw);
+        }
+    }
+
+    @keyframes fly_left {
+        0%{
+            transform: translateX(10vw) rotateY(180deg);
+        }10%, 100%{
+            transform: translateX(-100vw) rotateY(180deg);
+        }
+    }
+
+
+    .sun{
+        width: 20%;
+        position: absolute;
+        filter: blur($blur_ratio * 7px);
+        top: 0; // calculated base on the hour
+        left: 40%;
+        z-index: -10;
+    }
+}

@@ -14,6 +14,7 @@ import Contact from "../components/Contact";
 import { useDispatch } from "react-redux";
 import userActions from "../redux/actions/userActions";
 import Description from "../components/Description";
+import Background from "../components/Background";
 
 interface User {
   login: string;
@@ -40,6 +41,7 @@ export default function Home({ user }: { user: User }) {
   return (
     <Layout>
       <div className={styles.top}>
+        <Background />
         <NavBar handleSetRef={handleSetRef} />
         <Description handleSetRef={handleSetRef} />
         <div className={styles.transition}></div>
