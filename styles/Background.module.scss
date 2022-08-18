@@ -71,6 +71,7 @@ $blur_ratio: 0;
 
     .airplane{
         @extend %flying_objects;
+        width: 5%;
         filter: blur($blur_ratio * 2.5px);
         transform: translateX(10vw) rotateY(180deg);
         top: (random($limit: 20)* 1%);

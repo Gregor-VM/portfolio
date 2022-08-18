@@ -46,6 +46,9 @@
     p {
       font-size: $smfont;
       text-align: justify;
+      background-color: rgba($color: #fff, $alpha: 0.7);
+      border-radius: 15px;
+      padding: .5rem;
     }
 
     div {
@@ -69,8 +72,9 @@
       }
 
       button {
+        font-family: 'DynaPuff', cursive;
         color: map-get($map: $palette, $key: "primary");
-        background-color: rgba($color: #fff, $alpha: 0.3);
+        background-color: rgba($color: #fff, $alpha: 0.9);
         margin-left: 15px;
       }
     }
