@@ -1,5 +1,6 @@
-import React, {useMemo, useCallback} from "react";
+import React, {useMemo} from "react";
 import styles from "./../styles/Description.module.scss";
+import Model from './Model';
 
 function Description({ handleSetRef }) {
   const ids = ["projects", "skills", "github", "contact"];
@@ -49,7 +50,8 @@ function Description({ handleSetRef }) {
         </div>
       </div>
 
-      <div className={styles.bg}></div>
+      <div className={styles.model}><Model /></div>
+      {/*<div className={styles.bg}></div>*/}
     </div>
   );
 }

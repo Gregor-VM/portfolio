@@ -5,7 +5,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <ViewProjectModal>
       <Head>
-        <title>Gregorio V. | Portafolio </title>
+        {/*<title>Gregorio V. | Portafolio </title>*/}
         <meta
           name="description"
           content="Gregorio Vargas Marrero portafolio desarrollador fronted sitio web"

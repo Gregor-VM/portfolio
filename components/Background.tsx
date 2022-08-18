@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../styles/Background.module.scss';
 
+
 function Background() {
     return (
         <div className={styles.background}>
@@ -13,6 +14,8 @@ function Background() {
             <img className={styles.sun} src="./sun.gif" />
             <img className={styles.air_ballon} src="./air_ballon.gif" />
             <img className={styles.airplane} src="./airplane.gif" />
+
+            
 
         </div>
     )

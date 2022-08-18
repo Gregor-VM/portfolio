@@ -5,6 +5,13 @@
   justify-content: space-between;
   align-items: center;
 
+  .model{
+    width: 600px; //400
+    height: 400px;
+    margin-right: 150px;
+  }
+
+  /*
   & > div:last-child {
     background-image: url("https://media0.giphy.com/media/W69lXElcUrF8LTv0cQ/source.gif");
     background-repeat: no-repeat;
@@ -12,7 +19,7 @@
     width: 400px;
     height: 400px;
     margin-right: 150px;
-  }
+  }*/
 
   .desc {
     padding: 100px 0px 40px 100px;
@@ -61,7 +68,7 @@
         font-size: $smfont;
         border-radius: 20px;
         &:hover {
-          filter: saturate(200%);
+          filter: saturate(300%);
         }
         cursor: pointer;
       }
