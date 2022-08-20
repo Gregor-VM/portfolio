@@ -1,4 +1,5 @@
 import React, {useMemo} from "react";
+import isDay from "../hooks/isDay";
 import styles from "./../styles/Description.module.scss";
 import Model from './Model';
 
@@ -36,13 +37,13 @@ function Description({ handleSetRef }) {
         <h2 className={styles.headingText}>
           {animatedText}
         </h2>
-        <p className={styles.subtitleText}>
+        <p className={isDay() ? "" : styles.nightBackground}>
           Soy Front-end Developer tengo {age} años, soy de República Dominicana y
           me especializo en utilizar tecnologías como HTML, CSS, Javascript,
           React, entre otras. Programar es mi pasión y me gusta aprender más en
           mi dia a dia.
         </p>
-        <div>
+        <div className={styles.buttonsContainer}>
           <a href="cv_gvm.pdf" target="_blank">
             Descargar CV
           </a>

@@ -5,6 +5,7 @@ import { send } from "emailjs-com";
 import Alert from "./Alert";
 
 import useScrollRefProp from "../hooks/useScrollRefProp";
+import isElementVisible from "../hooks/isElementVisible";
 
 function Contact({ currentRef, handleSetRef }) {
   const [name, setName] = useState("");
@@ -12,6 +13,8 @@ function Contact({ currentRef, handleSetRef }) {
   const [message, setMessage] = useState("");
 
   const [msg, setMsg] = useState({ msg: "", variant: "" });
+
+  const {observeRef, isVisible} = isElementVisible(0);
 
   const handleClose = () => {
     setMsg({ msg: "", variant: "" });
@@ -53,7 +56,7 @@ function Contact({ currentRef, handleSetRef }) {
 
   return (
     <div className={styles.container} ref={ref}>
-      <form onSubmit={handleSend}>
+      <form ref={observeRef} onSubmit={handleSend} className={isVisible ? styles.appear : ""}>
         <h2>
           Contáctame<i className="far fa-envelope"></i>
         </h2>

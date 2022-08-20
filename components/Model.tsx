@@ -1,7 +1,8 @@
 import * as THREE from 'three'
-import React, { useRef, Suspense, useState } from "react";
+import React, { useRef, Suspense, useState, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {Zeppelin} from "./Zeppelin";
+import isDay from '../hooks/isDay';
 
 
 function ZeppelinComponent () {
@@ -26,22 +27,51 @@ function ZeppelinComponent () {
             setRepeat(prev => ({repeat: 0, up: !prev.up}));
         }
     });
-
     
     return (<mesh ref={mesh} position={[0, -1.5, 0]} rotation={[4.65,0,0]} scale={0.006}>
         <Suspense fallback={null}><Zeppelin /></Suspense>
     </mesh>)
 }
 
-
 function Model() {
+
+    const [movement, setMovement] = useState({x: 0, y: 0});
+
+    const day = isDay();
+
+    const intensity = useMemo(() => {
+      return day ? 0.1 : 0.05
+    }, []);
+
+    const mouseMove : React.MouseEventHandler<HTMLDivElement> = e => {
+      //const normalize = (x: number, min: number, max: number) => ((x - min) / (max - min));
+      const normalizeWithNegatives = (x: number, min: number, max: number) => ( 2 * ((x-min) / (max - min)) - 1 );
+
+      const x  = 5 * normalizeWithNegatives(e.clientX - e.currentTarget.offsetLeft, 0, e.currentTarget.offsetWidth);
+      const y = -5 * normalizeWithNegatives(e.clientY - e.currentTarget.offsetTop, 0, e.currentTarget.offsetHeight);
+
+      setMovement(prev => ({...prev, x, y}));
+    }
+
+    const centerMouse : React.MouseEventHandler<HTMLDivElement> = e => {
+
+      const interval = setInterval(() => {
+        setMovement(prev => ({...prev, x: prev.x / 10, y: prev.y / 10}));
+      }, 100);
+
+      setTimeout(() => {
+        clearInterval(interval);
+      }, 800);
+
+    }
+
     return (
-        <Canvas>
-            <pointLight intensity={0.2} position={[0,0,2.5]} /> {/* front */}
-            <pointLight intensity={0.5} position={[0,0, -10]} /> {/* behind */}
-            <pointLight intensity={0.4} position={[5,0,5]} /> {/* right */}
-            <pointLight intensity={0.4} position={[-5,0,5]} /> {/* left */}
-                <ZeppelinComponent />
+        <Canvas onMouseMove={mouseMove} onMouseLeave={centerMouse}>
+            <pointLight intensity={intensity * 10} position={[movement.x, movement.y, 2.5]} />{/* front */}
+            <pointLight intensity={intensity * 5} position={[0,0, -10]} />{/* behind */}
+            <pointLight intensity={intensity * 4} position={[5,0,5]} />{/* right */}
+            <pointLight intensity={intensity * 4} position={[-5,0,5]} />{/* left */}
+              <ZeppelinComponent />
         </Canvas>
     )
 }

@@ -24,7 +24,7 @@
   flex-direction: column;
   justify-content: space-between;
   font-size: $font;
-
+  z-index: 10;
   overflow-y: auto;
 
   /* Hide ScrollBar */
@@ -77,6 +77,7 @@
 }
 
 .closeIcon {
+  font-size: 2rem;
   position: fixed;
   top: 10%;
   left: 71%;

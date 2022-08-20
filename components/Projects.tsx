@@ -2,8 +2,12 @@ import { useRef } from "react";
 import styles from "../styles/Projects.module.scss";
 import ProjectItem from "./ProjectItem";
 import useScrollRefProp from "../hooks/useScrollRefProp";
+import isElementVisible from "../hooks/isElementVisible";
 
 function Projects({ currentRef, handleSetRef }) {
+
+  const {observeRef, isVisible} = isElementVisible();
+
   const ref: React.LegacyRef<HTMLDivElement> = useRef();
   useScrollRefProp(ref, handleSetRef, currentRef, "projects");
   return (
@@ -12,7 +16,7 @@ function Projects({ currentRef, handleSetRef }) {
         <h2>
           Proyectos <i className="fas fa-check-circle"></i>
         </h2>
-        <img src="/project.svg"></img>
+        <img ref={observeRef} className={isVisible ? styles.appear : ""} src="/project.svg"></img>
       </div>
       <div>
         <ProjectItem

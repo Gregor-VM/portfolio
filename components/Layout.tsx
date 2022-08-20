@@ -1,21 +1,13 @@
-import Head from "next/head";
 import ViewProjectModal from "./ViewProjectModal";
+import Head from 'next/head'
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <ViewProjectModal>
-      <Head>
-        {/*<title>Gregorio V. | Portafolio </title>*/}
-        <meta
-          name="description"
-          content="Gregorio Vargas Marrero portafolio desarrollador fronted sitio web"
-        />
-        <link rel="icon" href="/favicon.ico" />
+    <>
+    <ViewProjectModal></ViewProjectModal>
 
-        {/* Google fonts */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;600&family=Rubik+Marker+Hatch&display=swap" rel="stylesheet" />
+      <Head>
+      <title>Gregorio V. | Portafolio </title>
       </Head>
 
       <main>{children}</main>
@@ -38,7 +30,7 @@ function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </footer>
-    </ViewProjectModal>
+      </>
   );
 }
 

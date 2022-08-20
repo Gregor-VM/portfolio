@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import styles from "../styles/GitHub.module.scss";
 
 import useScrollRefProp from "../hooks/useScrollRefProp";
+import isElementVisible from "../hooks/isElementVisible";
 
 interface User {
   login: string;
@@ -14,12 +15,14 @@ interface User {
 
 function GitHub({ currentRef, handleSetRef }) {
   const user: User = useSelector((state) => state["user"].user);
-  const ref: React.LegacyRef<HTMLDivElement> = useRef();
+  const ref: React.LegacyRef<HTMLHeadingElement> = useRef();
   useScrollRefProp(ref, handleSetRef, currentRef, "github");
 
+  const {observeRef, isVisible} = isElementVisible(0.25);
+
   return (
-    <div className={styles.container} ref={ref}>
-      <h1>
+    <div ref={observeRef} className={`${styles.container} ${isVisible ? styles.appear : ""}`}>
+      <h1 ref={ref}>
         GitHub <i className="fab fa-github"></i>
       </h1>
       <div className={styles.versionSvg}>

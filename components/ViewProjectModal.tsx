@@ -13,7 +13,7 @@ interface Project {
   url: string;
 }
 
-function ViewProjectModal({ children }: { children: React.ReactNode }) {
+function ViewProjectModal() {
   const view = useSelector((state) => state["view"].view);
   const [isClosing, setIsClosing] = useState(false);
   const project: Project = useSelector((state) => state["view"].project);
@@ -40,7 +40,6 @@ function ViewProjectModal({ children }: { children: React.ReactNode }) {
   if (view) {
     return (
       <>
-        {children}
         <div
           className={
             styles.modalBackground +
@@ -89,7 +88,7 @@ function ViewProjectModal({ children }: { children: React.ReactNode }) {
       </>
     );
   } else {
-    return <>{children}</>;
+    return <></>;
   }
 }
 

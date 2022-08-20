@@ -1,9 +1,13 @@
 //import Image from "next/image";
 //import styles from "../styles/Home.module.scss";
 import { useState } from "react";
+import isDay from "../hooks/isDay";
 import styles from "../styles/NavBar.module.scss";
 
 function NavBar({ handleSetRef }) {
+
+  const night = !isDay();
+
   const handleScroll = () => {
     handleSetRef("projects");
   };
@@ -18,10 +22,10 @@ function NavBar({ handleSetRef }) {
   return (
     <nav className={styles.nav}>
       <div>
-        <i className="fas fa-user-tie"></i>
-        <div>Portafolio</div>
+        <i className={`${night ? styles.white : ""} fas fa-user-tie`}></i>
+        <div className={night ? styles.white : ""}>Portafolio</div>
       </div>
-      <ul className={styles.list}>
+      <ul className={`${night ? styles.white : ""} ${styles.list}`}>
         <a
           className={selected === 0 ? styles.selected : ""}
           href="#"
@@ -59,7 +63,9 @@ function NavBar({ handleSetRef }) {
           <li>Contácto</li>
         </a>
       </ul>
+
     </nav>
+
   );
 }
 

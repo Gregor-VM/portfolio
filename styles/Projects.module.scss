@@ -36,6 +36,26 @@
   }
 }
 
+.left img {
+  transform: translateX(-10%);
+  opacity: 0;
+}
+
+.appear {
+  animation: appear 1s ease forwards;
+}
+
+@keyframes appear {
+  from{
+    opacity: 0;
+  } to {
+    transform: translateX(10%);
+    opacity: 1;
+  }
+}
+
+
+
 @media (max-width: 1010px) {
   .twoBoxes {
     flex-direction: column;

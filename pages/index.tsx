@@ -15,6 +15,8 @@ import { useDispatch } from "react-redux";
 import userActions from "../redux/actions/userActions";
 import Description from "../components/Description";
 import Background from "../components/Background";
+import isDay from "../hooks/isDay";
+import { getLightning } from "../utils/controllers";
 
 interface User {
   login: string;
@@ -24,9 +26,11 @@ interface User {
   public_repos: number;
 }
 
-export default function Home({ user }: { user: User }) {
+export default function Home({ user, lightning }: { user: User, lightning: number }) {
   const [ref, setRef] = useState();
   const dispatch = useDispatch();
+
+  const night = !isDay();
 
   useEffect(() => {
     if (user) {
@@ -41,10 +45,10 @@ export default function Home({ user }: { user: User }) {
   return (
     <Layout>
       <div className={styles.top}>
-        <Background />
+        <Background lightning={lightning} />
         <NavBar handleSetRef={handleSetRef} />
         <Description handleSetRef={handleSetRef} />
-        <div className={styles.transition}></div>
+        <div className={`${styles.transition} ${night ? styles.nightTransition : ""}`}></div>
       </div>
       <Projects currentRef={ref} handleSetRef={handleSetRef} />
       <Skills currentRef={ref} handleSetRef={handleSetRef} />
@@ -62,6 +66,10 @@ export async function getServerSideProps() {
     name: string;
     public_repos: number;
   }
+
+
+  const lightning = await getLightning();
+
   try {
     const res = await fetch("https://api.github.com/users/Gregor-VM");
     const {
@@ -73,11 +81,11 @@ export async function getServerSideProps() {
     } = await res.json();
     const user: User = { login, avatar_url, html_url, name, public_repos };
     return {
-      props: { user: user },
+      props: { user: user, lightning },
     };
   } catch (error) {
     return {
-      props: { user: null },
+      props: { user: null, lightning },
     };
   }
 }

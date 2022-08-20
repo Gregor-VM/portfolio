@@ -4,7 +4,7 @@
   width: 90%;
   margin: 0.75em auto;
   padding: 0.5em;
-  font-size: $font - 2px;
+  font-size: $contactFont - 2px;
   outline: 0;
   background-color: white;
   border: 0;
@@ -14,7 +14,7 @@
 }
 
 .container {
-  font-size: $font;
+  font-size: $contactFont;
   padding: 1em;
   margin-top: 2em;
   display: flex;
@@ -67,7 +67,7 @@
       );
       border: 4px solid map-get($map: $palette, $key: "secondary");
       color: white;
-      font-size: $font;
+      font-size: $contactFont;
       cursor: pointer;
       margin-top: 0.2em;
       transition: all 0.2s linear;
@@ -79,6 +79,28 @@
         color: white;
       }
     }
+  }
+}
+
+
+
+.container > form > * {
+  opacity: 0;
+}
+
+@for $i from 0 to 12 {
+  .appear > *:nth-child(#{$i}){
+    animation: appear 1s ease $i * 100ms forwards;
+  }
+}
+
+@keyframes appear {
+  from{
+    transform: scale(0);
+    opacity: 0;
+  } to {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 

@@ -120,6 +120,20 @@
   }
 }
 
+.container{
+  opacity: 0;
+  transform: translateX(-50vw);
+  transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.appear {
+  opacity: 1;
+  transform: translateX(0vw);
+}
+
+
+
+
 @media (max-width: 800px) {
   .container {
     flex-direction: column;

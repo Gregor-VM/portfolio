@@ -1,13 +1,13 @@
 @import '../styles/Variables.scss';
 
-$sky: rgb(123, 174, 255);
+//$blur_ratio: 0.07;
+//$blur_ratio: 0.3;
 $blur_ratio: 0;
 
 .background{
     position: absolute;
     height: 100%;
     width: 100%;
-    background: $sky;
     z-index: -1;
     overflow: hidden;
     background-color: #d5f6ff;
@@ -21,11 +21,11 @@ $blur_ratio: 0;
     }
 
     & > .city_1 {
-        animation: moving_1 10s linear infinite;
+        animation: moving_1 20s linear infinite;
     }
 
     & > .city_2 {
-        animation: moving_2 10s linear infinite;
+        animation: moving_2 20s linear infinite;
     }
 
     @keyframes moving_2 {
@@ -55,9 +55,11 @@ $blur_ratio: 0;
         transform: translateX(-10vw);
         filter: blur($blur_ratio * 2px);
         top: (random($limit: 40)* 1%);
-        animation: fly_right 50s linear 10s infinite forwards;
+        animation: fly_right 50s linear (random($limit: 5) * 2s) infinite forwards;
         z-index: 0;
     }
+
+    
 
     .air_ballon{
         @extend %flying_objects;
@@ -65,8 +67,8 @@ $blur_ratio: 0;
         transform: translateX(-10vw);
         filter: blur($blur_ratio * 2.5px);
         top: (random($limit: 20)* 1%);
-        animation: fly_right 200s linear 20s infinite forwards;
-        z-index: -2;
+        animation: fly_right 100s linear (random($limit: 30) * 2s) infinite forwards;
+        z-index: 0;
     }
 
     .airplane{
@@ -76,8 +78,8 @@ $blur_ratio: 0;
         transform: translateX(10vw) rotateY(180deg);
         top: (random($limit: 20)* 1%);
         right: 0;
-        animation: fly_left 200s linear infinite 40s forwards;
-        z-index: -5;
+        animation: fly_left 50s linear infinite (random($limit: 20) * 2s) forwards;
+        z-index: 0;
     }
 
     @keyframes fly_right {
@@ -106,5 +108,56 @@ $blur_ratio: 0;
         z-index: -10;
     }
 
+    $random_size: random($limit: 5) * 3vw;
 
+    .moon{
+        width: $random_size * 1.05;
+        height: $random_size;
+        position: absolute;
+        filter: blur($blur_ratio * 2px);
+        top: 2rem; // calculated base on the hour
+        left: random($limit: 5) * 15%;
+        overflow: hidden;
+        border-radius: 50%;
+        
+
+        & > .moon_shadow{
+            position: relative;
+            top: -100%;
+            left: 5%; // This value will change the fase of the moon
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: black;
+            transform: scale(1);
+            filter: blur($random_size / 7.5vw * 2px);
+        }
+
+        & > img{
+            position: relative;
+            top: 0;
+            left: 0;
+            width: $random_size * 1.1;
+            height: $random_size;
+            transform: scale(1.5);
+        }
+    }
+
+
+}
+
+.sunLight {
+    background: rgb(213,246,255);
+    background: linear-gradient(180deg, rgba(213,246,255,1) 0%, rgba(253,247,45,1) 100%);
+}
+
+
+@media (max-width: 900px) {
+    .moon{
+        display: none;
+    }
+
+    .background{
+        background-color: map-get($map: $palette, $key: 'primary');
+    }
 }
