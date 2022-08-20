@@ -10,7 +10,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       <title>Gregorio V. | Portafolio </title>
       </Head>
 
-      <main>{children}</main>
+      <main style={{overflow: "hidden"}}>{children}</main>
       <footer>
         <p>
           Copyright © Gregorio Vargas M. {new Date().getFullYear().toString()}{" "}
@@ -18,8 +18,8 @@ function Layout({ children }: { children: React.ReactNode }) {
         <div>
           <span>gregoriovargasmarrero@gmail.com</span>
           <div>
-            <a href="https://t.me/Gregorvm" target="_blank">
-              <i className="fab fa-telegram" title="TELEGRAM"></i>
+            <a href="https://www.linkedin.com/in/gregoriovargasm/" target="_blank">
+              <i className="fab fa-linkedin" title="LINKEDIN"></i>
             </a>
             <a href="https://github.com/Gregor-VM" target="_blank">
               <i className="fab fa-github" title="GITHUB"></i>

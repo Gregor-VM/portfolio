@@ -159,5 +159,6 @@ $blur_ratio: 0;
 
     .background{
         background-color: map-get($map: $palette, $key: 'primary');
+        height: 800px;
     }
 }
