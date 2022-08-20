@@ -161,4 +161,9 @@ $blur_ratio: 0;
         background-color: map-get($map: $palette, $key: 'primary');
         height: 800px;
     }
+
+    .endAlignment{
+        display: grid;
+        align-items: flex-end;
+    }
 }

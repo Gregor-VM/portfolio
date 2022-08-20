@@ -19,3 +19,10 @@
   background-image: none;
   background-color: black;
 }
+
+@media (max-width: 600px) {
+  .transition{
+    padding: 1rem 0;
+    background: transparent;
+  }
+}

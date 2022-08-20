@@ -41,7 +41,7 @@ export default function Background({lightning} : {lightning: number}) {
     const data : HourDependingStyles = useMemo(getHourValues, []);
 
     return (
-        <div style={{backgroundColor: `${data.isDay ? "#d5f6ff" : "black"}`}} className={`${styles.background} ${data.sunLight ? styles.sunLight : ""}`}>
+        <div style={{backgroundColor: `${data.isDay ? "#d5f6ff" : "black"}`}} className={`${styles.background} ${data.sunLight ? styles.sunLight : ""} ${data.isDay ? styles.endAlignment : ""}`}>
 
             <img className={styles.city_1} src={`./${data.citySVGURL}`} />
             <img className={styles.city_2} src={`./${data.citySVGURL}`} />
@@ -49,7 +49,7 @@ export default function Background({lightning} : {lightning: number}) {
             <img className={styles.flying_bird} src="./flying-bird.gif" />
 
             <img style={{top: data.sunTop, visibility: data.sunTop ? "visible" : "hidden"}} className={styles.sun} src="./sun.gif" />
-            <div className={styles.moon}><img className={styles.moon} src="./moon.png" /><div style={{left: `${lightning + 5}%` }} className={styles.moon_shadow}></div> </div>
+            {!data.isDay ? (<div className={styles.moon}><img className={styles.moon} src="./moon.png" /><div style={{left: `${lightning + 5}%` }} className={styles.moon_shadow}></div> </div>) : null}
             <img className={styles.air_ballon} src="./air_ballon.gif" />
             <img className={styles.airplane} src="./airplane.gif" />
 
