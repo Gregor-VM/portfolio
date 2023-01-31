@@ -1,7 +1,12 @@
 @import "./Variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 .white{
   color: white,
+}
+
+.blue{
+  color: map-get($map: $palette, $key: "primary");
 }
 
 .nav {
@@ -9,12 +14,23 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 100px;
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.5) 100%);
   div {
-    font-size: $font;
+    font-size: $font + 5px;
     display: flex;
     align-items: center;
     i {
       margin-right: 10px;
+    }
+    font-family: 'Anton', sans-serif;
+    cursor: pointer;
+  }
+
+  div:hover{
+    color: map-get($map: $palette, $key: "primary") !important;
+    & > .blue{
+      color: #000 !important;
     }
   }
 }
@@ -25,10 +41,24 @@
   font-size: $smfont;
   a {
     padding: 20px;
-    opacity: 0.7;
   }
+
+  a:hover{
+    color: map-get($map: $palette, $key: "primary");
+    text-shadow: 0px 0px 2px map-get($map: $palette, $key: "primary");
+  }
+
+  a:last-child{
+    background-color: map-get($map: $palette, $key: "primary");
+    color: #fff;
+  }
+
+  a:last-child:hover{
+    background-color: #000;
+  }
+
   .selected {
-    opacity: 1 !important;
+    //opacity: 1 !important;
   }
 }
 

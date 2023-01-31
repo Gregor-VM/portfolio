@@ -19,6 +19,7 @@
       font-size: $xlfont;
       width: 100%;
       text-align: center;
+      margin-left: 5rem;
     }
 
     & > img {
@@ -74,6 +75,10 @@
     & > div {
       grid-template-columns: 1fr;
       grid-auto-rows: auto;
+    }
+
+    & > .left > h2 {
+        margin-left: 0rem;
     }
   }
 }

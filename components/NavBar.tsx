@@ -22,8 +22,7 @@ function NavBar({ handleSetRef }) {
   return (
     <nav className={styles.nav}>
       <div>
-        <i className={`${night ? styles.white : ""} fas fa-user-tie`}></i>
-        <div className={night ? styles.white : ""}>Portafolio</div>
+        <div className={night ? styles.white : ""}>GREGOR<span className={styles.blue}>VM</span></div>
       </div>
       <ul className={`${night ? styles.white : ""} ${styles.list}`}>
         <a
@@ -33,7 +32,7 @@ function NavBar({ handleSetRef }) {
             selectItem(0);
           }}
         >
-          <li>Proyectos</li>
+          <li>PROYECTOS</li>
         </a>
         <a
           className={selected === 1 ? styles.selected : ""}
@@ -42,7 +41,7 @@ function NavBar({ handleSetRef }) {
             selectItem(1);
           }}
         >
-          <li>Habilidades</li>
+          <li>HABILIDADES</li>
         </a>
         <a
           className={selected === 2 ? styles.selected : ""}
@@ -51,7 +50,7 @@ function NavBar({ handleSetRef }) {
             selectItem(2);
           }}
         >
-          <li>GitHub</li>
+          <li>GITHUB</li>
         </a>
         <a
           className={selected === 3 ? styles.selected : ""}
@@ -60,7 +59,7 @@ function NavBar({ handleSetRef }) {
             selectItem(3);
           }}
         >
-          <li>Contácto</li>
+          <li>CONTÁCTO</li>
         </a>
       </ul>
 

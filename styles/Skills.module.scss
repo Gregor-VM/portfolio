@@ -1,6 +1,7 @@
 @import "./Variables.scss";
 
 .container {
+  margin: 2rem 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -11,12 +12,13 @@
     font-size: $xlfont;
     margin-top: 0.5em;
     color: rgba($color: #000000, $alpha: 0.7);
+    margin-bottom: 2rem;
   }
 
   & > div {
     display: flex;
     flex-wrap: wrap;
-    font-size: 90px;
+    font-size: 70px;
     justify-content: center;
     margin: 0.5em 0em;
 
@@ -51,7 +53,7 @@
   }
 }
 
-@for $i from 0 to 12 {
+@for $i from 0 to 13 {
   .appear > *:nth-child(#{$i}){
     animation: appear 1s ease $i * 100ms forwards;
   }
