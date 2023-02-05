@@ -1,5 +1,4 @@
 @import "./Variables.scss";
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 .white{
   color: white,
@@ -66,6 +65,12 @@
   .nav {
     padding-top: 20px;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 550px) {
+  .list a {
+    padding: 6px;
   }
 }
 
