@@ -25,7 +25,7 @@ function Projects({ currentRef, handleSetRef }) {
           img="https://cdn.pixabay.com/photo/2017/06/10/07/18/list-2389219_960_720.png"
           width="200"
           height="200"
-          url="https://rekapping.herokuapp.com/"
+          url="https://rekapp.onrender.com/"
         />
         <ProjectItem
           title="Search Movie App"

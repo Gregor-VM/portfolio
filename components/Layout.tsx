@@ -24,7 +24,7 @@ function Layout({ children }: { children: React.ReactNode }) {
             <a href="https://github.com/Gregor-VM" target="_blank">
               <i className="fab fa-github" title="GITHUB"></i>
             </a>
-            <a href="https://wa.me/+18498585600" target="_blank">
+            <a href="https://wa.me/+18498836573" target="_blank">
               <i className="fab fa-whatsapp" title="WHATSAPP"></i>
             </a>
           </div>
