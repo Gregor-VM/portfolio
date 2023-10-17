@@ -1,5 +1,13 @@
 @import "./Variables.scss";
 
+.modalDescription{
+  margin-top: 1rem;
+}
+
+.modalImage{
+  border-radius: .5rem;
+}
+
 .modalBackground {
   position: fixed;
   top: 0;

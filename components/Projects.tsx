@@ -22,33 +22,33 @@ function Projects({ currentRef, handleSetRef }) {
         <ProjectItem
           title="Rekapp"
           desc="Rekapp is una aplicación de React que te permite crear y compartir mazos de cartas para estudiar que contienen textos, imágenes y/o audio."
-          img="https://cdn.pixabay.com/photo/2017/06/10/07/18/list-2389219_960_720.png"
-          width="200"
-          height="200"
+          img="/rekapp.jpeg"
+          width="180"
+          height="180"
           url="https://rekapp.onrender.com/"
         />
         <ProjectItem
-          title="Search Movie App"
-          desc="Esta es una aplicación para buscar peliculas, ver su descripción, rate, titulo, actores, géneros, etc. En esta aplicación se extrae la información desde OMDB API."
-          img="https://code.4noobz.net/wp-content/uploads/2018/10/OMDB-API.png"
-          width="200"
-          height="100"
-          url="https://Gregor-VM.github.io/movie-search"
+          title="Cipher Game"
+          desc="Aplicación hecha en Angular basada en el criptoanálisis basado en el análisis de frecuencia, en esta aplicación resuelves códigos encriptados de frases célebres de diversos autores y tópicos."
+          img="/cipher-app.jpeg"
+          width="180"
+          height="180"
+          url="https://gregor-vm.github.io/cipher-app"
         />
         <ProjectItem
           title="Clicker React Game"
           desc='Este es un mini juego del genero "clicker" que consiste en ir clicando un botón para ganar puntaje y con el mismo comprar articulos para aumentar el puntaje e ir progresando y llegar a un puntaje cada vez más alto. Ente esta aplicación también se almacena la información localmente en el dispositivo que se esté usando y se puede cambiar entre modo claro y oscuro'
-          img="https://cdn.pixabay.com/photo/2013/07/12/19/17/cursor-154478_960_720.png"
-          width="90"
-          height="125"
+          img="/clicker-game.jpeg"
+          width="180"
+          height="180"
           url="https://Gregor-VM.github.io/react-clicker-game"
         />
         <ProjectItem
           title="Firebase App"
           desc="Esta es una aplicación de articulos o notas. En la misma se puede iniciar sesión y subir las notas, las mismas también se pueden editar o borrar al igual que la información de la cuenta con la cual iniciaste sesión en la base de datos de firebase. También puedes ver las notas o articulos que otros usuarios hayan escrito"
-          img="https://firebase.google.com/downloads/brand-guidelines/PNG/logo-built_white.png?hl=es"
-          width="200"
-          height="100"
+          img="/firebase-app.jpeg"
+          width="180"
+          height="180"
           url="https://Gregor-VM.github.io/login-app"
         />
       </div>

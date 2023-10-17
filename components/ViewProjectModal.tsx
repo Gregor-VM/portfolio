@@ -77,8 +77,9 @@ function ViewProjectModal() {
                 src={project.img}
                 width={project.width}
                 height={project.height}
+                className={styles.modalImage}
               ></img>
-              <p>{project.desc}</p>
+              <p className={styles.modalDescription}>{project.desc}</p>
             </div>
           </div>
           <a href={project.url} target="_blank">
