@@ -1,11 +1,5 @@
 @import "./Variables.scss";
 
-//.top {
-  //background-image: url("/back.jpg");
-  //background-size: cover;
-  //background-attachment: fixed;
-//}
-
 .transition {
   background-image: linear-gradient(
     to top,
@@ -24,5 +18,9 @@
   .transition{
     padding: 1rem 0;
     background: transparent;
+  }
+
+  .top{
+    height: 44rem;
   }
 }

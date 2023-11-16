@@ -25,7 +25,7 @@ function Description({ handleSetRef }) {
       return text.split("").map((letter, i) => createLetter(letter, i));
     };
 
-    return createAnimatedText("Hola, soy Gregorio Vargas Marrero");
+    return createAnimatedText("Hola, soy Gregorio");
 
   }, []);
 

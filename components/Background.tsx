@@ -20,9 +20,9 @@ const getHourValues = () : HourDependingStyles => {
         sunTop = (normalizeWithNegatives(hour, 6, 18) * 300) - 150;
         if(hour >= 6 && hour <= 11) sunTop = (sunTop + 275)*-1;
     } else {
-        sunTop = null;
+        /*sunTop = null;
         city = "city-night.svg";
-        isDay = false;
+        isDay = false;*/
     }
 
     let sunLight = false;
@@ -45,8 +45,6 @@ export default function Background({lightning} : {lightning: number}) {
 
             <img className={styles.city_1} src={`./${data.citySVGURL}`} />
             <img className={styles.city_2} src={`./${data.citySVGURL}`} />
-
-            <img className={styles.flying_bird} src="./flying-bird.gif" />
 
             <img style={{top: data.sunTop, visibility: data.sunTop ? "visible" : "hidden"}} className={styles.sun} src="./sun.gif" />
             {!data.isDay ? (<div className={styles.moon}><img className={styles.moon} src="./moon.png" /><div style={{left: `${lightning + 5}%` }} className={styles.moon_shadow}></div> </div>) : null}

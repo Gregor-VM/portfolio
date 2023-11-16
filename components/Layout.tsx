@@ -16,7 +16,7 @@ function Layout({ children }: { children: React.ReactNode }) {
           Copyright © Gregorio Vargas M. {new Date().getFullYear().toString()}{" "}
         </p>
         <div>
-          <span>gregoriovargasmarrero@gmail.com</span>
+          <a title="EMAIL" href="mailto:gregoriovargasmarrero@gmail.com">gregoriovargasmarrero@gmail.com</a>
           <div>
             <a href="https://www.linkedin.com/in/gregoriovargasm/" target="_blank">
               <i className="fab fa-linkedin" title="LINKEDIN"></i>

@@ -1,4 +1,5 @@
 @import "./Variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans&display=swap');
 
 * {
   margin: 0;
@@ -6,11 +7,19 @@
   box-sizing: border-box;
 }
 
+%family{
+  font-family: 'Playpen Sans', cursive;
+}
+
 html,
 body {
-  font-family: 'DynaPuff', cursive;
+  @extend %family;
   font-size: 18px;
-  //background-color: map-get($map: $palette, $key: "background");
+}
+
+body button, body a{
+  @extend %family;
+  font-weight: bolder;
 }
 
 //Hide ScrollBar

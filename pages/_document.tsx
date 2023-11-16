@@ -13,7 +13,7 @@ export default function Document() {
         {/* Google fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;600&family=Rubik+Marker+Hatch&family=Anton&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
       </Head>
       <body>
         <Main />

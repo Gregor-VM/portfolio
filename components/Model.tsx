@@ -67,10 +67,10 @@ function Model() {
 
     return (
         <Canvas onMouseMove={mouseMove} onMouseLeave={centerMouse}>
-            <pointLight intensity={intensity * 10} position={[movement.x, movement.y, 2.5]} />{/* front */}
-            <pointLight intensity={intensity * 5} position={[0,0, -10]} />{/* behind */}
-            <pointLight intensity={intensity * 4} position={[5,0,5]} />{/* right */}
-            <pointLight intensity={intensity * 4} position={[-5,0,5]} />{/* left */}
+            <pointLight intensity={intensity * 10} position={[movement.x, movement.y, 2.5]} />
+            <pointLight intensity={intensity * 5} position={[0,0, -10]} />
+            <pointLight intensity={intensity * 4} position={[5,0,5]} />
+            <pointLight intensity={intensity * 4} position={[-5,0,5]} />
               <ZeppelinComponent />
         </Canvas>
     )
