@@ -19,6 +19,7 @@
       font-family: 'Bungee Shade', cursive;
       font-size: $xlfont;
       margin-bottom: 10px;
+      text-wrap: nowrap;
     }
 
     @for $i from 1 to 34 {
