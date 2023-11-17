@@ -1,10 +1,10 @@
-import ViewProjectModal from "./ViewProjectModal";
+import Modal from "./Modal";
 import Head from 'next/head'
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-    <ViewProjectModal></ViewProjectModal>
+    <Modal></Modal>
 
       <Head>
       <title>Gregorio V. | Portafolio </title>
@@ -13,7 +13,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       <main style={{overflow: "hidden"}}>{children}</main>
       <footer>
         <p>
-          Copyright © Gregorio Vargas M. {new Date().getFullYear().toString()}{" "}
+          Hecho y diseñado por Gregorio Vargas M. {new Date().getFullYear().toString()}{" "} ©
         </p>
         <div>
           <a title="EMAIL" href="mailto:gregoriovargasmarrero@gmail.com">gregoriovargasmarrero@gmail.com</a>

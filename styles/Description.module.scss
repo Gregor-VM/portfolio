@@ -144,6 +144,26 @@
   }
 }
 
+@media (max-width: 500px) {
+
+  .model{
+    display: none;
+  }
+
+  .desc {
+    margin-top: 5rem !important;
+  }
+  
+}
+
+@media (max-width: 444px) {
+  .desc {
+    h2 {
+      text-wrap: wrap !important;
+    }
+  }
+}
+
 @media (max-width: 400px) {
   .container {
     & > div:last-child {

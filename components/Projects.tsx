@@ -3,6 +3,7 @@ import styles from "../styles/Projects.module.scss";
 import ProjectItem from "./ProjectItem";
 import useScrollRefProp from "../hooks/useScrollRefProp";
 import isElementVisible from "../hooks/isElementVisible";
+import { skills } from '../utils/skills';
 
 function Projects({ currentRef, handleSetRef }) {
 
@@ -25,7 +26,14 @@ function Projects({ currentRef, handleSetRef }) {
           img="/rekapp.jpeg"
           width="180"
           height="180"
-          url="https://rekapp.onrender.com/"
+          url="https://rekapp.onrender.com"
+          github="https://github.com/Gregor-VM/rekapp"
+          skills={[
+            skills.html, skills.css, skills.javascript,
+            skills.react, skills.sass, skills.nodejs,
+            skills.typescript, skills.express,
+            skills.mongodb, skills.jest, skills.redux
+          ]}
         />
         <ProjectItem
           title="Cipher Game"
@@ -34,6 +42,13 @@ function Projects({ currentRef, handleSetRef }) {
           width="180"
           height="180"
           url="https://gregor-vm.github.io/cipher-app"
+          github="https://github.com/Gregor-VM/cipher-app"
+          skills={[
+            skills.html, skills.css, skills.javascript,
+            skills.angular, skills.sass, 
+            skills.typescript, skills.bootstrap,
+            skills.firebase, 
+          ]}
         />
         <ProjectItem
           title="Clicker React Game"
@@ -42,6 +57,11 @@ function Projects({ currentRef, handleSetRef }) {
           width="180"
           height="180"
           url="https://Gregor-VM.github.io/react-clicker-game"
+          github="https://github.com/Gregor-VM/react-clicker-game"
+          skills={[
+            skills.html, skills.css, skills.javascript,
+            skills.react, skills.bootstrap, skills.redux
+          ]}
         />
         <ProjectItem
           title="Firebase App"
@@ -50,6 +70,12 @@ function Projects({ currentRef, handleSetRef }) {
           width="180"
           height="180"
           url="https://Gregor-VM.github.io/login-app"
+          github="https://github.com/Gregor-VM/login-app"
+          skills={[
+            skills.html, skills.css, skills.javascript,
+            skills.react, skills.bootstrap,
+            skills.firebase
+          ]}
         />
       </div>
     </div>

@@ -2,17 +2,9 @@ import styles from "../styles/ProjectItem.module.scss";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import viewActions from "../redux/actions/viewActions";
+import Project from "../interfaces/Project";
 
-interface Project {
-  title: string;
-  img: string;
-  desc: string;
-  width: string;
-  height: string;
-  url: string;
-}
-
-function ProjectItem({ title, img, desc, width, height, url }: Project) {
+function ProjectItem(project: Project) {
   const [isMouseOver, setIsMouseOver] = useState(false);
 
   const dispatch = useDispatch();
@@ -26,7 +18,7 @@ function ProjectItem({ title, img, desc, width, height, url }: Project) {
 
   const showModal = () => {
     dispatch(viewActions.setView(true));
-    dispatch(viewActions.setProject({ title, img, desc, width, height, url }));
+    dispatch(viewActions.setProject(project));
   };
 
   return (
@@ -39,11 +31,11 @@ function ProjectItem({ title, img, desc, width, height, url }: Project) {
       onClick={showModal}
     >
       {!isMouseOver && (
-        <img src={img} width={width} height={height} alt={title}></img>
+        <img src={project.img} width={project.width} height={project.height} alt={project.title}></img>
       )}
-      <h2>{!isMouseOver && title}</h2>
+      <h2>{!isMouseOver && project.title}</h2>
       <p className={isMouseOver ? styles.textWhite : undefined}>
-        {isMouseOver && desc}
+        {isMouseOver && project.desc}
       </p>
     </div>
   );
