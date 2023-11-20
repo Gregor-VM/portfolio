@@ -1,5 +1,6 @@
 import Modal from "./Modal";
 import Head from 'next/head'
+import { contactLinks } from "../utils/contactLinks";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,15 +17,15 @@ function Layout({ children }: { children: React.ReactNode }) {
           Hecho y diseñado por Gregorio Vargas M. {new Date().getFullYear().toString()}{" "} ©
         </p>
         <div>
-          <a title="EMAIL" href="mailto:gregoriovargasmarrero@gmail.com">gregoriovargasmarrero@gmail.com</a>
+          <a className="email" title="EMAIL" href={'mailto:'+contactLinks.email}>{contactLinks.email}</a>
           <div>
-            <a href="https://www.linkedin.com/in/gregoriovargasm/" target="_blank">
+            <a href={contactLinks.linkedin} target="_blank">
               <i className="fab fa-linkedin" title="LINKEDIN"></i>
             </a>
-            <a href="https://github.com/Gregor-VM" target="_blank">
+            <a href={contactLinks.github} target="_blank">
               <i className="fab fa-github" title="GITHUB"></i>
             </a>
-            <a href="https://wa.me/+18498836573" target="_blank">
+            <a href={contactLinks.whatsapp} target="_blank">
               <i className="fab fa-whatsapp" title="WHATSAPP"></i>
             </a>
           </div>

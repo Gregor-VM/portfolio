@@ -65,6 +65,9 @@ function Model() {
 
     }
 
+    // My pc temperatures it's very grateful with this line of code
+    if(process.env.NODE_ENV === 'development') return null;
+
     return (
         <Canvas onMouseMove={mouseMove} onMouseLeave={centerMouse}>
             <pointLight intensity={intensity * 10} position={[movement.x, movement.y, 2.5]} />

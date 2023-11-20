@@ -114,6 +114,11 @@
 
 .buttonsContainer{
   display: flex;
+
+  i{
+    margin-left: .5rem;
+    font-size: .8rem;
+  }
 }
 
 @media (max-width: 1100px) {
@@ -123,6 +128,10 @@
       height: 350px;
       margin-right: 50px;
     }
+  }
+
+  .buttonsContainer i{
+    display: none;
   }
 }
 

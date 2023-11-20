@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Tooltip } from 'react-tooltip'
 import isDay from "../hooks/isDay";
 import styles from "../styles/NavBar.module.scss";
+import { contactLinks } from '../utils/contactLinks';
 
 function NavBar({ handleSetRef }) {
 
@@ -28,6 +29,7 @@ function NavBar({ handleSetRef }) {
           <div className={night ? styles.white : ""}>GREGOR<span className={styles.blue}>VM</span></div>
         </div>
         <ul className={`${night ? styles.white : ""} ${styles.list}`}>
+
           <a
             className={selected === 0 ? styles.selected : ""}
             href="#"
@@ -76,6 +78,16 @@ function NavBar({ handleSetRef }) {
             <li><i className="fas fa-paper-plane"></i></li>
             <Tooltip id="contact" content="Contácto" className={styles.tooltip} />
           </a>
+
+          <a 
+            href={contactLinks.linkedin}
+            target="_blank"
+            data-tooltip-delay-show={250}
+            data-tooltip-id="linkedin">
+            <li><i className="fab fa-linkedin"></i></li>
+            <Tooltip id="linkedin" content="LinkedIn" className={styles.tooltip} />
+          </a>
+
         </ul>
       </div>
 

@@ -3,6 +3,15 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import viewActions from "../redux/actions/viewActions";
 import Project from "../interfaces/Project";
+import { motion } from 'framer-motion';
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1
+  }
+}
 
 function ProjectItem(project: Project) {
   const [isMouseOver, setIsMouseOver] = useState(false);
@@ -22,7 +31,7 @@ function ProjectItem(project: Project) {
   };
 
   return (
-    <div
+    <motion.div variants={item}
       className={
         styles.project + " " + (isMouseOver ? styles.itemAnimation : undefined)
       }
@@ -37,7 +46,7 @@ function ProjectItem(project: Project) {
       <p className={isMouseOver ? styles.textWhite : undefined}>
         {isMouseOver && project.desc}
       </p>
-    </div>
+    </motion.div>
   );
 }
 

@@ -46,13 +46,16 @@ function Description({ handleSetRef }) {
         <div className={styles.buttonsContainer}>
           <a href="cv_gvm.pdf" target="_blank">
             Descargar CV
+            <i className="fas fa-external-link-alt"></i>
           </a>
-          <button onClick={() => handleSetRef(ids[3])}>Contáctame</button>
+          <button onClick={() => handleSetRef(ids[3])}>
+            Contáctame
+            <i className="far fa-envelope"></i>
+          </button>
         </div>
       </div>
 
       <div className={styles.model}><Model /></div>
-      {/*<div className={styles.bg}></div>*/}
     </div>
   );
 }
