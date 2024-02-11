@@ -7,7 +7,7 @@ export   const projects = [
       img: "/rekapp.jpeg",
       width: "180",
       height: "180",
-      url: "https://rekapp.onrender.com",
+      url: "https://rekapp.vercel.app/demo",
       github: "https://github.com/Gregor-VM/rekapp",
       skills: [
         skills.html, skills.css, skills.javascript,
@@ -32,16 +32,16 @@ export   const projects = [
       ]
     },
     {
-      title: "Clicker React Game",
-      desc: "Este es un mini juego del genero 'clicker' que consiste en ir clicando un botón para ganar puntaje y con el mismo comprar articulos para aumentar el puntaje e ir progresando y llegar a un puntaje cada vez más alto. Ente esta aplicación también se almacena la información localmente en el dispositivo que se esté usando y se puede cambiar entre modo claro y oscuro",
-      img: "/clicker-game.jpeg",
+      title: "DevShortcut",
+      desc: "Aplicación para visualizar ejemplos de código organizados en la aplicación en diferentes categorías o para visualizar cualquier proyecto de GitHub en una interfaz rápida y conveniente",
+      img: "/devshortcut.png",
       width: "180",
       height: "180",
-      url: "https://Gregor-VM.github.io/react-clicker-game",
-      github: "https://github.com/Gregor-VM/react-clicker-game",
+      url: "https://devshortcut.vercel.app",
+      github: "https://github.com/Gregor-VM/devshortcut",
       skills: [
-        skills.html, skills.css, skills.javascript,
-        skills.react, skills.bootstrap, skills.redux
+        skills.html, skills.css, skills.javascript, skills.nodejs,
+        skills.preact, skills.typescript, skills.express
       ]
     },
     {
@@ -50,7 +50,7 @@ export   const projects = [
       img: "/firebase-app.jpeg",
       width: "180",
       height: "180",
-      url: "https://Gregor-VM.github.io/login-app",
+      url: "https://Gregor-VM.github.io/login-app/#/demo",
       github: "https://github.com/Gregor-VM/login-app",
       skills: [
         skills.html, skills.css, skills.javascript,

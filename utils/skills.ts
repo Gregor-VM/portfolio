@@ -23,6 +23,8 @@ interface SkillObject {
     mongodb: Skill;
     express: Skill;
     jest: Skill;
+    tailwind: Skill;
+    preact: Skill;
 }
   
 export const skills: SkillObject = {
@@ -41,4 +43,6 @@ export const skills: SkillObject = {
     mongodb: new Skill('MongoDB', '#03E461', null),
     express: new Skill('Express', '#EFD81D', null),
     jest: new Skill('Jest', '#99425B', null),
+    tailwind: new Skill('TailwindCSS', "#38bdf8", null),
+    preact: new Skill('Preact', "#522e93", null)
 };
