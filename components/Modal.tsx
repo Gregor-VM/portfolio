@@ -4,8 +4,12 @@ import styles from "../styles/Modal.module.scss";
 import { useDispatch } from "react-redux";
 import viewActions from "../redux/actions/viewActions";
 import Project from "../interfaces/Project";
+import { useTranslation } from "next-i18next";
 
 function Modal() {
+
+  const { t } = useTranslation('index');
+
   const view = useSelector((state) => state["view"].view);
   const [isClosing, setIsClosing] = useState(false);
   const project: Project = useSelector((state) => state["view"].project);
@@ -73,7 +77,7 @@ function Modal() {
                   className={styles.modalImage}
                 ></img>
                 <div className={styles.projectSkills}>
-                  <h5>TECNOLOGÍAS UTILIZADAS:</h5>
+                  <h5>{t("skillsTitle")}:</h5>
                   <ul>
                     {project.skills.map(skill => {
                       return <li><span 
@@ -85,16 +89,16 @@ function Modal() {
                   </ul>
                 </div>
               </div>
-              <p className={styles.modalDescription}>{project.desc}</p>
+              <p className={styles.modalDescription}>{t(project.desc)}</p>
             </div>
           </div>
 
           <div className={styles.footerButtons}>
             <a href={project.url} target="_blank">
-              Ir al sitio <i className="fas fa-globe"></i>
+              {t("goToProject")} <i className="fas fa-globe"></i>
             </a>
             <a href={project.github} target="_blank">
-              Ver en GitHub <i className="fab fa-github"></i>
+              {t("gitHubLink")} <i className="fab fa-github"></i>
             </a>
           </div>
 

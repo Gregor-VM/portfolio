@@ -3,7 +3,7 @@ import { skills } from "./skills";
 export   const projects = [
     {
       title: "Rekapp",
-      desc: "Rekapp is una aplicación de React que te permite crear y compartir mazos de cartas para estudiar que contienen textos, imágenes y/o audio.",
+      desc: "rekappDesc",
       img: "/rekapp.jpeg",
       width: "180",
       height: "180",
@@ -18,7 +18,7 @@ export   const projects = [
     },
     {
       title: "Cipher Game",
-      desc: "Aplicación hecha en Angular basada en el criptoanálisis basado en el análisis de frecuencia, en esta aplicación resuelves códigos encriptados de frases célebres de diversos autores y tópicos.",
+      desc: "cipherDesc",
       img: "/cipher-app.jpeg",
       width: "180",
       height: "180",
@@ -33,7 +33,7 @@ export   const projects = [
     },
     {
       title: "DevShortcut",
-      desc: "Aplicación para visualizar ejemplos de código organizados en la aplicación en diferentes categorías o para visualizar cualquier proyecto de GitHub en una interfaz rápida y conveniente",
+      desc: "devShortcutDesc",
       img: "/devshortcut.png",
       width: "180",
       height: "180",
@@ -46,7 +46,7 @@ export   const projects = [
     },
     {
       title: "Firebase App",
-      desc: "Esta es una aplicación de articulos o notas. En la misma se puede iniciar sesión y subir las notas, las mismas también se pueden editar o borrar al igual que la información de la cuenta con la cual iniciaste sesión en la base de datos de firebase. También puedes ver las notas o articulos que otros usuarios hayan escrito",
+      desc: "firebaseDesc",
       img: "/firebase-app.jpeg",
       width: "180",
       height: "180",

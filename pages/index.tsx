@@ -18,6 +18,8 @@ import Background from "../components/Background";
 import isDay from "../hooks/isDay";
 import { getLightning } from "../utils/controllers";
 
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
 interface User {
   login: string;
   avatar_url: string;
@@ -58,7 +60,10 @@ export default function Home({ user, lightning }: { user: User, lightning: numbe
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({locale}) {
+
+  console.log({locale})
+
   interface User {
     login: string;
     avatar_url: string;
@@ -66,7 +71,6 @@ export async function getServerSideProps() {
     name: string;
     public_repos: number;
   }
-
 
   const lightning = await getLightning();
 
@@ -81,7 +85,9 @@ export async function getServerSideProps() {
     } = await res.json();
     const user: User = { login, avatar_url, html_url, name, public_repos };
     return {
-      props: { user: user, lightning },
+      props: { user: user, lightning, ...(await serverSideTranslations(locale, [
+        'index'
+      ]))},
     };
   } catch (error) {
     return {

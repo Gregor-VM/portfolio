@@ -4,6 +4,7 @@ import styles from "../styles/GitHub.module.scss";
 
 import useScrollRefProp from "../hooks/useScrollRefProp";
 import isElementVisible from "../hooks/isElementVisible";
+import { useTranslation } from "next-i18next";
 
 interface User {
   login: string;
@@ -14,6 +15,9 @@ interface User {
 }
 
 function GitHub({ currentRef, handleSetRef }) {
+
+  const { t } = useTranslation('index');
+
   const user: User = useSelector((state) => state["user"].user);
   const ref: React.LegacyRef<HTMLHeadingElement> = useRef();
   useScrollRefProp(ref, handleSetRef, currentRef, "github");
@@ -35,9 +39,9 @@ function GitHub({ currentRef, handleSetRef }) {
         </div>
         <h2>{user.name}</h2>
         <small>Username: {user.login}</small>
-        <p>{user.public_repos} repositorios creados actualmente</p>
+        <p>{user.public_repos} {t("currentRepos")}</p>
         <a href={user.html_url}>
-          <span>Ir al GitHub</span> <i className="fas fa-external-link-alt"></i>
+          <span>{t("goGitHub")}</span> <i className="fas fa-external-link-alt"></i>
         </a>
       </div>
     </div>

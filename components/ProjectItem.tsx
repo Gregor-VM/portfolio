@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import viewActions from "../redux/actions/viewActions";
 import Project from "../interfaces/Project";
 import { motion } from 'framer-motion';
+import { useTranslation } from "next-i18next";
 
 const item = {
   hidden: { y: 20, opacity: 0 },
@@ -14,6 +15,9 @@ const item = {
 }
 
 function ProjectItem(project: Project) {
+
+  const { t } = useTranslation('index');
+
   const [isMouseOver, setIsMouseOver] = useState(false);
 
   const dispatch = useDispatch();
@@ -44,7 +48,7 @@ function ProjectItem(project: Project) {
       )}
       <h2>{!isMouseOver && project.title}</h2>
       <p className={isMouseOver ? styles.textWhite : undefined}>
-        {isMouseOver && project.desc}
+        {isMouseOver && t(project.desc)}
       </p>
     </motion.div>
   );

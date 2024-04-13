@@ -6,8 +6,12 @@ import Alert from "./Alert";
 
 import useScrollRefProp from "../hooks/useScrollRefProp";
 import isElementVisible from "../hooks/isElementVisible";
+import { useTranslation } from "next-i18next";
 
 function Contact({ currentRef, handleSetRef }) {
+
+  const { t } = useTranslation('index');
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -24,7 +28,7 @@ function Contact({ currentRef, handleSetRef }) {
     e.preventDefault();
 
     if (name === "" || email === "" || message === "") {
-      setMsg({ msg: "Algún campo está vacio", variant: "danger" });
+      setMsg({ msg: t("errorEmpty"), variant: "danger" });
       return null;
     }
 
@@ -36,7 +40,7 @@ function Contact({ currentRef, handleSetRef }) {
     )
       .then(() => {
         setMsg({
-          msg: "El mensaje ha sido enviado correctamente",
+          msg: t("msgSent"),
           variant: "green",
         });
         setName("");
@@ -58,32 +62,32 @@ function Contact({ currentRef, handleSetRef }) {
     <div className={styles.container} ref={ref}>
       <form ref={observeRef} onSubmit={handleSend} className={isVisible ? styles.appear : ""}>
         <h2>
-          Contáctame<i className="far fa-envelope"></i>
+          {t("contactMe")}<i className="far fa-envelope"></i>
         </h2>
 
-        <label htmlFor={"name"}>Nombre</label>
+        <label htmlFor={"name"}>{t("name")}</label>
         <input
           onChange={({ target: { value } }) => setName(value)}
           type="text"
           id="name"
-          placeholder="Introduce tu nombre..."
+          placeholder={t("namePlaceholder")}
         ></input>
-        <label htmlFor={"email"}>Email</label>
+        <label htmlFor={"email"}>{t("email")}</label>
         <input
           onChange={({ target: { value } }) => setEmail(value)}
           type="email"
           id="email"
-          placeholder="Introduce tu email..."
+          placeholder={t("emailPlaceholder")}
         ></input>
-        <label htmlFor={"message"}>Mensaje</label>
+        <label htmlFor={"message"}>{t("msg")}</label>
         <textarea
           onChange={({ target: { value } }) => setMessage(value)}
-          placeholder="Escribe tu mensaje..."
+          placeholder={t("msgPlaceholder")}
           id="message"
           rows={10}
         ></textarea>
         <Alert msg={msg.msg} variant={msg.variant} handleClose={handleClose} />
-        <button type="submit">Enviar</button>
+        <button type="submit">{t("send")}</button>
       </form>
       <img src="/contact.svg"></img>
     </div>

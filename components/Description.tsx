@@ -2,8 +2,14 @@ import React, {useMemo} from "react";
 import isDay from "../hooks/isDay";
 import styles from "./../styles/Description.module.scss";
 import Model from './Model';
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 function Description({ handleSetRef }) {
+
+  const { t } = useTranslation('index');
+  const { locale } = useRouter();
+
   const ids = ["projects", "skills", "github", "contact"];
 
   let age: string = useMemo(() => {
@@ -25,7 +31,7 @@ function Description({ handleSetRef }) {
       return text.split("").map((letter, i) => createLetter(letter, i));
     };
 
-    return createAnimatedText("Hola, soy Gregorio");
+    return createAnimatedText(t("greetings"));
 
   }, []);
 
@@ -38,18 +44,15 @@ function Description({ handleSetRef }) {
           {animatedText}
         </h2>
         <p className={isDay() ? "" : styles.nightBackground}>
-          Soy Front-end Developer tengo {age} años, soy de República Dominicana y
-          me especializo en utilizar tecnologías como HTML, CSS, Javascript,
-          React, entre otras. Programar es mi pasión y me gusta aprender más en
-          mi dia a dia.
+          {t("resume")}
         </p>
         <div className={styles.buttonsContainer}>
-          <a href="cv_gvm.pdf" target="_blank">
-            Descargar CV
+          <a href={`cv_gvm_${locale}.pdf`} target="_blank">
+            {t("downloadCV")}
             <i className="fas fa-external-link-alt"></i>
           </a>
           <button onClick={() => handleSetRef(ids[3])}>
-            Contáctame
+            {t("contactMe")}
             <i className="far fa-envelope"></i>
           </button>
         </div>

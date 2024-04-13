@@ -6,7 +6,8 @@ import ProjectItem from "./ProjectItem";
 import useScrollRefProp from "../hooks/useScrollRefProp";
 import isElementVisible from "../hooks/isElementVisible";
 import { projects } from "../utils/projects";
-
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -21,6 +22,10 @@ const container = {
 }
 
 function Projects({ currentRef, handleSetRef }) {
+
+  const { t } = useTranslation('index');
+
+  const {locale} = useRouter();
 
   const [visible, setVisible] = useState(false);
 
@@ -44,13 +49,13 @@ function Projects({ currentRef, handleSetRef }) {
     <div className={styles.twoBoxes} ref={ref}>
       <div className={styles.left}>
         <h2 ref={titleRef}>
-          Proyectos <i className="fas fa-check-circle"></i>
+          {t('projects')} <i className="fas fa-check-circle"></i>
         </h2>
         <img ref={observeRef} className={isVisible ? styles.appear : ""} src="/project.svg"></img>
       </div>
       <motion.div animate={visible ? 'visible' : 'hidden'} variants={container}>
 
-        {projects.map(project => <ProjectItem {...project} />)}
+        {projects.map(project => <ProjectItem key={project.url} {...project} />)}
 
       </motion.div>
     </div>

@@ -1,20 +1,24 @@
 import Modal from "./Modal";
 import Head from 'next/head'
 import { contactLinks } from "../utils/contactLinks";
+import { useTranslation } from "next-i18next";
 
 function Layout({ children }: { children: React.ReactNode }) {
+
+  const { t } = useTranslation('index');
+
   return (
     <>
     <Modal></Modal>
 
       <Head>
-      <title>Gregorio V. | Portafolio </title>
+      <title>Gregorio V. | {t("portfolio")} </title>
       </Head>
 
       <main style={{overflow: "hidden"}}>{children}</main>
       <footer>
         <p>
-          Hecho y diseñado por Gregorio Vargas M. {new Date().getFullYear().toString()}{" "} ©
+          {t("madeBy")} Gregorio Vargas M. {new Date().getFullYear().toString()}{" "} ©
         </p>
         <div>
           <a className="email" title="EMAIL" href={'mailto:'+contactLinks.email}>{contactLinks.email}</a>

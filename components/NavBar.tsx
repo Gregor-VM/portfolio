@@ -5,8 +5,11 @@ import { Tooltip } from 'react-tooltip'
 import isDay from "../hooks/isDay";
 import styles from "../styles/NavBar.module.scss";
 import { contactLinks } from '../utils/contactLinks';
+import { useTranslation } from "next-i18next";
 
 function NavBar({ handleSetRef }) {
+
+  const { t } = useTranslation('index');
 
   const night = !isDay();
 
@@ -40,7 +43,7 @@ function NavBar({ handleSetRef }) {
             data-tooltip-id="projects"
           >
             <li><i className="far fa-lightbulb"></i></li>
-            <Tooltip id="projects" content="Proyectos" className={styles.tooltip} />
+            <Tooltip id="projects" content={t('projects')} className={styles.tooltip} />
           </a>
           <a
             className={selected === 1 ? styles.selected : ""}
@@ -52,7 +55,7 @@ function NavBar({ handleSetRef }) {
             data-tooltip-id="skills"
           >
             <li><i className="fas fa-laptop-code"></i></li>
-            <Tooltip id="skills" content="Habilidades" className={styles.tooltip} />
+            <Tooltip id="skills" content={t('skills')} className={styles.tooltip} />
           </a>
           <a
             className={selected === 2 ? styles.selected : ""}
@@ -76,7 +79,7 @@ function NavBar({ handleSetRef }) {
             data-tooltip-id="contact"
           >
             <li><i className="fas fa-paper-plane"></i></li>
-            <Tooltip id="contact" content="Contácto" className={styles.tooltip} />
+            <Tooltip id="contact" content={t('contact')} className={styles.tooltip} />
           </a>
 
           <a 

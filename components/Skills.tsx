@@ -2,8 +2,11 @@ import { useRef } from "react";
 import styles from "../styles/Skills.module.scss";
 import useScrollRefProp from "../hooks/useScrollRefProp";
 import isElementVisible from "../hooks/isElementVisible";
+import { useTranslation } from "next-i18next";
 
 function Skills({ currentRef, handleSetRef }) {
+
+  const { t } = useTranslation('index');
 
   const {observeRef, isVisible} = isElementVisible();
 
@@ -13,7 +16,7 @@ function Skills({ currentRef, handleSetRef }) {
   return (
     <div className={styles.container} ref={ref}>
       <h2>
-        Habilidades <i className="fas fa-laptop-code"></i>
+        {t("skills")} <i className="fas fa-laptop-code"></i>
       </h2>
       <div ref={observeRef} className={isVisible ? styles.appear : ""}>
         <i className="fab fa-html5" title="HTML"></i>
