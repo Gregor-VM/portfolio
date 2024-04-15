@@ -10,6 +10,7 @@ export default function Document() {
           content="Gregorio Vargas Marrero portafolio desarrollador fronted sitio web"
         />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
       </Head>
       <body>
         <Main />
