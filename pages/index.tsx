@@ -60,7 +60,7 @@ export default function Home({ user, lightning }: { user: User, lightning: numbe
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({locale}) {
 
   interface User {
     login: string;
@@ -81,23 +81,24 @@ export async function getServerSideProps() {
       name,
       public_repos,
     } = await res.json();
+
     const user: User = { login, avatar_url, html_url, name, public_repos };
+
+    const translations = await serverSideTranslations(locale, [
+        'index'
+    ]);
+
+    console.log({translations, locale});
+
     return {
-      props: { user: user, lightning},
+      props: { user: user, lightning, ...translations},
     };
+
   } catch (error) {
+
     return {
       props: { user: null, lightning },
     };
-  }
-}
 
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, [
-        'index'
-      ])),
-    },
   }
 }
