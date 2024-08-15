@@ -39,7 +39,7 @@ function Description({ handleSetRef }) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.desc}>
+      {/*<div className={styles.desc}>
         <h2 className={styles.headingText}>
           {animatedText}
         </h2>
@@ -56,7 +56,7 @@ function Description({ handleSetRef }) {
             <i className="far fa-envelope"></i>
           </button>
         </div>
-      </div>
+      </div>*/}
 
       <div className={styles.model}><Model /></div>
     </div>
