@@ -11,7 +11,7 @@ import { useGLTF, useAnimations } from '@react-three/drei'
 
 export function CupidoPlane(props) {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/cupido_plane.glb')
+  const { nodes, materials, animations } = useGLTF('/cupido_plane.glb') as any;
   const { actions } = useAnimations(animations, group)
 
   useEffect(() => {

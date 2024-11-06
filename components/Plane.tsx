@@ -36,7 +36,7 @@ type GLTFActions = Record<ActionName, THREE.AnimationAction>
 export function Plane(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials, animations } = useGLTF('/plane.glb') as GLTFResult
-  const { actions } = useAnimations<GLTFActions>(animations, group)
+  const { actions } = useAnimations<any>(animations, group)
 
   useEffect(() => {
     actions['Flying'].play()
