@@ -117,13 +117,13 @@ footer{
 }
 
 @media (max-width: 720px) {
-  footer {
+  .footerFirst {
     flex-direction: column;
   }
 }
 
 @media (max-width: 500px) {
-  footer {
+  .footerFirst {
     & > div {
       display: flex;
       flex-direction: column;

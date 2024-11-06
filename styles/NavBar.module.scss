@@ -118,6 +118,18 @@
   .list{
     width: min-content;
   }*/
+  .list {
+    width: 100% !important;
+    justify-content: center;
+  }
+  .list a {
+    padding: 1rem;
+  }
+  .navContainer{
+    width: calc(100% - 1rem) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
 }
 
 @media (max-width: 530px) {
