@@ -8,102 +8,107 @@
   .model{
     width: 100%;
     //width: 600px;
-    height: 400px;
+    height: 600px;
     //margin-right: 150px;
+    transform: translateY(-5rem);
   }
 
-  .desc {
-    padding: 100px 0px 40px 100px;
-    //width: 40%;
-    h2 {
-      margin: 0 !important;
-      font-family: 'Bungee Shade', cursive;
-      font-size: $xlfont;
-      margin-bottom: 10px;
-      text-wrap: nowrap;
+}
+
+.desc {
+  padding: 100px 0px 40px 100px;
+  //width: 40%;
+  h2 {
+    margin: 0 !important;
+    font-family: 'Bungee Shade', cursive;
+    font-size: $xlfont;
+    margin-bottom: 10px;
+    text-wrap: nowrap;
+  }
+
+  @for $i from 1 to 34 {
+    .animatedLetter-#{$i}{
+      color: black;
+      animation: appear (random($limit: 5) * 1s) ease-in forwards infinite;
+      animation-delay: ($i * 50ms);
+      cursor: pointer;
     }
 
-    @for $i from 1 to 34 {
-      .animatedLetter-#{$i}{
-        color: black;
-        animation: appear (random($limit: 5) * 1s) ease-in forwards infinite;
-        animation-delay: ($i * 50ms);
-        cursor: pointer;
-      }
+    .animatedLetter-#{$i}:hover{
+      display: inline-block;
+      animation: textUp 1s ease-in forwards alternate infinite;
+    }
+  }
 
-      .animatedLetter-#{$i}:hover{
-        display: inline-block;
-        animation: textUp 1s ease-in forwards alternate infinite;
-      }
+  @keyframes textUp {
+    from{
+      display: inline-block;
+      transform: translateY(.15rem);
+    } to {
+      display: inline-block;
+      transform: translateY(-.15rem);
+    }
+  }
+
+  @keyframes appear {
+    from{ 
+      color: map-get($map: $palette, $key: 'primary');
+    }
+    to{
+      color: darken($color: map-get($map: $palette, $key: 'primary'), $amount: 10);
+    }
+  }
+
+  p {
+    font-weight: bold;
+    background-color: rgba($color: #fff, $alpha: .7);
+    backdrop-filter: blur(10px);
+
+    padding: .75rem 1.5rem;
+    color: #393939;
+    letter-spacing: .05rem;
+    font-size: $smfont;
+    border: 2px solid #000;
+    border-radius: .5rem;
+    box-shadow: 5px 5px 0px #00000030;
+    transition: all .5s;
+
+    &:hover{
+      background-color: rgba($color: #fff, $alpha: .95);
     }
 
-    @keyframes textUp {
-      from{
-        display: inline-block;
-        transform: translateY(.15rem);
-      } to {
-        display: inline-block;
-        transform: translateY(-.15rem);
-      }
+  }
+}
+
+.buttonsContainer {
+  margin-right: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transform: translateY(-2rem);
+
+  & > button, & > a {
+    padding: 15px;
+    border: 2px solid #000;
+    border-radius: 10rem;
+    text-transform: uppercase;
+    box-shadow: 5px 5px 0px #000000;
+    font-size: $smfont - 2px;
+    &:hover {
+      filter: saturate(400%);
     }
+    cursor: pointer;
+  }
 
-    @keyframes appear {
-      from{ 
-        color: map-get($map: $palette, $key: 'primary');
-      }
-      to{
-        color: darken($color: map-get($map: $palette, $key: 'primary'), $amount: 10);
-      }
-    }
+  a {
+    color: white;
+    background-color: map-get($map: $palette, $key: "primary");
+  }
 
-    p {
-      font-weight: bold;
-      background-color: rgba($color: #fff, $alpha: .7);
-      backdrop-filter: blur(10px);
-
-      padding: .75rem 1.5rem;
-      color: #393939;
-      letter-spacing: .05rem;
-      font-size: $smfont;
-      border: 2px solid #000;
-      border-radius: .5rem;
-      box-shadow: 5px 5px 0px #00000030;
-      transition: all .5s;
-
-      &:hover{
-        background-color: rgba($color: #fff, $alpha: .95);
-      }
-
-    }
-
-    div {
-      margin-top: 20px;
-      width: 100%;
-
-      & > * {
-        padding: 15px;
-        border: 2px solid #000;
-        border-radius: 10rem;
-        text-transform: uppercase;
-        box-shadow: 5px 5px 0px #000000;
-        font-size: $smfont - 2px;
-        &:hover {
-          filter: saturate(400%);
-        }
-        cursor: pointer;
-      }
-
-      a {
-        color: white;
-        background-color: map-get($map: $palette, $key: "primary");
-      }
-
-      button {
-        color: map-get($map: $palette, $key: "primary");
-        background-color: rgba($color: #fff, $alpha: 1);
-        margin-left: 15px;
-      }
-    }
+  button {
+    color: map-get($map: $palette, $key: "primary");
+    background-color: rgba($color: #fff, $alpha: 1);
+    margin-left: 15px;
   }
 }
 
@@ -113,12 +118,36 @@
   background-color: rgba(0,0,0,.7) !important;
 }
 
+.desktop{
+  width: 100%;
+  margin: auto;
+}
+
 .buttonsContainer{
   display: flex;
 
   i{
     margin-left: .5rem;
     font-size: .8rem;
+  }
+}
+
+@media (max-width: 1170px) {
+  .model{
+    height: 500px !important;
+  }
+}
+
+@media (max-width: 970px) {
+  .model{
+    height: 400px !important;
+  }
+}
+
+@media (max-width: 775px) {
+  .model{
+    margin-top: 5rem;
+    height: 300px !important;
   }
 }
 
@@ -153,6 +182,36 @@
     }
   }
 }
+
+.mobile{
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .desktop{
+    display: none;
+  }
+
+  .desc{
+    padding: 1rem;
+  }
+
+  .mobile{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+
+    .buttonsContainer{
+      margin-top: 5rem;
+    }
+  }
+
+  .model{
+    display: none;
+  }
+}
+
 
 @media (max-width: 500px) {
 

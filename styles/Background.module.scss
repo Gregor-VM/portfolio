@@ -144,6 +144,18 @@ $blur_ratio: 0;
 }
 
 
+@media (max-width: 1170px) {
+    .background{
+        height: 80vh;
+    }
+}
+
+@media (max-width: 975px) {
+    .background{
+        height: 60vh;
+    }
+}
+
 @media (max-width: 900px) {
     .moon{
         display: none;
@@ -159,9 +171,14 @@ $blur_ratio: 0;
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+
+    .background{
+        height: 80vh;
+    }
+
     .background .city_1, .background .city_2{
-        width: 200%;
+        width: 180%;
         height: 28rem;
     }
 

@@ -38,14 +38,12 @@ function Description({ handleSetRef }) {
 
 
   return (
+    <>
     <div className={styles.container}>
-      {/*<div className={styles.desc}>
-        <h2 className={styles.headingText}>
-          {animatedText}
-        </h2>
-        <p className={isDay() ? "" : styles.nightBackground}>
-          {t("resume")}
-        </p>
+      <div className={styles.model}><Model /></div>
+    </div>
+    <div className={styles.container}>
+      <div className={styles.desktop}>
         <div className={styles.buttonsContainer}>
           <a href={`cv_gvm_${locale}.pdf`} target="_blank">
             {t("downloadCV")}
@@ -56,10 +54,32 @@ function Description({ handleSetRef }) {
             <i className="far fa-envelope"></i>
           </button>
         </div>
-      </div>*/}
-
-      <div className={styles.model}><Model /></div>
+      </div>
     </div>
+
+    <div className={styles.mobile}>
+
+      <div className={styles.desc}>
+        <h2 className={styles.headingText}>
+          {animatedText}
+        </h2>
+        <p className={isDay() ? "" : styles.nightBackground}>
+          {t("resume")}
+        </p>
+      </div>
+      <div className={styles.buttonsContainer}>
+        <a href={`cv_gvm_${locale}.pdf`} target="_blank">
+          {t("downloadCV")}
+          <i className="fas fa-external-link-alt"></i>
+        </a>
+        <button onClick={() => handleSetRef(ids[3])}>
+          {t("contactMe")}
+          <i className="far fa-envelope"></i>
+        </button>
+      </div>
+
+    </div>
+    </>
   );
 }
 

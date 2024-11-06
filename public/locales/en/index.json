@@ -25,5 +25,9 @@
     "errorEmpty": "One or more fields empty",
     "msgSent": "The message has been send successfully",
     "madeBy": "Made and design by",
-    "portfolio": "Portfolio"
+    "portfolio": "Portfolio",
+    "scrollDown": "Scroll Down",
+    "attributions": "Attributions",
+    "by": "by",
+    "on": "on"
 }

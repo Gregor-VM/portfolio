@@ -29,9 +29,14 @@ function NavBar({ handleSetRef }) {
       
       <div className={styles.navContainer}>
         <div>
-          <div className={night ? styles.white : ""}>GREGOR<span className={styles.blue}>VM</span></div>
+          <div className={styles.blue}>GREGOR<span className={styles.blue}>VM</span></div>
         </div>
-        <ul className={`${night ? styles.white : ""} ${styles.list}`}>
+        <ul className={`${styles.blue} ${styles.list}`}>
+
+          <span 
+            className={styles.menu}>
+            <li><i className="fas fa-bars"></i></li>
+          </span>
 
           <a
             className={selected === 0 ? styles.selected : ""}

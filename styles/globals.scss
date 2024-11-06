@@ -54,12 +54,15 @@ li {
   margin: 0em 2em;
 }
 
-footer {
+footer{
   background-color: map-get($map: $palette, $key: "secondary");
   color: white;
   font-size: 18px;
-  text-align: center;
   padding: 0.5em;
+}
+
+.footerFirst {
+  text-align: center;
   clear: both;
   display: flex;
   justify-content: space-between;

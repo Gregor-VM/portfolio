@@ -1,9 +1,10 @@
-import { useRef, createRef, useEffect, useMemo, useState, RefObject, MutableRefObject, memo, forwardRef } from "react";
+import { useRef, createRef, useEffect, useMemo, useState, RefObject, MutableRefObject, memo, forwardRef, Fragment } from "react";
 import { useParticle, usePlane, useDistanceConstraint, PublicApi, Triplet } from "@react-three/cannon";
 import { useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
-import { DoubleSide, Mesh, Object3D, Side, TextureLoader } from "three";
+import { DoubleSide, Mesh, Object3D, TextureLoader } from "three";
 import { Line } from "@react-three/drei";
+import { useRouter } from "next/router";
 
 type ParticleObj = {
   particle: MutableRefObject<Object3D>
@@ -15,8 +16,8 @@ interface ParticleProps {
   position: Triplet;
 }
 
-const Nx = 20;
-const Ny = 10;
+const Nx = 16;
+const Ny = 8;
 const clothSize = 7;
 const dist = clothSize / Nx;
 const planeOffset = [-2, -2];
@@ -37,7 +38,7 @@ const Particle = memo(
     }
 
     const pointerMove = (e: any) => {
-      api.velocity.set(0, 0, 5)
+      api.velocity.set(0, 0, 2)
     }
 
     return (
@@ -65,10 +66,12 @@ const StickParticles = memo<StickProps>(({ p1, p2, distance }) => {
 
 export function Banner(props: any) {
 
-  const texture = useLoader(TextureLoader, 'rekapp.jpeg')
+  const { locale } = useRouter();
+
+  const texture = useLoader(TextureLoader, `banner-${locale}.png`);
 
   const [particlesReady, setParticlesReady] = useState(false);
-  const [positions, setPositions] = useState({});
+  const [positions, setPositions] = useState(new Map<string, number[]>());
   const particles = useRef(Array.from({ length: Nx+1}, () => Array.from<RefObject<ParticleObj>, RefObject<ParticleObj>>({ length: Ny+1}, createRef)))
   const [ref] = usePlane(() => ({ rotation: [0, 0, 0], position: [0, 0, 0], ...props }))
 
@@ -76,13 +79,17 @@ export function Banner(props: any) {
     [5, -0.5, -1.5]
   , []);
 
-  const line1End = useMemo(() => {
-    if(particlesReady && positions){
-      const pointPos = positions[Nx + '-' + Ny];
+  /*const line1End = useMemo(() => {
+    if(particlesReady && positions.get(Nx + '-' + Ny)){
+      const pointPos = positions.get(Nx + '-' + Ny);
       if(pointPos) return [pointPos[0], pointPos[1], 0]
     }
   }
-  , [positions, particlesReady]);
+  , [positions.get(Nx + '-' + Ny), particlesReady]);*/
+
+  const line1End = useMemo(() =>
+    [1.5, -0.25, 0]
+  , []);
 
   /*const line2End = useMemo(() => {
     if(particlesReady && positions){
@@ -109,7 +116,7 @@ export function Banner(props: any) {
       for(let i=0;i<Nx+1;i++){
         for(let j=0;j<Ny+1;j++){
           subscriptions.push( particles.current[i][j].current.api.position.subscribe((value) => {
-            setPositions(prev => ({...prev, [i + '-' + j]: value}))
+            setPositions(prev => prev.set(i + '-' + j, value))
           }) );
         }
       }
@@ -133,7 +140,7 @@ export function Banner(props: any) {
           const index = j * (Nx + 1) + i;
           const positionAttribute = geom.attributes.position;
           if(particlesReady && positions){
-            const position = positions[i + '-' + (Ny - j)]
+            const position = positions.get(i + '-' + (Ny - j))
             if(position) positionAttribute.setXYZ(index, position[0], position[1], position[2]);
           }
         }
@@ -160,15 +167,15 @@ export function Banner(props: any) {
     {particlesReady && (particles.current.map((x, xi) =>
       x.map((_, yi) => {
           return (
-            <>
+            <Fragment key={xi + '--' + yi}>
               {(xi < Nx) && <StickParticles key={xi + '>' + yi} p1={particles.current[xi][yi]} p2={particles.current[xi + 1][yi]} distance={dist} />}
               {(yi < Ny) && <StickParticles key={xi + '->' + yi} p1={particles.current[xi][yi]} p2={particles.current[xi][yi + 1]} distance={dist} />}
-            </>
+            </Fragment>
           )
       })
     ))}
 
-    <Line points={[line1Start, line1End] as any} linewidth={0.5} color="#000000" opacity={0.1} lineWidth={20} />
+    {line1End && <Line points={[line1Start, line1End] as any} linewidth={0.5} color="#000000" opacity={0.1} lineWidth={20} />}
     <Line points={points as any} linewidth={0.5} color="#000000" opacity={0.1} lineWidth={20} />
 
     <mesh ref={ref as any}>

@@ -25,5 +25,9 @@
     "errorEmpty": "Algún campo está vacio",
     "msgSent": "El mensaje ha sido enviado correctamente",
     "madeBy": "Hecho y diseñado por",
-    "portfolio": "Portafolio"
+    "portfolio": "Portafolio",
+    "scrollDown": "Desplácese hacia abajo",
+    "attributions": "Atribuciones",
+    "by": "por",
+    "on": "en"
 }

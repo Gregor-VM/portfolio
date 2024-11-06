@@ -16,11 +16,16 @@
 
 @media (max-width: 600px) {
   .transition{
-    padding: 1rem 0;
-    background: transparent;
+    transform: translateY(-7rem);
   }
 
   .top{
     height: 44rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .transition{
+    transform: translateY(-6.5rem);
   }
 }

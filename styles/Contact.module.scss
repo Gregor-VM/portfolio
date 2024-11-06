@@ -58,7 +58,8 @@
     }
 
     button {
-      width: 100%;
+      width: 100% !important;
+      opacity: 1;
       padding: 1em 0;
       border: 0;
       background-color: rgba(
@@ -90,16 +91,16 @@
 
 @for $i from 0 to 12 {
   .appear > *:nth-child(#{$i}){
-    animation: appear 1s ease $i * 100ms forwards;
+    animation: appear .5s ease $i * 50ms forwards;
   }
 }
 
 @keyframes appear {
   from{
-    transform: scale(0);
+    width: 0;
     opacity: 0;
   } to {
-    transform: scale(1);
+    width: 90%;
     opacity: 1;
   }
 }
