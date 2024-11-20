@@ -8,11 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@react-three/cannon": "^6.6.0",
     "@react-three/drei": "^9.22.7",
     "@react-three/fiber": "^8.17.5",
-    "emailjs-com": "^2.6.4",
     "framer-motion": "^10.16.5",
     "next": "^12.2.5",
     "next-i18next": "^15.2.0",

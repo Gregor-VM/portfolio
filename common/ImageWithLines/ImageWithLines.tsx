@@ -10,7 +10,7 @@ function ImageWithLines({url}: {url: string}) {
         <div className="linesEffect__3"></div>
         </div>
 
-        <img className="linesImage__img" src={url}></img>
+        <img loading="lazy" className="linesImage__img" src={url}></img>
 
         <div className="linesEffect">
         <div className="linesEffect__1"></div>

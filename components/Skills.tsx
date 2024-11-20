@@ -19,8 +19,8 @@ function Skills() {
         <div className="section__background section__background--white">
           <div className="doubleBg">
 
-            <img src="./skill-top.svg" />
-            <img src="./skill-bottom.svg" />
+            <img loading="lazy" src="./skill-top.svg" />
+            <img loading="lazy" src="./skill-bottom.svg" />
 
           </div>
         </div>
@@ -40,8 +40,8 @@ function Skills() {
           <i className="fab fa-sass" title="SASS"></i>
           <i className="fab fa-bootstrap" title="BOOTSTRAP"></i>
           <i className="fab fa-node-js" title="NODEJS"></i>
-          <img src="/mongodb_icon.png" title="MONGODB" height="140px" width="140px" />
-          <img src="/typescript_icon.png" title="TYPESCRIPT" height="140px" width="140px" />
+          <img loading="lazy" src="/mongodb_icon.png" title="MONGODB" height="140px" width="140px" />
+          <img loading="lazy" src="/typescript_icon.png" title="TYPESCRIPT" height="140px" width="140px" />
         </div>
 
         </div>

@@ -1,11 +1,12 @@
+import { send } from '@emailjs/browser';
+import { FormEvent, useMemo, useState } from "react";
+import { motion } from 'framer-motion';
 import styles from "../styles/Contact.module.scss";
 import isElementVisible from "../hooks/isElementVisible";
 import { useTranslation } from "next-i18next";
 import { PageSectionEnum } from "../utils/sections";
 import { ScrollableSection } from "./ScrollableSection";
 import ImageWithLines from "../common/ImageWithLines/ImageWithLines";
-import { send } from "emailjs-com";
-import { FormEvent, useMemo, useState } from "react";
 import Button from "../common/Button/Button";
 import Alert from "./Alert";
 
@@ -54,7 +55,7 @@ function Contact() {
       "service_byjqu3e",
       "template_29sbw9z",
       { from_name: name, from_email: email, message: message, reply_to: email },
-      "rregi8KxQHn7j9ij4"
+      { publicKey: 'rregi8KxQHn7j9ij4' }
     )
       .then(() => {
         showMessage(t("msgSent"));
@@ -79,8 +80,8 @@ function Contact() {
         <div className="section__background section__background--white">
           <div className="doubleBg">
 
-            <img src="./contact-top.svg" />
-            <img src="./contact-bottom.svg" />
+            <img loading="lazy" src="./contact-top.svg" />
+            <img loading="lazy" src="./contact-bottom.svg" />
 
           </div>
         </div>
@@ -89,7 +90,10 @@ function Contact() {
 
         <div className={styles["contact"]}>
 
-          <div className={`${styles["contact__main"]} linesImage`}>
+          <motion.div 
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            className={`${styles["contact__main"]} linesImage`}>
             <div className={styles["contact__title"]}>
               <h2>{t("contactMe")}</h2>
               <i className="far fa-envelope"></i>
@@ -102,16 +106,19 @@ function Contact() {
                 onChange={({ target: { value } }) => setName(value)}
                 type="text"
                 id="name"
+                value={name}
                 placeholder={t("namePlaceholder")}
               ></input>
               <input
                 onChange={({ target: { value } }) => setEmail(value)}
                 type="email"
                 id="email"
+                value={email}
                 placeholder={t("emailPlaceholder")}
                 style={{borderColor: (!validEmail && email !== "") ? "#e74c3c" : null}}
               ></input>
               <textarea
+                value={message}
                 onChange={({ target: { value } }) => setMessage(value)}
                 placeholder={t("msgPlaceholder")}
                 id="message"
@@ -130,9 +137,12 @@ function Contact() {
               <div className="linesEffect__3"></div>
             </div>
 
-          </div>
+          </motion.div>
 
-          <ImageWithLines url="/contact.svg"></ImageWithLines>
+          <motion.div initial={{ x: 100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1, transition: {delay: 0.2} }}>
+            <ImageWithLines url="/contact.svg"></ImageWithLines>
+          </motion.div>
 
         </div>
 

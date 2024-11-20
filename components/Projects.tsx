@@ -6,6 +6,7 @@ import CanvasBalls from './CanvasBalls';
 import { projects } from '../utils/projects';
 import { ScrollableSection } from './ScrollableSection';
 import { PageSectionEnum } from '../utils/sections';
+import { motion } from 'framer-motion';
 
 function Projects() {
   const { t } = useTranslation('index');
@@ -40,7 +41,12 @@ function Projects() {
         <h2 className="font-white"><i className="fas fa-certificate iconLeft"></i>{t("selectedProjects").toUpperCase()}</h2>
 
           {projects.map((project, i) => {
-            return <div key={i} className={`${styles.project} ${i % 2 === 0 ? "" : styles["project--flipped"]}`}>
+            return <motion.div
+
+            initial={{ x: i % 2 === 0 ? -100 : 100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            
+            key={i} className={`${styles.project} ${i % 2 === 0 ? "" : styles["project--flipped"]}`}>
               <div className={`${styles["project__text"]} font-white`}>
               <h1>{project.title.toUpperCase()}</h1>
               <h4>{project.year}</h4>
@@ -65,13 +71,13 @@ function Projects() {
 
                 <div className={styles["project__info__skills"]}>
                   {project.skills.map(skill => {
-                    return <span>{skill.name.toUpperCase()}</span>
+                    return <span key={skill.name}>{skill.name.toUpperCase()}</span>
                   })}
                 </div>
 
               </div>
             </div>
-          </div>
+          </motion.div>
           })}
 
           <div className={styles["seeMoreButton"]}>
@@ -87,72 +93,3 @@ function Projects() {
 }
 
 export default Projects
-
-
-
-
-
-/*import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import styles from "../styles/Projects.module.scss";
-import ProjectItem from "./ProjectItem";
-import isElementVisible from "../hooks/isElementVisible";
-import { projects } from "../utils/projects";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import { ScrollableSection } from "./ScrollableSection";
-import { PageSectionEnum } from "../utils/sections";
-
-const container = {
-  hidden: { opacity: 1, scale: 0 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delayChildren: 0.5,
-      staggerChildren: 0.2
-    }
-  }
-}
-
-function Projects() {
-
-  const { t } = useTranslation('index');
-
-  const {locale} = useRouter();
-
-  const [visible, setVisible] = useState(false);
-
-  const {observeRef, isVisible} = isElementVisible();
-
-  const [titleRef, inView] = useInView();
-
-  useEffect(() => {
-
-    if(inView){
-      setVisible(true);
-    }
-
-  }, [inView]);
-
-  return (
-    <div className={styles.twoBoxes}>
-      <div className={styles.left}>
-        <ScrollableSection id={PageSectionEnum.PROJECTS}>
-          <h2 ref={titleRef}>
-          {t('projects')} <i className="fas fa-check-circle"></i>
-          </h2>
-        </ScrollableSection>
-        <img ref={observeRef} className={isVisible ? styles.appear : ""} src="/project.svg"></img>
-      </div>
-      <motion.div animate={visible ? 'visible' : 'hidden'} variants={container}>
-
-        {projects.map(project => <ProjectItem key={project.url} {...project} />)}
-
-      </motion.div>
-    </div>
-  );
-}
-
-export default Projects;*/

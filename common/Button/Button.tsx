@@ -8,7 +8,7 @@ enum ButtonType {
 }
 
 function Button({label, onClick, icon = null, type = "button", disabled = false}: {
-  label: string, onClick?: React.MouseEventHandler<HTMLButtonElement>, icon?: string, type?: keyof typeof ButtonType, disabled: boolean
+  label: string, onClick?: React.MouseEventHandler<HTMLButtonElement>, icon?: string, type?: keyof typeof ButtonType, disabled?: boolean
 }) {
     const { t } = useTranslation('index');
   return (<button disabled={disabled} type={type} className={styles.button} onClick={onClick}>

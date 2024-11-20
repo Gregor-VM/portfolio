@@ -6,6 +6,7 @@ import { ScrollableSection } from "./ScrollableSection";
 import ImageWithLines from "../common/ImageWithLines/ImageWithLines";
 import { useSelector } from "react-redux";
 import LinkButton from "../common/LinkButton/LinkButton";
+import { motion } from 'framer-motion';
 
 interface User {
   login: string;
@@ -38,11 +39,20 @@ function GitHub() {
 
           <div className={styles.githubContent}>
 
-            <ImageWithLines url="./version.svg"></ImageWithLines>
+            <motion.div 
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1, transition: {delay: 0.2} }}>
+              <ImageWithLines url="./version.svg"></ImageWithLines>
+            </motion.div>
 
-            <div className={`${styles.githubPhoto} linesImage`}>
+            <motion.div 
 
-              <img src={user.avatar_url} className={styles.avatar}></img>
+            initial={{ x: 100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            
+            className={`${styles.githubPhoto} linesImage`}>
+
+              <img loading="lazy" src={user.avatar_url} className={styles.avatar}></img>
 
               <div className="linesEffect linesEffect--white linesEffect--flipped">
                 <div className="linesEffect__1"></div>
@@ -71,7 +81,7 @@ function GitHub() {
                 <div className="linesEffect__3"></div>
               </div>
 
-            </div>
+            </motion.div>
 
           </div>
 
