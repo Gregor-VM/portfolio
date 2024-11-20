@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-//import Image from "next/image";
+import { useEffect } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import styles from "./../styles/Home.module.scss";
@@ -29,7 +28,6 @@ interface User {
 }
 
 export default function Home({ user, lightning }: { user: User, lightning: number }) {
-  const [ref, setRef] = useState();
   const dispatch = useDispatch();
 
   const night = !isDay();
@@ -40,22 +38,18 @@ export default function Home({ user, lightning }: { user: User, lightning: numbe
     }
   }, [dispatch]);
 
-  const handleSetRef = (ref) => {
-    setRef(ref);
-  };
-
   return (
     <Layout>
       <div className={styles.top}>
         <Background lightning={lightning} />
-        <NavBar handleSetRef={handleSetRef} />
-        <Description handleSetRef={handleSetRef} />
+        <NavBar />
+        <Description />
         <div className={`${styles.transition} ${night ? styles.nightTransition : ""}`}></div>
       </div>
-      <Projects currentRef={ref} handleSetRef={handleSetRef} />
-      <Skills currentRef={ref} handleSetRef={handleSetRef} />
-      <GitHub currentRef={ref} handleSetRef={handleSetRef} />
-      <Contact currentRef={ref} handleSetRef={handleSetRef} />
+      <Projects />
+      <Skills />
+      <GitHub />
+      <Contact />
     </Layout>
   );
 }
@@ -87,8 +81,6 @@ export async function getServerSideProps({locale}) {
     const translations = await serverSideTranslations(locale, [
         'index'
     ]);
-
-    console.log({translations, locale});
 
     return {
       props: { user: user, lightning, ...translations},

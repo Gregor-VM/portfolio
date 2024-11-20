@@ -1,15 +1,29 @@
-import styles from "../styles/Alert.module.scss";
+import { useEffect, useRef } from "react";
 
-function Alert({ msg, variant, handleClose }) {
-  if (msg !== "" && variant !== "") {
-    return (
-      <div className={styles[variant]}>
-        <p style={{whiteSpace: "nowrap"}}>{msg}</p>
-        <i className="fas fa-times" onClick={handleClose}></i>
-      </div>
-    );
-  }
-  return <></>;
+function Alert({ show, msg, variant = "success", setShow }) {
+
+  const timerRef = useRef<any>();
+
+  useEffect(() => {
+
+    if(show && !timerRef.current) {
+      timerRef.current = setTimeout(() => {
+        setShow(false);
+        timerRef.current = null;
+      }, 3000);
+    }
+
+    return () => {
+      clearTimeout(timerRef.current);
+    }
+
+  }, [show]);
+
+  return (
+    <div className={`alert alert--${variant} ${show ? "alert--show" : "alert--hidden"}`}>
+      {msg}
+    </div>
+  );
 }
 
 export default Alert;

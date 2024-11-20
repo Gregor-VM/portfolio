@@ -6,15 +6,30 @@
   "danger": #f00b0b,
 );*/
 
+/*$palette: (
+  "background": #f1f1f1,
+  "white": #ffffff,
+  "black": #000000,
+  "primary": #2980b9
+);*/
+
 $palette: (
   "background": #f1f1f1,
+  "black": #000000,
   "primary": #2980b9,
   "secondary": #2c3e50,
   "secondary-lighten": #374a5e,
-  "danger": #f00b0b,
+  "danger": #c0392b,
+  "success": #27ae60,
+  "white": #ffffff,
 );
 
 $contactFont: 23px;
 $font: 18px;
 $xlfont: 30px;
 $smfont: 15px;
+$maxContainer: 1080px;
+
+.section{
+  --diagonalSize: .75rem;
+}

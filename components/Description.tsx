@@ -4,11 +4,15 @@ import styles from "./../styles/Description.module.scss";
 import Model from './Model';
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import LinkButton from "../common/LinkButton/LinkButton";
+import Button from "../common/Button/Button";
 
-function Description({ handleSetRef }) {
+function Description() {
 
   const { t } = useTranslation('index');
   const { locale } = useRouter();
+
+  const router = useRouter();
 
   const ids = ["projects", "skills", "github", "contact"];
 
@@ -35,7 +39,9 @@ function Description({ handleSetRef }) {
 
   }, []);
 
-
+  const scrollToContact = () => {
+    router.push("#contact")
+  }
 
   return (
     <>
@@ -45,14 +51,8 @@ function Description({ handleSetRef }) {
     <div className={styles.container}>
       <div className={styles.desktop}>
         <div className={styles.buttonsContainer}>
-          <a href={`cv_gvm_${locale}.pdf`} target="_blank">
-            {t("downloadCV")}
-            <i className="fas fa-external-link-alt"></i>
-          </a>
-          <button onClick={() => handleSetRef(ids[3])}>
-            {t("contactMe")}
-            <i className="far fa-envelope"></i>
-          </button>
+          <LinkButton url={`cv_gvm_${locale}.pdf`} label="downloadCV" icon="fas fa-external-link-alt" />
+          <Button label="contactMe" onClick={scrollToContact} icon="far fa-envelope" />
         </div>
       </div>
     </div>
@@ -68,14 +68,8 @@ function Description({ handleSetRef }) {
         </p>
       </div>
       <div className={styles.buttonsContainer}>
-        <a href={`cv_gvm_${locale}.pdf`} target="_blank">
-          {t("downloadCV")}
-          <i className="fas fa-external-link-alt"></i>
-        </a>
-        <button onClick={() => handleSetRef(ids[3])}>
-          {t("contactMe")}
-          <i className="far fa-envelope"></i>
-        </button>
+        <LinkButton url={`cv_gvm_${locale}.pdf`} label="downloadCV" icon="fas fa-external-link-alt" />
+        <Button label="contactMe" onClick={scrollToContact} icon="far fa-envelope" />
       </div>
 
     </div>

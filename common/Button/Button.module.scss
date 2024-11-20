@@ -1,0 +1,31 @@
+@import "../../styles/Variables.scss";
+
+.button {
+    color: map-get($map: $palette, $key: "primary");
+    background-color: rgba($color: map-get($map: $palette, $key: "white"), $alpha: 1);
+    margin-left: 15px;
+    padding: 15px;
+    border: 2px solid map-get($map: $palette, $key: "black");
+    border-radius: 10rem;
+    text-transform: uppercase;
+    box-shadow: 5px 5px 0px map-get($map: $palette, $key: "black");
+    font-size: $font;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-wrap: nowrap;
+    &:hover {
+      filter: saturate(400%);
+    }
+    i{
+      font-size: $font;
+    }
+}
+
+.button:disabled{
+  background-color: rgba($color: map-get($map: $palette, $key: "white"), $alpha: .5);
+  &:hover{
+    filter: saturate(100%);
+  }
+}

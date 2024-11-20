@@ -15,7 +15,7 @@
 .navContainer {
   position: absolute;
   width: calc(100% - 1rem);
-  z-index: 1;
+  z-index: 20;
   display: flex;
   justify-content: space-between;
   align-items: start;
@@ -52,6 +52,11 @@
   border-radius: 2rem;
   box-shadow: 0 0 1rem rgba(255, 255, 255, .90) inset;
   font-size: $font + 2px;
+  
+  li {
+    list-style: none;
+  }
+
   a {
     padding: .75rem 1.5rem;
     opacity: 0;

@@ -1,13 +1,13 @@
 export class Skill {
 constructor(
     public name: string,
-    public backgroundColor: string,
+    public backgroundColor: string | null,
     public icon: string | null,
     public isFontAwesome: boolean = true
 ) {}
 }
 
-interface SkillObject {
+/*interface SkillObject {
     html: Skill;
     css: Skill;
     javascript: Skill;
@@ -25,9 +25,10 @@ interface SkillObject {
     jest: Skill;
     tailwind: Skill;
     preact: Skill;
-}
+    axios: Skill
+}*/
   
-export const skills: SkillObject = {
+export const skills = {
     html: new Skill('HTML', '#DD4B25', 'fab fa-html5'),
     css: new Skill('CSS', '#254BDD', 'fab fa-css3-alt'),
     javascript: new Skill('JavaScript', '#EFD81D', 'fab fa-js'),
@@ -44,5 +45,11 @@ export const skills: SkillObject = {
     express: new Skill('Express', '#EFD81D', null),
     jest: new Skill('Jest', '#99425B', null),
     tailwind: new Skill('TailwindCSS', "#38bdf8", null),
-    preact: new Skill('Preact', "#522e93", null)
+    preact: new Skill('Preact', "#522e93", null),
+    axios: new Skill('Axios', null, null),
+    vite: new Skill('Vite', null, null),
+    jwt: new Skill('Json Web Token', null, null),
+    reactRouterDom: new Skill('React Router Dom', null, null),
+    ngrx: new Skill('Ngrx', null, null)
+
 };

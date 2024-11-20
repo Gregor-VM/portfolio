@@ -1,10 +1,11 @@
-import { useRef } from "react";
-import { useSelector } from "react-redux";
 import styles from "../styles/GitHub.module.scss";
-
-import useScrollRefProp from "../hooks/useScrollRefProp";
 import isElementVisible from "../hooks/isElementVisible";
 import { useTranslation } from "next-i18next";
+import { PageSectionEnum } from "../utils/sections";
+import { ScrollableSection } from "./ScrollableSection";
+import ImageWithLines from "../common/ImageWithLines/ImageWithLines";
+import { useSelector } from "react-redux";
+import LinkButton from "../common/LinkButton/LinkButton";
 
 interface User {
   login: string;
@@ -14,38 +15,71 @@ interface User {
   public_repos: number;
 }
 
-function GitHub({ currentRef, handleSetRef }) {
 
-  const { t } = useTranslation('index');
+function GitHub() {
 
   const user: User = useSelector((state) => state["user"].user);
-  const ref: React.LegacyRef<HTMLHeadingElement> = useRef();
-  useScrollRefProp(ref, handleSetRef, currentRef, "github");
 
-  const {observeRef, isVisible} = isElementVisible(0.25);
-
+  const { t } = useTranslation('index');
+  
   return (
-    <div ref={observeRef} className={`${styles.container} ${isVisible ? styles.appear : ""}`}>
-      <h1 ref={ref}>
-        GitHub <i className="fab fa-github"></i>
-      </h1>
-      <div className={styles.versionSvg}>
-        <img src="/version.svg"></img>
+    <ScrollableSection id={PageSectionEnum.GITHUB}>
+
+      <div className="section__title section__title--flipped">
+        <i className="fab fa-github"></i>
+        <span>GITHUB</span>
       </div>
-      <div className={styles.profile}>
-        <div className={styles.float}>
-          <img src={user.avatar_url} className={styles.avatar}></img>
-          <img className={styles.shadow}></img>
+      
+      <section className="section section--topClipped">
+        <div className="section__background section__background--extraSpace">
         </div>
-        <h2>{user.name}</h2>
-        <small>Username: {user.login}</small>
-        <p>{user.public_repos} {t("currentRepos")}</p>
-        <a href={user.html_url}>
-          <span>{t("goGitHub")}</span> <i className="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  );
+
+        <div className="container">
+
+          <div className={styles.githubContent}>
+
+            <ImageWithLines url="./version.svg"></ImageWithLines>
+
+            <div className={`${styles.githubPhoto} linesImage`}>
+
+              <img src={user.avatar_url} className={styles.avatar}></img>
+
+              <div className="linesEffect linesEffect--white linesEffect--flipped">
+                <div className="linesEffect__1"></div>
+                <div className="linesEffect__2"></div>
+                <div className="linesEffect__3"></div>
+              </div>
+
+              <div className="linesEffect linesEffect--white">
+                <div className="linesEffect__1"></div>
+                <div className="linesEffect__2"></div>
+                <div className="linesEffect__3"></div>
+              </div>
+
+              <div className={styles.githubInfo}>
+                <h2>{user.name?.toUpperCase()}</h2>
+                <p>USERNAME: {user.login}</p>
+                <p>{user.public_repos} {t("currentRepos")}</p>
+                <div className={styles["githubInfo__button"]}>
+                  <LinkButton variant="inverted" url={user.html_url} label={t("goGitHub")} icon="fab fa-github" />
+                </div>
+              </div>
+
+              <div className="linesEffect">
+                <div className="linesEffect__1"></div>
+                <div className="linesEffect__2"></div>
+                <div className="linesEffect__3"></div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </ScrollableSection>
+  )
 }
 
 export default GitHub;

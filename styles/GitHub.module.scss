@@ -1,169 +1,92 @@
 @import "./Variables.scss";
 
-.container {
-  background-color: map-get($map: $palette, $key: "primary");
-  color: white;
-  padding: 1em;
-  font-size: $font;
-  text-align: center;
+.githubContent{
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  gap: 5rem;
+  justify-content: space-between;
+  max-width: $maxContainer;
+  margin: 6rem auto;
+  width: 100%;
 
-  & > h1 {
-    width: 100%;
-    margin-bottom: 0.5em;
-  }
-  & > .versionSvg {
-    width: 45%;
-    img {
-      width: 100%;
-    }
-  }
-  & > .profile {
-    width: 45%;
-    background-color: rgba($color: #000000, $alpha: 0.1);
-    box-shadow: 0em 0em 0.5em rgba($color: white, $alpha: 0.2);
-    text-align: center;
+}
 
-    .float {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transform: translateY(-60px);
-      height: 2em;
-      margin-bottom: 0.5em;
-    }
+.githubPhoto{
+  width: 25rem;
+  position: relative;
+  margin-top: 2rem;
 
-    .shadow {
-      border-radius: 50%;
-      width: 10%;
-      border: 5px solid map-get($map: $palette, $key: "secondary");
-      margin-top: 1em;
-      animation: width 1s linear infinite alternate;
-
-      @keyframes width {
-        0% {
-          transform: scale(1.1);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-    }
-
-    .avatar {
-      position: relative;
-      border-radius: 50%;
-      width: 25%;
-      border: 5px solid;
-      animation: border 1s ease infinite alternate;
-      transition: all 0.5s ease;
-
-      @keyframes border {
-        0% {
-          border-color: lighten(
-            $color: map-get($map: $palette, $key: "secondary"),
-            $amount: 20
-          );
-          transform: translateY(-4px);
-        }
-        100% {
-          border-color: lighten(
-            $color: map-get($map: $palette, $key: "secondary"),
-            $amount: 5
-          );
-          transform: translateY(0px);
-        }
-      }
-    }
-    a {
-      padding: 1em;
-      background-color: map-get($map: $palette, $key: "secondary");
-      display: block;
-      margin-top: 0.2em;
-      box-shadow: 0 0.2em 0.2em rgba($color: #000000, $alpha: 0.15);
-      &:hover {
-        background-color: lighten(
-          $color: map-get($map: $palette, $key: "secondary"),
-          $amount: 10
-        );
-      }
-    }
+  .avatar{
+    position: absolute;
+    width: 6rem;
+    border-radius: 50%;
+    border: .25rem solid map-get($map: $palette, $key: "black");
+    box-shadow: .25rem .25rem map-get($map: $palette, $key: "black");
+    background-color: map-get($map: $palette, $key: "black");
+    right: 40%;
+    top: 2%;
+    z-index: 1;
   }
 
-  &:hover {
-    & > div > a {
-      animation: letter 0.5s ease-in-out forwards;
+}
 
-      @keyframes letter {
-        0% {
-          letter-spacing: 0px;
-          color: white;
-        }
-        50% {
-          letter-spacing: 3px;
-          color: darken($color: white, $amount: 10);
-          background-color: lighten(
-            $color: map-get($map: $palette, $key: "secondary"),
-            $amount: 10
-          );
-        }
-        100% {
-          letter-spacing: 0px;
-          color: white;
-        }
-      }
+.githubInfo{
+  position: relative;
+  background-color: map-get($map: $palette, $key: "black");
+  border-radius: 1rem;
+  color: map-get($map: $palette, $key: "white");
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 2rem;
+
+  &::before{
+    content: "";
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+    right: -1.25rem;
+    bottom: -1.25rem;
+    border-radius: 1rem;
+    border: .5rem solid map-get($map: $palette, $key: "black");
+    background-color: map-get($map: $palette, $key: "white");
+    z-index: -1;
+    transition: all .5s;
+  }
+
+  h2{
+    font-weight: normal;
+  }
+
+  p{
+    font-family: 'Anton', 'sans-serif';
+  }
+
+  &__button{
+    width: 50%;
+    margin: .5rem auto;
+  }
+
+  &:hover{
+
+    &::before{
+      top: 1.35rem;
+      left: 1.35rem;
+      right: -1.35rem;
+      bottom: -1.35rem;
     }
+
   }
 }
 
-.container{
-  opacity: 0;
-  transform: translateX(-50vw);
-  transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.appear {
-  opacity: 1;
-  transform: translateX(0vw);
-}
-
-
-
-
-@media (max-width: 800px) {
-  .container {
+@media (max-width: 1070px) {
+  .githubContent{
     flex-direction: column;
-    & > div {
-      width: 90% !important;
-    }
+    align-items: center;
+    gap: 1rem;
   }
 }
 
-@media (max-width: 560px) {
-  .float {
-    transform: translateY(-40px) !important;
-    height: 2em !important;
-    margin-bottom: 0em !important;
-  }
-  .shadow {
-    margin-top: 10px !important;
-  }
-}
-
-@media (max-width: 360px) {
-  .float {
-    transform: translateY(-30px) !important;
-    height: 2em !important;
-    margin-bottom: 0em !important;
-    .avatar {
-      border-width: 3px !important;
-    }
-  }
-  .shadow {
-    margin-top: 10px !important;
+@media (max-width: 500px) {
+  .githubPhoto{
+    width: 90%;
   }
 }

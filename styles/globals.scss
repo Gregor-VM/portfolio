@@ -8,7 +8,7 @@
 }
 
 %family{
-  font-family: 'Playpen Sans', cursive;
+  font-family: 'Anton', sans-serif;
 }
 
 html,
@@ -17,9 +17,12 @@ body {
   font-size: 18px;
 }
 
+p {
+  font-family: sans-serif;
+}
+
 body button, body a{
   @extend %family;
-  font-weight: bolder;
 }
 
 //Hide ScrollBar
@@ -51,82 +54,297 @@ li {
 }
 
 .container {
-  margin: 0em 2em;
+  margin: 0em auto;
+  max-width: $maxContainer;
 }
 
-footer{
-  background-color: map-get($map: $palette, $key: "secondary");
-  color: white;
-  font-size: 18px;
-  padding: 0.5em;
+.font-white{
+  color: map-get($map: $palette, $key: "white");
+  font-weight: normal;
 }
 
-.footerFirst {
-  text-align: center;
-  clear: both;
+.iconLeft{
+  margin-right: .5rem;
+}
+
+.iconRight{
+  margin-left: .5rem;
+}
+
+.section{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  & > div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  position: relative;
+}
 
-    a.email{
-      font-weight: 400;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      transform: translateY(.10rem);
-      &::after{
-        content: "";
-        width: 0%;
-        height: 5px;
-        margin-top: .10rem;
-        background-color: #fff;
-        opacity: .05;
-        transition: all .5s;
-      }
-      &:hover{
-        &::after{
-          width: 100%;
-          opacity: .2;
-        }
-      }
-    }
+.section--topClipped{
+  margin-top: calc(-1 * var(--diagonalSize));
+  clip-path: polygon(0% calc(0% + var(--diagonalSize)), 100% 0, 100% 100%, 0 100%);
 
-    i {
-      padding: 0.5em;
-      font-size: 23px;
-      cursor: pointer;
-
-
-      &.fa-linkedin:hover {
-        color: #0a66c2;
-      }
-
-      &.fa-github:hover {
-        color: #4078c0;
-      }
-
-      &.fa-whatsapp:hover {
-        color: #25d366;
-      }
-    }
+  &::after{
+    content: "";
+    clip-path: polygon(0% 0%, 100% 0, 100% calc(100% - var(--diagonalSize)), 0 100%);
+    height: calc(var(--diagonalSize) * 2);
+    width: 100%;
+    position: absolute;
+    background-color: map-get($map: $palette, $key: "black");
+    top: 0;
+    left: 0;
   }
 }
 
-@media (max-width: 720px) {
-  .footerFirst {
-    flex-direction: column;
+
+.section__background{
+  background-color: map-get($map: $palette, $key: "primary");
+  position: absolute;
+  top: 0px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.section__background--extraSpace{
+  top: var(--diagonalSize);
+}
+
+.section__background--white{
+  background-color: map-get($map: $palette, $key: "white");
+}
+
+.doubleBg{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+
+  & img{
+    width: 100%;
+    max-width: $maxContainer;
+  }
+
+}
+
+.section__title{
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  color: black;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+
+  %title{
+    top: -2rem;
+    position: absolute;
+    z-index: 1;
+    padding: 1rem 5rem;
+    border-radius: 5rem;
+    border: .5rem solid black;
+    background-color: white;
+    font-size: 1.5rem;
+    text-transform: uppercase
+  }
+
+  & > span {
+    @extend %title;
+    right: 0;
+    top: -3rem;
+  }
+
+  & > i {
+    @extend %title;
+    padding: 1rem;
+    left: 0;
+  }
+
+  &--flipped{
+
+    & > span {
+      right: unset;
+      left: 0;
+      top: -2.5rem;
+    }
+  
+    & > i {
+      top: -2.5rem;
+      left: unset;
+      right: 0;
+    }
+
+  }
+
+}
+
+
+
+.linesEffect--white{
+  transform: scale(.85);
+  margin-top: 0 !important;
+  & > div{
+    background-color: map-get($map: $palette, $key: "white") !important;
+  }
+}
+
+.linesEffect{
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: .75rem 0;
+  margin-top: 1.25rem;
+  transition: all 1s;
+
+  %line{
+    background-color: map-get($map: $palette, $key: "black");
+    border-radius: 1rem;
+    margin: 0 auto;
+  }
+
+  &__1{
+    @extend %line;
+    width: 75%;
+    height: .4rem;
+    transform: rotate(1deg);
+    transition: all .5s;
+    transition-delay: .15s;
+  }
+
+  &__2{
+    @extend %line;
+    width: 50%;
+    height: .3rem;
+    transform: rotate(2deg);
+    transition: all .5s;
+    transition-delay: .25s;
+  }
+
+  &__3{
+    @extend %line;
+    width: 30%;
+    height: .2rem;
+    transform: rotate(3deg);
+    transition: all .5s;
+    transition-delay: .35s;
+  }
+}
+
+.linesEffect--flipped{
+  flex-direction: column-reverse;
+  margin-top: .75rem;
+
+  &__1{
+    transform: rotate(-1deg);
+  }
+
+  &__2{
+    transform: rotate(-2deg);
+  }
+
+  &__3{
+    transform: rotate(-3deg);
+  }
+
+}
+
+.linesImage{
+
+  .linesImage__img{
+    width: 25rem;
+    height: 15rem;
+    object-fit: cover;
+    position: relative;
+    border-radius: 1.5rem;
+    border: .5rem solid map-get($map: $palette, $key: "black");
+    box-shadow: .75rem .75rem map-get($map: $palette, $key: "black");
+    transition: all .5s;
+    background-color: map-get($map: $palette, $key: "white");
+  }
+
+  &:hover{
+    .linesImage__img{
+      box-shadow: 1rem 1.25rem map-get($map: $palette, $key: "black");
+      transform: translateY(-.5rem);
+    }
+    .linesEffect{
+      .linesEffect__3{ transform: rotate(-3deg) translateY(.5rem); }
+      .linesEffect__2{ transform: rotate(-2deg) translateY(.5rem); }
+      .linesEffect__1{ transform: rotate(-1deg) translateY(.5rem); }
+    }
+    .linesEffect--flipped{
+      .linesEffect__1{ transform: rotate(-1deg) translateY(-.5rem); }
+      .linesEffect__2{ transform: rotate(-2deg) translateY(-.5rem); }
+      .linesEffect__3{ transform: rotate(-3deg) translateY(-.5rem); }
+    }
+  }
+
+}
+
+.alert{
+  position: fixed;
+  z-index: 10;
+  top: .5rem;
+  right: .5rem;
+  min-width: 20rem;
+  padding: .75rem;
+  background-color: map-get($map: $palette, $key: "white");
+  border-radius: .5rem;
+  border: .25rem solid map-get($map: $palette, $key: "success");
+  box-shadow: .25rem .25rem map-get($map: $palette, $key: "success");
+  color: map-get($map: $palette, $key: "success");
+  text-transform: uppercase;
+
+  transition: all .5s;
+  transform: translateY(1rem);
+  opacity: 0;
+}
+
+.alert--success{
+  border: .25rem solid map-get($map: $palette, $key: "success");
+  box-shadow: .25rem .25rem map-get($map: $palette, $key: "success");
+  color: map-get($map: $palette, $key: "success");
+}
+
+.alert--danger{
+  border: .25rem solid map-get($map: $palette, $key: "danger");
+  box-shadow: .25rem .25rem map-get($map: $palette, $key: "danger");
+  color: map-get($map: $palette, $key: "danger");
+}
+
+.alert--show{
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.alert--hidden{
+  transform: translateY(1rem);
+  opacity: 0;
+}
+
+@media (max-width: 1130px) {
+  .container{
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 916px) {
+  .section__title{
+    width: 80%;
   }
 }
 
 @media (max-width: 500px) {
-  .footerFirst {
-    & > div {
-      display: flex;
-      flex-direction: column;
+  .section__title{
+    span, i{
+      padding: 1rem 1.5rem;
+    }
+  }
+
+  .linesImage {
+    width: 90%;
+    .linesImage__img{
+      width: 100%;
     }
   }
 }
