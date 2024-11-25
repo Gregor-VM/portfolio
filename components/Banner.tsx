@@ -71,9 +71,9 @@ export function Banner(props: any) {
   const texture = useLoader(TextureLoader, `banner-${locale}.png`);
 
   const [particlesReady, setParticlesReady] = useState(false);
-  const [positions, setPositions] = useState(new Map<string, number[]>());
   const particles = useRef(Array.from({ length: Nx+1}, () => Array.from<RefObject<ParticleObj>, RefObject<ParticleObj>>({ length: Ny+1}, createRef)))
   const [ref] = usePlane(() => ({ rotation: [0, 0, 0], position: [0, 0, 0], ...props }))
+  const positions = useRef(new Map<string, number[]>());
 
   const line1Start = useMemo(() =>
     [5, -0.5, -1.5]
@@ -116,7 +116,7 @@ export function Banner(props: any) {
       for(let i=0;i<Nx+1;i++){
         for(let j=0;j<Ny+1;j++){
           subscriptions.push( particles.current[i][j].current.api.position.subscribe((value) => {
-            setPositions(prev => prev.set(i + '-' + j, value))
+            positions.current.set(i + '-' + j, value);
           }) );
         }
       }
@@ -140,7 +140,7 @@ export function Banner(props: any) {
           const index = j * (Nx + 1) + i;
           const positionAttribute = geom.attributes.position;
           if(particlesReady && positions){
-            const position = positions.get(i + '-' + (Ny - j))
+            const position = positions.current.get(i + '-' + (Ny - j))
             if(position) positionAttribute.setXYZ(index, position[0], position[1], position[2]);
           }
         }
