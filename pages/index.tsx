@@ -16,8 +16,9 @@ import Description from "../components/Description";
 import Background from "../components/Background";
 import isDay from "../hooks/isDay";
 import { getLightning } from "../utils/controllers";
+import nextI18NextConfig from "../next-i18next.config";
 
-import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations'
+import { serverSideTranslations } from "next-i18next/pages/serverSideTranslations";
 import type { User } from "../interfaces/User";
 import { useAppDispatch } from "../redux/hooks";
 
@@ -53,7 +54,11 @@ export default function Home({ user, lightning }: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async ({ locale }) => {
   const lightning = await getLightning();
-  const translations = await serverSideTranslations(locale ?? "es", ["index"]);
+  const translations = await serverSideTranslations(
+    locale ?? "es",
+    ["index"],
+    nextI18NextConfig,
+  );
 
   try {
     const res = await fetch("https://api.github.com/users/Gregor-VM");
