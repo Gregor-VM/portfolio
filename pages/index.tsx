@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import type { GetServerSideProps } from "next";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import styles from "./../styles/Home.module.scss";
@@ -10,38 +11,34 @@ import Skills from "../components/Skills";
 import GitHub from "../components/GitHub";
 import Contact from "../components/Contact";
 
-import { useDispatch } from "react-redux";
 import userActions from "../redux/actions/userActions";
 import Description from "../components/Description";
 import Background from "../components/Background";
 import isDay from "../hooks/isDay";
 import { getLightning } from "../utils/controllers";
 
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations'
+import type { User } from "../interfaces/User";
+import { useAppDispatch } from "../redux/hooks";
 
-interface User {
-  login: string;
-  avatar_url: string;
-  html_url: string;
-  name: string;
-  public_repos: number;
+interface HomeProps {
+  user: User | null;
+  lightning: number | null;
 }
 
-export default function Home({ user, lightning }: { user: User, lightning: number }) {
-  const dispatch = useDispatch();
+export default function Home({ user, lightning }: HomeProps) {
+  const dispatch = useAppDispatch();
 
   const night = !isDay();
 
   useEffect(() => {
-    if (user) {
-      dispatch(userActions.setUser(user));
-    }
-  }, [dispatch]);
+    dispatch(userActions.setUser(user));
+  }, [dispatch, user]);
 
   return (
     <Layout>
       <div className={styles.top}>
-        <Background lightning={lightning} />
+        <Background lightning={lightning ?? 0} />
         <NavBar />
         <Description />
         <div className={`${styles.transition} ${night ? styles.nightTransition : ""}`}></div>
@@ -54,17 +51,9 @@ export default function Home({ user, lightning }: { user: User, lightning: numbe
   );
 }
 
-export async function getServerSideProps({locale}) {
-
-  interface User {
-    login: string;
-    avatar_url: string;
-    html_url: string;
-    name: string;
-    public_repos: number;
-  }
-
+export const getServerSideProps: GetServerSideProps<HomeProps> = async ({ locale }) => {
   const lightning = await getLightning();
+  const translations = await serverSideTranslations(locale ?? "es", ["index"]);
 
   try {
     const res = await fetch("https://api.github.com/users/Gregor-VM");
@@ -78,19 +67,15 @@ export async function getServerSideProps({locale}) {
 
     const user: User = { login, avatar_url, html_url, name, public_repos };
 
-    const translations = await serverSideTranslations(locale, [
-        'index'
-    ]);
-
     return {
-      props: { user: user, lightning, ...translations},
+      props: { user, lightning, ...translations },
     };
 
   } catch (error) {
 
     return {
-      props: { user: null, lightning },
+      props: { user: null, lightning, ...translations },
     };
 
   }
-}
+};

@@ -1,4 +1,9 @@
-import { createStore } from "redux";
-import rootReducers from "./reducers/";
+import { legacy_createStore } from "redux";
+import rootReducer from "./reducers";
 
-export default createStore(rootReducers);
+const store = legacy_createStore(rootReducer);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export default store;

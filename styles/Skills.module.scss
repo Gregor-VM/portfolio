@@ -1,4 +1,4 @@
-@import "./Variables.scss";
+@use "./Variables" as *;
 
 .skills{
   display: flex;

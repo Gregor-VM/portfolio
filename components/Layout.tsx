@@ -1,7 +1,6 @@
 import Modal from "./Modal";
 import Head from 'next/head'
-import { contactLinks } from "../utils/contactLinks";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next/pages";
 import Footer from "./Footer";
 
 function Layout({ children }: { children: React.ReactNode }) {

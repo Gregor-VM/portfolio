@@ -1,15 +1,16 @@
-@import "./Variables.scss";
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+@use "./Variables" as *;
 
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  .model{
+  .model {
     width: 100%;
-    //width: 600px;
-    height: 600px;
-    //margin-right: 150px;
+    height: min(46.875vw, 675px);
     transform: translateY(-5rem);
   }
 
@@ -29,7 +30,7 @@
   @for $i from 1 to 34 {
     .animatedLetter-#{$i}{
       color: black;
-      animation: appear (random($limit: 5) * 1s) ease-in forwards infinite;
+      animation: appear (math.random($limit: 5) * 1s) ease-in forwards infinite;
       animation-delay: ($i * 50ms);
       cursor: pointer;
     }
@@ -52,16 +53,16 @@
 
   @keyframes appear {
     from{ 
-      color: map-get($map: $palette, $key: 'primary');
+      color: map.get($palette, 'primary');
     }
     to{
-      color: darken($color: map-get($map: $palette, $key: 'primary'), $amount: 10);
+      color: color.adjust(map.get($palette, 'primary'), $lightness: -10%);
     }
   }
 
   p {
     font-weight: bold;
-    background-color: rgba($color: #fff, $alpha: .7);
+    background-color: rgba(255, 255, 255, .7);
     backdrop-filter: blur(10px);
 
     padding: .75rem 1.5rem;
@@ -74,7 +75,7 @@
     transition: all .5s;
 
     &:hover{
-      background-color: rgba($color: #fff, $alpha: .95);
+      background-color: rgba(255, 255, 255, .95);
     }
 
   }
@@ -108,34 +109,7 @@
   }
 }
 
-@media (max-width: 1170px) {
-  .model{
-    height: 500px !important;
-  }
-}
-
-@media (max-width: 970px) {
-  .model{
-    height: 400px !important;
-  }
-}
-
-@media (max-width: 775px) {
-  .model{
-    margin-top: 5rem;
-    height: 300px !important;
-  }
-}
-
 @media (max-width: 1100px) {
-  .container {
-    & > div:last-child {
-      //width: 450px;
-      //height: 350px;
-      //margin-right: 50px;
-    }
-  }
-
   .buttonsContainer i{
     display: none;
   }
@@ -144,17 +118,19 @@
 @media (max-width: 800px) {
   .container {
     flex-direction: column;
-    & > div:last-child {
-      //width: 450px;
-      //height: 300px;
+
+    .model {
+      transform: none;
     }
 
     .desc {
       order: 1;
       margin: 0px auto;
-      //margin-top: 40px;
       padding: 0;
-      //width: 90%;
+    }
+
+    .buttonsContainer{
+      margin-top: 4rem;
     }
   }
 }
@@ -183,17 +159,13 @@
     }
   }
 
-  .model{
+  .model {
     display: none;
   }
 }
 
 
 @media (max-width: 500px) {
-
-  .model{
-    display: none;
-  }
 
   .desc {
     margin-top: 5rem !important;
@@ -210,13 +182,6 @@
 }
 
 @media (max-width: 400px) {
-  .container {
-    & > div:last-child {
-      //width: 400px;
-      //height: 200px;
-    }
-  }
-
   .desc{
     p{
       margin-top: 1rem;

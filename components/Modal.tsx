@@ -1,39 +1,46 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
 import styles from "../styles/Modal.module.scss";
-import { useDispatch } from "react-redux";
 import viewActions from "../redux/actions/viewActions";
-import Project from "../interfaces/Project";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next/pages";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 function Modal() {
 
   const { t } = useTranslation('index');
 
-  const view = useSelector((state) => state["view"].view);
+  const view = useAppSelector((state) => state.view.view);
   const [isClosing, setIsClosing] = useState(false);
-  const project: Project = useSelector((state) => state["view"].project);
-  const dispatch = useDispatch();
+  const project = useAppSelector((state) => state.view.project);
+  const dispatch = useAppDispatch();
+  const closeTimerRef = useRef<number | null>(null);
 
   const handleCloseModal = () => {
     setIsClosing(true);
-    setTimeout(() => {
+    closeTimerRef.current = window.setTimeout(() => {
       dispatch(viewActions.setView(false));
       setIsClosing(false);
     }, 200);
   };
 
   useEffect(() => {
+    const previousHeight = document.body.style.height;
+    const previousOverflow = document.body.style.overflow;
+
     if (view) {
       document.body.style.height = "100vh";
       document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.height = "auto";
-      document.body.style.overflow = "auto";
     }
+
+    return () => {
+      document.body.style.height = previousHeight;
+      document.body.style.overflow = previousOverflow;
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+      }
+    };
   }, [view]);
 
-  if (view) {
+  if (view && project) {
     return (
       <>
         <div
@@ -80,11 +87,21 @@ function Modal() {
                   <h5>{t("skillsTitle")}:</h5>
                   <ul>
                     {project.skills.map(skill => {
-                      return <li><span 
-                       style={{color: skill.backgroundColor, borderColor: skill.backgroundColor+'50'}}
-                       className={styles.badge}>
-                        <i style={{color: skill.backgroundColor}} className={skill.icon}></i>
-                        {skill.name}</span></li>
+                      const color = skill.backgroundColor ?? "#000000";
+                      return (
+                        <li key={skill.name}>
+                          <span
+                            style={{ color, borderColor: `${color}50` }}
+                            className={styles.badge}
+                          >
+                            <i
+                              style={{ color }}
+                              className={skill.icon ?? undefined}
+                            />
+                            {skill.name}
+                          </span>
+                        </li>
+                      );
                     })}
                   </ul>
                 </div>
@@ -105,9 +122,9 @@ function Modal() {
         </div>
       </>
     );
-  } else {
-    return <></>;
   }
+
+  return null;
 }
 
 export default Modal;

@@ -1,14 +1,16 @@
-@import "../../styles/Variables.scss";
+@use "sass:color";
+@use "sass:map";
+@use "../../styles/Variables" as *;
 
 .button {
-    color: map-get($map: $palette, $key: "primary");
-    background-color: rgba($color: map-get($map: $palette, $key: "white"), $alpha: 1);
+    color: map.get($palette, "primary");
+    background-color: map.get($palette, "white");
     margin-left: 15px;
     padding: 15px;
-    border: 2px solid map-get($map: $palette, $key: "black");
+    border: 2px solid map.get($palette, "black");
     border-radius: 10rem;
     text-transform: uppercase;
-    box-shadow: 5px 5px 0px map-get($map: $palette, $key: "black");
+    box-shadow: 5px 5px 0px map.get($palette, "black");
     font-size: $font;
     display: flex;
     justify-content: center;
@@ -24,7 +26,7 @@
 }
 
 .button:disabled{
-  background-color: rgba($color: map-get($map: $palette, $key: "white"), $alpha: .5);
+  background-color: color.change(map.get($palette, "white"), $alpha: .5);
   &:hover{
     filter: saturate(100%);
   }

@@ -1,6 +1,6 @@
-import React, { MouseEventHandler, useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import styles from "../styles/Projects.module.scss";
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next/pages';
 import LinkButton from '../common/LinkButton/LinkButton';
 import CanvasBalls from './CanvasBalls';
 import { projects } from '../utils/projects';
@@ -13,21 +13,23 @@ function Projects() {
 
   const isHoveringTarget = useRef(false);
 
-  const projectInfoRef = useRef<Array<HTMLDivElement>>([]);
+  const projectInfoRef = useRef<Array<HTMLDivElement | null>>([]);
 
   const onMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, i: number) => {
-    var rect = (e.target as HTMLDivElement).getBoundingClientRect();
-    var x = e.clientX - rect.left;
-    var y = e.clientY - rect.top;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
     isHoveringTarget.current = true;
-    projectInfoRef.current[i].style.clipPath = `circle(200% at ${x}px ${y}px)`;
+    const projectInfo = projectInfoRef.current[i];
+    if (projectInfo) projectInfo.style.clipPath = `circle(200% at ${x}px ${y}px)`;
   }
 
   const onMouseLeave = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, i: number) => {
-    var rect = (e.target as HTMLDivElement).getBoundingClientRect();
-    var x = e.clientX - rect.left;
-    var y = e.clientY - rect.top;
-    projectInfoRef.current[i].style.clipPath = `circle(0% at ${x}px ${y}px)`;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const projectInfo = projectInfoRef.current[i];
+    if (projectInfo) projectInfo.style.clipPath = `circle(0% at ${x}px ${y}px)`;
     isHoveringTarget.current = false;
   }
 
@@ -52,14 +54,14 @@ function Projects() {
               <h4>{project.year}</h4>
 
               <div className={styles["project__buttons"]}>
-                <LinkButton variant="white" url={project.url} label={t("liveDemo")?.toUpperCase()} icon="fas fa-desktop"></LinkButton>
-                <LinkButton url={project.github} label={t("viewGitHub")?.toUpperCase()} icon="fas fa-code"></LinkButton>
+                <LinkButton variant="white" url={project.url} label="liveDemo" icon="fas fa-desktop"></LinkButton>
+                <LinkButton url={project.github} label="viewGitHub" icon="fas fa-code"></LinkButton>
               </div>
             </div>
 
             <div className={styles["project__image"]} onMouseEnter={(e) => onMouseEnter(e, i)} onMouseLeave={(e) => onMouseLeave(e, i)}>
               <img loading="lazy" src={project.img} alt="Project image" />
-              <div ref={el => projectInfoRef.current[i] = el} className={styles["project__info"]}>
+              <div ref={(element) => { projectInfoRef.current[i] = element; }} className={styles["project__info"]}>
 
                 <CanvasBalls />
 
@@ -82,7 +84,7 @@ function Projects() {
 
           <div className={styles["seeMoreButton"]}>
 
-            <LinkButton variant='white' url="https://github.com/Gregor-VM" label={t("SeeMoreOnGithub")} icon="fab fa-github"></LinkButton>
+            <LinkButton variant='white' url="https://github.com/Gregor-VM" label="SeeMoreOnGithub" icon="fab fa-github"></LinkButton>
 
           </div>
 

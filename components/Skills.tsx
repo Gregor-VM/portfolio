@@ -1,6 +1,6 @@
 import styles from "../styles/Skills.module.scss";
 import isElementVisible from "../hooks/isElementVisible";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next/pages";
 import { PageSectionEnum } from "../utils/sections";
 import { ScrollableSection } from "./ScrollableSection";
 

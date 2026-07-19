@@ -1,25 +1,21 @@
 import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
-type IScrollableSectionProps = {
-    id: string;
-};
+interface ScrollableSectionProps {
+  id: string;
+  children: ReactNode;
+}
   
-export const ScrollableSection: React.FC<IScrollableSectionProps> = ({id, children}) => {
-    const router = useRouter();
-    const hashMatchRegex = useRef(new RegExp(/(?<=#)\w*/));
-    const scrollTargetElementRef = useRef<HTMLDivElement | null>(null);
+export function ScrollableSection({ id, children }: ScrollableSectionProps) {
+  const router = useRouter();
+  const scrollTargetElementRef = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
-        const match = router.asPath.match(hashMatchRegex.current);
-        if (match && match[0] === id) {
-            scrollTargetElementRef.current?.scrollIntoView({ behavior: 'smooth' });
-        }
-    }, [id, router.asPath]);
+  useEffect(() => {
+    const hash = router.asPath.split("#")[1];
+    if (hash === id) {
+      scrollTargetElementRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [id, router.asPath]);
 
-    return (
-        <div ref={scrollTargetElementRef}>
-        {children}
-        </div>
-    );
-};
+  return <div ref={scrollTargetElementRef}>{children}</div>;
+}

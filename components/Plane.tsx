@@ -7,8 +7,9 @@ Title: Stylized Interbellum rustborn plane
 */
 
 import * as THREE from 'three'
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
+import type { ThreeElements } from '@react-three/fiber'
 import { GLTF } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
@@ -33,14 +34,18 @@ type GLTFResult = GLTF & {
 type ActionName = 'Flying'
 type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
-export function Plane(props: JSX.IntrinsicElements['group']) {
-  const group = useRef<THREE.Group>()
-  const { nodes, materials, animations } = useGLTF('/plane.glb') as GLTFResult
-  const { actions } = useAnimations<any>(animations, group)
+export function Plane(props: ThreeElements['group']) {
+  const group = useRef<THREE.Group>(null)
+  const { nodes, materials, animations } = useGLTF('/plane.glb') as unknown as GLTFResult
+  const { actions } = useAnimations(animations, group)
 
   useEffect(() => {
-    actions['Flying'].play()
-  }, []);
+    const action = actions['Flying']
+    action?.reset().play()
+    return () => {
+      action?.stop()
+    }
+  }, [actions]);
 
   return (
     <group ref={group} {...props} dispose={null}>

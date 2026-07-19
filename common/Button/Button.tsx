@@ -1,20 +1,36 @@
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import styles from './Button.module.scss';
+import type { MouseEventHandler } from "react";
+import { useTranslation } from "next-i18next/pages";
 
-enum ButtonType {
-  "button",
-  "submit"
+import styles from "./Button.module.scss";
+
+interface ButtonProps {
+  label: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  icon?: string;
+  type?: "button" | "submit";
+  disabled?: boolean;
 }
 
-function Button({label, onClick, icon = null, type = "button", disabled = false}: {
-  label: string, onClick?: React.MouseEventHandler<HTMLButtonElement>, icon?: string, type?: keyof typeof ButtonType, disabled?: boolean
-}) {
-    const { t } = useTranslation('index');
-  return (<button disabled={disabled} type={type} className={styles.button} onClick={onClick}>
-    {t(label)}
-    {icon ? <i className={`${icon} iconRight`}></i> : null}
-  </button>)
+function Button({
+  label,
+  onClick,
+  icon,
+  type = "button",
+  disabled = false,
+}: ButtonProps) {
+  const { t } = useTranslation("index");
+
+  return (
+    <button
+      disabled={disabled}
+      type={type}
+      className={styles.button}
+      onClick={onClick}
+    >
+      {t(label)}
+      {icon ? <i className={`${icon} iconRight`} aria-hidden="true" /> : null}
+    </button>
+  );
 }
 
-export default Button
+export default Button;

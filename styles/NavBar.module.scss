@@ -1,11 +1,13 @@
-@import "./Variables.scss";
+@use "sass:color";
+@use "sass:map";
+@use "./Variables" as *;
 
 .white{
   color: white;
 }
 
 .blue{
-  color: map-get($map: $palette, $key: "primary");
+  color: map.get($palette, "primary");
 }
 
 .nav{
@@ -33,7 +35,7 @@
   }
 
   div:hover{
-    color: map-get($map: $palette, $key: "primary") !important;
+    color: map.get($palette, "primary") !important;
     & > .blue{
       color: #000 !important;
     }
@@ -46,7 +48,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: row;
-  color: lighten($color: map-get($map: $palette, $key: "primary"), $amount: 30);
+  color: color.adjust(map.get($palette, "primary"), $lightness: 30%);
   border: 2px solid rgba(255, 255, 255, .75);
   background: linear-gradient(to left, rgba(255, 255, 255, .5), rgba(255, 255, 255, .25));
   border-radius: 2rem;
@@ -70,7 +72,7 @@
   }
 
   a:hover{
-    color: map-get($map: $palette, $key: "primary");
+    color: map.get($palette, "primary");
   }
 
 }

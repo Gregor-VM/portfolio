@@ -1,4 +1,5 @@
-@import "./Variables.scss";
+@use "sass:map";
+@use "./Variables" as *;
 
 .githubContent{
   display: flex;
@@ -19,9 +20,9 @@
     position: absolute;
     width: 6rem;
     border-radius: 50%;
-    border: .25rem solid map-get($map: $palette, $key: "black");
-    box-shadow: .25rem .25rem map-get($map: $palette, $key: "black");
-    background-color: map-get($map: $palette, $key: "black");
+    border: .25rem solid map.get($palette, "black");
+    box-shadow: .25rem .25rem map.get($palette, "black");
+    background-color: map.get($palette, "black");
     right: 40%;
     top: 2%;
     z-index: 1;
@@ -31,9 +32,9 @@
 
 .githubInfo{
   position: relative;
-  background-color: map-get($map: $palette, $key: "black");
+  background-color: map.get($palette, "black");
   border-radius: 1rem;
-  color: map-get($map: $palette, $key: "white");
+  color: map.get($palette, "white");
   text-align: center;
   padding: 1rem;
   margin-bottom: 2rem;
@@ -46,8 +47,8 @@
     right: -1.25rem;
     bottom: -1.25rem;
     border-radius: 1rem;
-    border: .5rem solid map-get($map: $palette, $key: "black");
-    background-color: map-get($map: $palette, $key: "white");
+    border: .5rem solid map.get($palette, "black");
+    background-color: map.get($palette, "white");
     z-index: -1;
     transition: all .5s;
   }

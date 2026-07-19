@@ -2,46 +2,39 @@ import { send } from '@emailjs/browser';
 import { FormEvent, useMemo, useState } from "react";
 import { motion } from 'framer-motion';
 import styles from "../styles/Contact.module.scss";
-import isElementVisible from "../hooks/isElementVisible";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next/pages";
 import { PageSectionEnum } from "../utils/sections";
 import { ScrollableSection } from "./ScrollableSection";
 import ImageWithLines from "../common/ImageWithLines/ImageWithLines";
 import Button from "../common/Button/Button";
-import Alert from "./Alert";
+import Alert, { type AlertVariant } from "./Alert";
 
 const validateEmail = (email: string) => {
-  return String(email)
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
+  return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    email.toLowerCase(),
+  );
 };
 
 function Contact() {
 
   const { t } = useTranslation('index');
-  //const {observeRef, isVisible} = isElementVisible();
-
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
-  const [variant, setVariant] = useState("success");
+  const [variant, setVariant] = useState<AlertVariant>("success");
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const validEmail = useMemo(() => {
-    return validateEmail(email)
-  }, [email]);
+  const validEmail = useMemo(() => validateEmail(email), [email]);
 
   const disabled = useMemo(() => {
-    return name.trim() === "" || email.trim() === "" || message.trim() === "" || validEmail === null
+    return name.trim() === "" || email.trim() === "" || message.trim() === "" || !validEmail
   }, [name, email, message, validEmail]);
 
-  const showMessage = (content, variant = "success") => {
+  const showMessage = (content: string, nextVariant: AlertVariant = "success") => {
     setShow(true);
-    setVariant(variant);
+    setVariant(nextVariant);
     setMsg(content);
   }
 
@@ -115,7 +108,7 @@ function Contact() {
                 id="email"
                 value={email}
                 placeholder={t("emailPlaceholder")}
-                style={{borderColor: (!validEmail && email !== "") ? "#e74c3c" : null}}
+                style={{ borderColor: !validEmail && email !== "" ? "#e74c3c" : undefined }}
               ></input>
               <textarea
                 value={message}
@@ -125,7 +118,7 @@ function Contact() {
                 rows={10}
               ></textarea>
               <div className={styles["contact__form__button"]}>
-                <Button disabled={disabled || loading} type="submit" label={t("send")} icon="fas fa-paper-plane" />
+                <Button disabled={disabled || loading} type="submit" label="send" icon="fas fa-paper-plane" />
               </div>
             </form>
 

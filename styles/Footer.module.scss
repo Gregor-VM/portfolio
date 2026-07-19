@@ -1,9 +1,10 @@
-@import "./Variables.scss";
+@use "sass:map";
+@use "./Variables" as *;
 
 .footer{
-    background-color: map-get($map: $palette, $key: "primary");
-    border-top: .5rem solid map-get($map: $palette, $key: "black");
-    color: map-get($map: $palette, $key: "white");
+    background-color: map.get($palette, "primary");
+    border-top: .5rem solid map.get($palette, "black");
+    color: map.get($palette, "white");
 }
 
 .footerContent{
@@ -58,7 +59,7 @@
         font-size: $xlfont;
 
         &:hover{
-            color: map-get($map: $palette, $key: "black");
+            color: map.get($palette, "black");
         }
     }
 

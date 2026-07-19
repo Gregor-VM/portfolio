@@ -1,25 +1,16 @@
 import styles from "../styles/GitHub.module.scss";
-import isElementVisible from "../hooks/isElementVisible";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next/pages";
 import { PageSectionEnum } from "../utils/sections";
 import { ScrollableSection } from "./ScrollableSection";
 import ImageWithLines from "../common/ImageWithLines/ImageWithLines";
-import { useSelector } from "react-redux";
 import LinkButton from "../common/LinkButton/LinkButton";
 import { motion } from 'framer-motion';
-
-interface User {
-  login: string;
-  avatar_url: string;
-  html_url: string;
-  name: string;
-  public_repos: number;
-}
+import { useAppSelector } from "../redux/hooks";
 
 
 function GitHub() {
 
-  const user: User = useSelector((state) => state["user"].user);
+  const user = useAppSelector((state) => state.user.user);
 
   const { t } = useTranslation('index');
   
@@ -52,7 +43,14 @@ function GitHub() {
             
             className={`${styles.githubPhoto} linesImage`}>
 
-              <img loading="lazy" src={user.avatar_url} className={styles.avatar}></img>
+              {user?.avatar_url ? (
+                <img
+                  loading="lazy"
+                  src={user.avatar_url}
+                  alt={`${user.name} on GitHub`}
+                  className={styles.avatar}
+                />
+              ) : null}
 
               <div className="linesEffect linesEffect--white linesEffect--flipped">
                 <div className="linesEffect__1"></div>
@@ -67,11 +65,11 @@ function GitHub() {
               </div>
 
               <div className={styles.githubInfo}>
-                <h2>{user.name?.toUpperCase()}</h2>
-                <p>USERNAME: {user.login}</p>
-                <p>{user.public_repos} {t("currentRepos")}</p>
+                <h2>{user?.name?.toUpperCase()}</h2>
+                <p>USERNAME: {user?.login}</p>
+                <p>{user?.public_repos ?? 0} {t("currentRepos")}</p>
                 <div className={styles["githubInfo__button"]}>
-                  <LinkButton variant="inverted" url={user.html_url} label={t("goGitHub")} icon="fab fa-github" />
+                  <LinkButton variant="inverted" url={user?.html_url ?? "https://github.com/Gregor-VM"} label="goGitHub" icon="fab fa-github" />
                 </div>
               </div>
 

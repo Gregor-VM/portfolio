@@ -1,4 +1,5 @@
-@import "./Variables.scss";
+@use "sass:map";
+@use "./Variables" as *;
 
 .modalDescription{
   margin-top: 1rem;
@@ -119,7 +120,7 @@
   margin-right: 0.3em;
   margin-top: 0.2em;
   &:hover {
-    color: map-get($map: $palette, $key: "danger");
+    color: map.get($palette, "danger");
     cursor: pointer;
   }
   z-index: 101;
@@ -144,7 +145,7 @@
     width: 100%;
     padding: 0.75em;
     border: 0;
-    background-color: map-get($map: $palette, $key: "primary");
+    background-color: map.get($palette, "primary");
     font-weight: bold;
     cursor: pointer;
     font-size: $font;

@@ -2,7 +2,7 @@ import { Tooltip } from 'react-tooltip'
 //import isDay from "../hooks/isDay";
 import styles from "../styles/NavBar.module.scss";
 import { contactLinks } from '../utils/contactLinks';
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next/pages";
 import { sections } from "../utils/sections";
 import Link from 'next/link';
 
@@ -31,16 +31,15 @@ function NavBar() {
           {/*<Link href="#projects"><p>XD</p></Link>*/}
 
           {sections.map(({key, icon}) => {
-            return <Link href={`#${key}`} key={key}>
-              <a
+            return <Link
                 href={`#${key}`}
+                key={key}
                 data-tooltip-delay-show={250}
                 data-tooltip-id={key}
               >
                 <li><i className={icon}></i></li>
                 <Tooltip id={key} content={t(key)} className={styles.tooltip} />
-              </a>
-            </Link>
+              </Link>
           })}
           <a 
             href={contactLinks.linkedin}

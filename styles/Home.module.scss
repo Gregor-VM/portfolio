@@ -1,9 +1,10 @@
-@import "./Variables.scss";
+@use "sass:map";
+@use "./Variables" as *;
 
 .transition {
   background-image: linear-gradient(
     to top,
-    map-get($map: $palette, $key: "primary"),
+    map.get($palette, "primary"),
     rgba(255, 0, 0, 0)
   );
   padding: 50px;

@@ -1,72 +1,74 @@
-import * as THREE from 'three'
-import React, { useRef, Suspense, useState, useEffect } from "react";
-import { Canvas, Euler, Vector3 } from "@react-three/fiber";
-import { Physics } from '@react-three/cannon';
-import { Plane } from "./Plane";
-import { Banner } from './Banner';
-import { CupidoPlane } from './CupidoPlane';
-import { motion } from 'framer-motion';
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import { motion } from "framer-motion";
 
-const airObject = {
-  'plane': {
-    component: Plane,
-    scale: 30,
-    position: [5, -0.5, 0] as Vector3,
-    rotation: [0,Math.PI/2 - 0.7,-0.2] as Euler
-  },
-  'cupidoPlane':{
-    component: CupidoPlane,
-    scale: 1,
-    position: [5, -1, 0] as Vector3,
-    rotation: [0,Math.PI+0.8,-0.2] as Euler
-  }
+import { Banner } from "./Banner";
+import { CupidoPlane } from "./CupidoPlane";
+import styles from "../styles/Model.module.scss";
+
+const AIRCRAFT_POSITION: [number, number, number] = [5, -1, 0];
+const AIRCRAFT_ROTATION: [number, number, number] = [
+  0,
+  Math.PI + 0.8,
+  -0.2,
+];
+const AIRCRAFT_SCALE = 1;
+
+function Aircraft() {
+  return (
+    <group
+      position={AIRCRAFT_POSITION}
+      rotation={AIRCRAFT_ROTATION}
+      scale={AIRCRAFT_SCALE}
+    >
+      <Suspense fallback={null}>
+        <CupidoPlane />
+      </Suspense>
+    </group>
+  );
 }
 
-function AirObject() {
-
-    const mesh = useRef<THREE.Mesh>(null!);
-
-    const selectedObject = "cupidoPlane";
-    const AirObject = airObject[selectedObject].component;
-
-    return (<mesh ref={mesh} position={airObject[selectedObject].position} rotation={airObject[selectedObject].rotation} scale={airObject[selectedObject].scale}>
-        <Suspense fallback={null}><AirObject /></Suspense>
-    </mesh>)
+function TowCables() {
+  return (
+    <svg
+      className={styles.towCables}
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path d="M 59 45 C 63 45, 68 48, 72 51" />
+      <path d="M 59 96 C 64 79, 68 62, 72 54" />
+    </svg>
+  );
 }
 
 function Model() {
+  return (
+    <motion.div
+      className={styles.scene}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 4, duration: 0.4 }}
+    >
+      <div className={styles.flag}>
+        <Banner />
+      </div>
 
-    const [visible, setVisible] = useState(false);
+      <TowCables />
 
-    const item = {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1
-      }
-    }
-
-    useEffect(() => {
-      setTimeout(() => {
-        setVisible(true);
-      }, 4000);
-    }, []);
-
-    if(process.env.NODE_ENV === 'development') return null;
-  
-    const intensity = 0.1;
-
-    return (
-        <motion.div animate={visible ? 'visible' : 'hidden'} style={{width: "100%", height: "100%"}} variants={item}>
-          <Canvas>
-            <ambientLight intensity={0.8}></ambientLight>
-            <pointLight intensity={10} color="#f8ff94" position={[5, 2, 0]} />
-            <AirObject />
-            <Physics gravity={[-12, 0, 0]}>
-              <Banner />
-            </Physics>
+      <div className={styles.aircraft} aria-hidden="true">
+        <Canvas flat>
+          <ambientLight intensity={1.6} />
+          <directionalLight
+            color="#fff7df"
+            intensity={20}
+            position={[4, 8, 6]}
+          />
+          <Aircraft />
         </Canvas>
-        </motion.div>
-    )
+      </div>
+    </motion.div>
+  );
 }
 
 export default Model;

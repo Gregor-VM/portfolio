@@ -1,27 +1,26 @@
-import React, {useRef, useEffect, useState} from 'react'
+import { useEffect, useRef, useState } from "react";
 
-function isElementVisible(threshold = 0.5) {
+function useElementVisibility(threshold = 0.5) {
+  const observeRef = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-    const observeRef = useRef();
-    const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    const element = observeRef.current;
+    if (!element) return;
 
-    useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) observer.unobserve(element);
+      },
+      { threshold },
+    );
 
-        const observer = new IntersectionObserver(entries => {
-            setIsVisible(entries[0].isIntersecting);
-            if(entries[0].isIntersecting){
-                observer.unobserve(observeRef.current);
-            }
-        }, {threshold});
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [threshold]);
 
-        observer.observe(observeRef.current);
-        return () => {
-            if(observeRef.current) observer.unobserve(observeRef.current);
-        }
-    }, []);
-
-
-    return {observeRef, isVisible};
+  return { observeRef, isVisible };
 }
 
-export default isElementVisible
+export default useElementVisibility;

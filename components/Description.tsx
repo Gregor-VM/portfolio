@@ -1,8 +1,7 @@
-import React, {useMemo} from "react";
 import isDay from "../hooks/isDay";
 import styles from "./../styles/Description.module.scss";
 import Model from './Model';
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next/pages";
 import { useRouter } from "next/router";
 import LinkButton from "../common/LinkButton/LinkButton";
 import Button from "../common/Button/Button";
@@ -10,37 +9,19 @@ import Button from "../common/Button/Button";
 function Description() {
 
   const { t } = useTranslation('index');
-  const { locale } = useRouter();
-
   const router = useRouter();
+  const locale = router.locale ?? "en";
 
-  const ids = ["projects", "skills", "github", "contact"];
-
-  let age: string = useMemo(() => {
-    const now = new Date();
-    const yearNow = now.getFullYear();
-    const birth = new Date(`${yearNow}-11-29`);
-    if(birth < now) return (yearNow+"").substr(2);
-    else return ((yearNow - 1)+"").substr(2);
-  },[]);
-
-
-  const animatedText = useMemo(() => {
-
-    const createLetter = (letter, i) => {
-      return <span key={i} className={styles['animatedLetter-'+(i+1)]}>{letter}</span>
-    }
-
-    const createAnimatedText = (text: string) => {
-      return text.split("").map((letter, i) => createLetter(letter, i));
-    };
-
-    return createAnimatedText(t("greetings"));
-
-  }, []);
+  const animatedText = t("greetings")
+    .split("")
+    .map((letter, index) => (
+      <span key={`${letter}-${index}`} className={styles[`animatedLetter-${index + 1}`]}>
+        {letter}
+      </span>
+    ));
 
   const scrollToContact = () => {
-    router.push("#contact")
+    void router.push("#contact");
   }
 
   return (

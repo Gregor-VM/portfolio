@@ -1,4 +1,5 @@
-@import "./Variables.scss";
+@use "sass:map";
+@use "./Variables" as *;
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bungee+Shade&family=Playpen+Sans&display=swap');
 
 * {
@@ -59,7 +60,7 @@ li {
 }
 
 .font-white{
-  color: map-get($map: $palette, $key: "white");
+  color: map.get($palette, "white");
   font-weight: normal;
 }
 
@@ -74,6 +75,7 @@ li {
 .section{
   display: flex;
   position: relative;
+  --diagonalSize: .75rem;
 }
 
 .section--topClipped{
@@ -86,7 +88,7 @@ li {
     height: calc(var(--diagonalSize) * 2);
     width: 100%;
     position: absolute;
-    background-color: map-get($map: $palette, $key: "black");
+    background-color: map.get($palette, "black");
     top: 0;
     left: 0;
   }
@@ -94,7 +96,7 @@ li {
 
 
 .section__background{
-  background-color: map-get($map: $palette, $key: "primary");
+  background-color: map.get($palette, "primary");
   position: absolute;
   top: 0px;
   right: 0;
@@ -108,7 +110,7 @@ li {
 }
 
 .section__background--white{
-  background-color: map-get($map: $palette, $key: "white");
+  background-color: map.get($palette, "white");
 }
 
 .doubleBg{
@@ -157,6 +159,9 @@ li {
     @extend %title;
     padding: 1rem;
     left: 0;
+    padding: 1rem 1.8rem;
+    display: flex;
+    justify-content: center;
   }
 
   &--flipped{
@@ -183,7 +188,7 @@ li {
   transform: scale(.85);
   margin-top: 0 !important;
   & > div{
-    background-color: map-get($map: $palette, $key: "white") !important;
+    background-color: map.get($palette, "white") !important;
   }
 }
 
@@ -197,7 +202,7 @@ li {
   transition: all 1s;
 
   %line{
-    background-color: map-get($map: $palette, $key: "black");
+    background-color: map.get($palette, "black");
     border-radius: 1rem;
     margin: 0 auto;
   }
@@ -256,15 +261,15 @@ li {
     object-fit: cover;
     position: relative;
     border-radius: 1.5rem;
-    border: .5rem solid map-get($map: $palette, $key: "black");
-    box-shadow: .75rem .75rem map-get($map: $palette, $key: "black");
+    border: .5rem solid map.get($palette, "black");
+    box-shadow: .75rem .75rem map.get($palette, "black");
     transition: all .5s;
-    background-color: map-get($map: $palette, $key: "white");
+    background-color: map.get($palette, "white");
   }
 
   &:hover{
     .linesImage__img{
-      box-shadow: 1rem 1.25rem map-get($map: $palette, $key: "black");
+      box-shadow: 1rem 1.25rem map.get($palette, "black");
       transform: translateY(-.5rem);
     }
     .linesEffect{
@@ -288,11 +293,11 @@ li {
   right: .5rem;
   min-width: 20rem;
   padding: .75rem;
-  background-color: map-get($map: $palette, $key: "white");
+  background-color: map.get($palette, "white");
   border-radius: .5rem;
-  border: .25rem solid map-get($map: $palette, $key: "success");
-  box-shadow: .25rem .25rem map-get($map: $palette, $key: "success");
-  color: map-get($map: $palette, $key: "success");
+  border: .25rem solid map.get($palette, "success");
+  box-shadow: .25rem .25rem map.get($palette, "success");
+  color: map.get($palette, "success");
   text-transform: uppercase;
 
   transition: all .5s;
@@ -301,15 +306,15 @@ li {
 }
 
 .alert--success{
-  border: .25rem solid map-get($map: $palette, $key: "success");
-  box-shadow: .25rem .25rem map-get($map: $palette, $key: "success");
-  color: map-get($map: $palette, $key: "success");
+  border: .25rem solid map.get($palette, "success");
+  box-shadow: .25rem .25rem map.get($palette, "success");
+  color: map.get($palette, "success");
 }
 
 .alert--danger{
-  border: .25rem solid map-get($map: $palette, $key: "danger");
-  box-shadow: .25rem .25rem map-get($map: $palette, $key: "danger");
-  color: map-get($map: $palette, $key: "danger");
+  border: .25rem solid map.get($palette, "danger");
+  box-shadow: .25rem .25rem map.get($palette, "danger");
+  color: map.get($palette, "danger");
 }
 
 .alert--show{

@@ -1,114 +1,130 @@
-import React, { useEffect, useRef } from 'react'
-import { getRandomInRange } from '../utils/getRandomInRange';
+import { useEffect, useRef } from "react";
+
+import { getRandomInRange } from "../utils/getRandomInRange";
 
 const WIDTH = 850;
 const HEIGHT = 600;
 
-const generateBall = () => {
-    return ({
-        radius: getRandomInRange(25, 50),
-        position: {x: getRandomInRange(0, WIDTH), y: getRandomInRange(0, HEIGHT)},
-        velocity: {x: getRandomInRange(.40, .80), y: getRandomInRange(.40, .80)}
-    })
+interface Vector2 {
+  x: number;
+  y: number;
 }
 
-const balls = Array.from({length: 10}).map(_ => {
-    return generateBall();
-})
+interface Ball {
+  radius: number;
+  position: Vector2;
+  velocity: Vector2;
+}
+
+function generateBall(): Ball {
+  return {
+    radius: getRandomInRange(25, 50),
+    position: {
+      x: getRandomInRange(0, WIDTH),
+      y: getRandomInRange(0, HEIGHT),
+    },
+    velocity: {
+      x: getRandomInRange(0.4, 0.8),
+      y: getRandomInRange(0.4, 0.8),
+    },
+  };
+}
+
+function resolveCollision(first: Ball, second: Ball) {
+  const dx = first.position.x - second.position.x;
+  const dy = first.position.y - second.position.y;
+  const distance = Math.hypot(dx, dy);
+  const overlap = first.radius + second.radius - distance;
+
+  if (overlap <= 0 || distance === 0) return;
+
+  const normal = { x: dx / distance, y: dy / distance };
+  const correction = overlap / 2;
+
+  first.position.x += normal.x * correction;
+  first.position.y += normal.y * correction;
+  second.position.x -= normal.x * correction;
+  second.position.y -= normal.y * correction;
+
+  const firstNormalVelocity =
+    first.velocity.x * normal.x + first.velocity.y * normal.y;
+  const secondNormalVelocity =
+    second.velocity.x * normal.x + second.velocity.y * normal.y;
+  const totalMass = first.radius + second.radius;
+
+  const firstVelocityAfter =
+    (firstNormalVelocity * (first.radius - second.radius) +
+      2 * second.radius * secondNormalVelocity) /
+    totalMass;
+  const secondVelocityAfter =
+    (secondNormalVelocity * (second.radius - first.radius) +
+      2 * first.radius * firstNormalVelocity) /
+    totalMass;
+
+  first.velocity.x += (firstVelocityAfter - firstNormalVelocity) * normal.x;
+  first.velocity.y += (firstVelocityAfter - firstNormalVelocity) * normal.y;
+  second.velocity.x += (secondVelocityAfter - secondNormalVelocity) * normal.x;
+  second.velocity.y += (secondVelocityAfter - secondNormalVelocity) * normal.y;
+}
 
 function CanvasBalls() {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-    const requestRef = React.useRef<number>()
-    const canvasRef = useRef<HTMLCanvasElement>();
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext("2d");
+    if (!context) return;
 
-    const animate = (time: number) => {
-        // The 'state' will always be the initial value here
+    const balls = Array.from({ length: 10 }, generateBall);
+    let animationFrame = 0;
 
-        const ctx = (canvasRef.current.getContext("2d") as CanvasRenderingContext2D);
+    const animate = () => {
+      context.clearRect(0, 0, WIDTH, HEIGHT);
+      context.fillStyle = "rgb(0, 0, 0)";
 
-        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+      for (const ball of balls) {
+        context.beginPath();
+        context.arc(
+          ball.position.x,
+          ball.position.y,
+          ball.radius,
+          0,
+          Math.PI * 2,
+        );
+        context.fill();
 
-        const loss = 1;
+        ball.position.x += ball.velocity.x;
+        ball.position.y += ball.velocity.y;
 
-        balls.forEach(ball => {
-            ctx.fillStyle = `rgb(0, 0, 0)`;
-            ctx.beginPath();
-            ctx.arc(ball.position.x, ball.position.y, ball.radius, 0, Math.PI * 2);
-            ctx.fill();
-        })
+        if (
+          ball.position.x < ball.radius / 2 ||
+          ball.position.x > WIDTH - ball.radius / 2
+        ) {
+          ball.velocity.x *= -1;
+        }
 
-        balls.forEach(ball => {
-            ball.position.x += ball.velocity.x;
-            ball.position.y += ball.velocity.y;
-
-            if(ball.position.x < (ball.radius / 2) || ball.position.x > (WIDTH - ball.radius / 2) ){
-                ball.velocity.x = -ball.velocity.x;
-            }
-
-            if(ball.position.y < (ball.radius / 2) || ball.position.y > (HEIGHT - ball.radius / 2) ){
-                ball.velocity.y = -ball.velocity.y;
-            }
-        });
-
-        balls.forEach(ball => {
-
-            balls.forEach(innerBall => {
-                const dx = ball.position.x - innerBall.position.x;
-                const dy = ball.position.y - innerBall.position.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                const overlap = (ball.radius + innerBall.radius) - distance;
-                if(overlap > 0){
-                    if(ball != innerBall){
-
-                        const normal = { x: dx / distance, y: dy / distance };
-
-                        // overlap handling
-                        ball.position.x += normal.x * (overlap / 2);
-                        ball.position.y += normal.y * (overlap / 2);
-                        innerBall.position.x -= normal.x * (overlap / 2);
-                        innerBall.position.y -= normal.y * (overlap / 2);
-
-                        // collision velocities calculations
-                        const ballMass = ball.radius;
-                        const innerBallMass = innerBall.radius;
-
-                        const v1n = ball.velocity.x * normal.x + ball.velocity.y * normal.y;
-                        const v2n = innerBall.velocity.x * normal.x + innerBall.velocity.y * normal.y;
-
-                        const v1nAfter = (v1n * (ballMass - innerBallMass) + 2 * innerBallMass * v2n) / (ballMass + innerBallMass);
-                        const v2nAfter = (v2n * (innerBallMass - ballMass) + 2 * ballMass * v1n) / (ballMass + innerBallMass);
-                        
-                        ball.velocity.x = v1nAfter * normal.x + (ball.velocity.x - v1n * normal.x);
-                        ball.velocity.y = v1nAfter * normal.y + (ball.velocity.y - v1n * normal.y);
-                        
-                        innerBall.velocity.x = v2nAfter * normal.x + (innerBall.velocity.x - v2n * normal.x);
-                        innerBall.velocity.y = v2nAfter * normal.y + (innerBall.velocity.y - v2n * normal.y);
-                        
-
-                        ball.velocity.x *= loss;
-                        ball.velocity.y *= loss;
-
-                        innerBall.velocity.x *= loss;
-                        innerBall.velocity.y *= loss;
-                    }
-                }
-            })
-            
-        })
-
-        requestRef.current = requestAnimationFrame(animate);
+        if (
+          ball.position.y < ball.radius / 2 ||
+          ball.position.y > HEIGHT - ball.radius / 2
+        ) {
+          ball.velocity.y *= -1;
+        }
       }
 
-    useEffect(() => {
+      for (let first = 0; first < balls.length; first += 1) {
+        for (let second = first + 1; second < balls.length; second += 1) {
+          resolveCollision(balls[first], balls[second]);
+        }
+      }
 
-        requestRef.current = requestAnimationFrame(animate);
-        return () => cancelAnimationFrame(requestRef.current);
+      animationFrame = window.requestAnimationFrame(animate);
+    };
 
-    }, []);
+    animationFrame = window.requestAnimationFrame(animate);
+    return () => window.cancelAnimationFrame(animationFrame);
+  }, []);
 
-    return (
-        <canvas ref={canvasRef} width={`${WIDTH}px`} height={`${HEIGHT}px`}></canvas>
-    );
+  return <canvas ref={canvasRef} width={WIDTH} height={HEIGHT} />;
 }
 
-export default CanvasBalls
+export default CanvasBalls;

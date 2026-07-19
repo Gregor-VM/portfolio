@@ -1,8 +1,9 @@
 import actionTypes from "../actionTypes";
+import type { User } from "../../interfaces/User";
 
 const actions = {
-  setUser: (user) => {
-    return { type: actionTypes.SETUSER, payload: user };
+  setUser: (user: User | null) => {
+    return { type: actionTypes.SETUSER, payload: user } as const;
   },
 };
 

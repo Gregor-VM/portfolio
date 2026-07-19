@@ -6,17 +6,41 @@ Source: https://sketchfab.com/3d-models/sopwith-pup-stylized-cupido-c140fa7e825f
 Title: Sopwith PUP Stylized - Cupido
 */
 
-import React, { useEffect, useRef } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import { useEffect, useRef } from "react";
+import { useAnimations, useGLTF } from "@react-three/drei";
+import type { ThreeElements } from "@react-three/fiber";
+import type { GLTF } from "three-stdlib";
+import * as THREE from "three";
 
-export function CupidoPlane(props) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/cupido_plane.glb') as any;
-  const { actions } = useAnimations(animations, group)
+type CupidoPlaneModel = GLTF & {
+  nodes: {
+    polySurface206_CupidoTexture_0: THREE.Mesh;
+    polySurface245_CupidoTexture_0: THREE.Mesh;
+    polySurface241_CupidoTexture_0: THREE.Mesh;
+    polySurface164_CupidoTexture_0: THREE.Mesh;
+    polySurface215_CupidoTexture_0: THREE.Mesh;
+    pPlane1_Spinn_0: THREE.Mesh;
+  };
+  materials: {
+    CupidoTexture: THREE.MeshStandardMaterial;
+    Spinn: THREE.MeshStandardMaterial;
+  };
+};
+
+export function CupidoPlane(props: ThreeElements["group"]) {
+  const group = useRef<THREE.Group>(null);
+  const { nodes, materials, animations } = useGLTF(
+    "/cupido_plane.glb",
+  ) as unknown as CupidoPlaneModel;
+  const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    actions['Take 001'].play()
-  }, []);
+    const action = actions["Take 001"];
+    action?.reset().play();
+    return () => {
+      action?.stop();
+    };
+  }, [actions]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -104,7 +128,7 @@ export function CupidoPlane(props) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/cupido_plane.glb')
+useGLTF.preload("/cupido_plane.glb");

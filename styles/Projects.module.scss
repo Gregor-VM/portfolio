@@ -1,4 +1,5 @@
-@import "./Variables.scss";
+@use "sass:map";
+@use "./Variables" as *;
 
 .project{
   margin-top: 8rem;
@@ -27,13 +28,13 @@
   display: flex;
   border-radius: 1.5rem;
   overflow: hidden;
-  border: .5rem solid map-get($map: $palette, $key: "black");
-  box-shadow: 1.5rem 1.5rem map-get($map: $palette, $key: "black");
+  border: .5rem solid map.get($palette, "black");
+  box-shadow: 1.5rem 1.5rem map.get($palette, "black");
   transition: all .5s;
-  background-color: map-get($map: $palette, $key: "black");
+  background-color: map.get($palette, "black");
 
   &:hover{
-    box-shadow: 1.75rem 2rem map-get($map: $palette, $key: "black");
+    box-shadow: 1.75rem 2rem map.get($palette, "black");
     transform: translateY(-.5rem);
   }
 }
@@ -75,7 +76,7 @@
     width: 14rem;
     height: 2.5rem;
     color: white;
-    background-color: map-get($map: $palette, $key: "black");
+    background-color: map.get($palette, "black");
     box-shadow: .5rem .5rem rgba(0, 0, 0, .25);
     transform: rotate(-2.5deg);
     margin: auto;
@@ -109,8 +110,8 @@
   gap: .5rem;
   justify-content: center;
   span{
-    background-color: map-get($map: $palette, $key: "black");
-    color: map-get($map: $palette, $key: "white");
+    background-color: map.get($palette, "black");
+    color: map.get($palette, "white");
     padding: .25rem 2rem;
     border-radius: 1rem;
   }
@@ -148,9 +149,9 @@
   }
 
   .project__image{
-    box-shadow: .5rem .5rem map-get($map: $palette, $key: "black");
+    box-shadow: .5rem .5rem map.get($palette, "black");
     &:hover{
-      box-shadow: .75rem 1.5rem map-get($map: $palette, $key: "black");
+      box-shadow: .75rem 1.5rem map.get($palette, "black");
       transform: translateY(-.25rem);
     }
   }

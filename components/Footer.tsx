@@ -1,6 +1,6 @@
 import LinkButton from "../common/LinkButton/LinkButton";
 import { contactLinks } from "../utils/contactLinks";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next/pages";
 import styles from "../styles/Footer.module.scss";
 
 function Footer() {
@@ -20,7 +20,7 @@ function Footer() {
         <div className={styles["footer__contact"]}>
 
           <div className={styles["footer__contact__button"]}>
-            <LinkButton variant="white" url={'mailto:'+contactLinks.email} label={t("sendEmail")} icon="fas fa-paper-plane" ></LinkButton>
+            <LinkButton variant="white" url={'mailto:'+contactLinks.email} label="sendEmail" icon="fas fa-paper-plane" ></LinkButton>
           </div>
           <h4>{t("followMySocials")}</h4>
           <div className={styles["footer__contact__socials"]}>

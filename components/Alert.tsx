@@ -1,26 +1,29 @@
-import { useEffect, useRef } from "react";
+import { useEffect, type Dispatch, type SetStateAction } from "react";
 
-function Alert({ show, msg, variant = "success", setShow }) {
+export type AlertVariant = "success" | "danger";
 
-  const timerRef = useRef<any>();
+interface AlertProps {
+  show: boolean;
+  msg: string;
+  variant?: AlertVariant;
+  setShow: Dispatch<SetStateAction<boolean>>;
+}
 
+function Alert({ show, msg, variant = "success", setShow }: AlertProps) {
   useEffect(() => {
+    if (!show) return;
 
-    if(show && !timerRef.current) {
-      timerRef.current = setTimeout(() => {
-        setShow(false);
-        timerRef.current = null;
-      }, 3000);
-    }
-
-    return () => {
-      clearTimeout(timerRef.current);
-    }
-
-  }, [show]);
+    const timer = window.setTimeout(() => setShow(false), 3000);
+    return () => window.clearTimeout(timer);
+  }, [setShow, show]);
 
   return (
-    <div className={`alert alert--${variant} ${show ? "alert--show" : "alert--hidden"}`}>
+    <div
+      className={`alert alert--${variant} ${
+        show ? "alert--show" : "alert--hidden"
+      }`}
+      role="status"
+    >
       {msg}
     </div>
   );

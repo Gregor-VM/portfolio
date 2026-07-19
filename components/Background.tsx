@@ -2,7 +2,7 @@ import React, {useMemo} from 'react';
 import styles from '../styles/Background.module.scss';
 
 interface HourDependingStyles {
-    sunTop: string | null
+    sunTop?: string
     citySVGURL: string
     sunLight: boolean
     isDay: boolean
@@ -31,7 +31,7 @@ const getHourValues = () : HourDependingStyles => {
         sunLight = true;
     }
 
-    return ({sunTop: sunTop ? sunTop + "px" : null, citySVGURL: city, sunLight, isDay});
+    return ({sunTop: sunTop ? sunTop + "px" : undefined, citySVGURL: city, sunLight, isDay});
     
 }
 
@@ -43,13 +43,13 @@ export default function Background({lightning} : {lightning: number}) {
     return (
         <div style={{backgroundColor: `${data.isDay ? "#d5f6ff" : "black"}`}} className={`${styles.background} ${data.sunLight ? styles.sunLight : ""} ${data.isDay ? styles.endAlignment : ""}`}>
 
-            <img className={styles.city_1} src={`./${data.citySVGURL}`} />
-            <img className={styles.city_2} src={`./${data.citySVGURL}`} />
+            <img className={styles.city_1} src={`./${data.citySVGURL}`} alt="" />
+            <img className={styles.city_2} src={`./${data.citySVGURL}`} alt="" />
 
-            <img style={{top: data.sunTop, visibility: data.sunTop ? "visible" : "hidden"}} className={styles.sun} src="./sun.gif" />
-            {!data.isDay ? (<div className={styles.moon}><img className={styles.moon} src="./moon.png" /><div style={{left: `${lightning + 5}%` }} className={styles.moon_shadow}></div> </div>) : null}
-            <img className={styles.air_ballon} src="./air_ballon.gif" />
-            <img className={styles.airplane} src="./airplane.gif" />
+            <img style={{top: data.sunTop, visibility: data.sunTop ? "visible" : "hidden"}} className={styles.sun} src="./sun.gif" alt="" />
+            {!data.isDay ? (<div className={styles.moon}><img className={styles.moon} src="./moon.png" alt="" /><div style={{left: `${lightning + 5}%` }} className={styles.moon_shadow}></div> </div>) : null}
+            <img className={styles.air_ballon} src="./air_ballon.gif" alt="" />
+            <img className={styles.airplane} src="./airplane.gif" alt="" />
 
         </div>
     )

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import viewActions from "../redux/actions/viewActions";
 import Project from "../interfaces/Project";
 import { motion } from 'framer-motion';
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next/pages";
 
 const item = {
   hidden: { y: 20, opacity: 0 },
@@ -30,8 +30,8 @@ function ProjectItem(project: Project) {
   };
 
   const showModal = () => {
-    dispatch(viewActions.setView(true));
     dispatch(viewActions.setProject(project));
+    dispatch(viewActions.setView(true));
   };
 
   return (
