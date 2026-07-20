@@ -24,7 +24,9 @@
   padding-left: .25rem;
   padding-right: .25rem;
   div {
-    font-size: $font + 5px;
+    .brandName{
+      font-size: $font + 5px;
+    }
     display: flex;
     align-items: center;
     i {
@@ -67,7 +69,7 @@
 
   .menu{
     opacity: 1;
-    padding: .75rem 1.5rem;
+    padding: .75rem 1.25rem;
     transition: opacity 1s linear, display 0s 100s;
   }
 
@@ -78,7 +80,7 @@
 }
 
 .list:hover{
-  width: 21rem !important;
+  width: 22.8rem !important;
 
   a{
     opacity: 1;

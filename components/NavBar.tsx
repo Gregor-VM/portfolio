@@ -19,7 +19,7 @@ function NavBar() {
       
       <div className={styles.navContainer}>
         <div>
-          <div className={styles.blue}>GREGOR<span className={styles.blue}>VM</span></div>
+          <div className={`${styles.blue} ${styles.brandName}`}>GREGOR<span className={styles.blue}>VM</span></div>
         </div>
         <ul className={`${styles.blue} ${styles.list}`}>
 
