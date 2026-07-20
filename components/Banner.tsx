@@ -17,9 +17,9 @@ export function Banner() {
       canvasHeight="100%"
       width={3}
       height={2.03}
-      segments={{ x: 64, y: 40 }}
+      segments={{ x: 32, y: 20 }}
       attachment={{
-        points: [[64, 0], [64, 40]]
+        points: [[32, 0], [32, 20]]
       }}
       wind={{
         direction: [-1, 0.08, 0.3],
